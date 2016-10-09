@@ -1,0 +1,176 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+		p:location="/WEB-INF/jdbc.properties" />
+
+	<!-- 	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		p:driverClassName="${jdbc.driverClassName}"
+		p:url="${jdbc.databaseurl}" p:username="${jdbc.username}" p:password="${jdbc.password}" />
+	-->
+<bean id="dataSource" class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy">
+<constructor-arg>
+<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+<property name="driverClassName" value="${jdbc.driverClassName}" />
+<property name="url" value="${jdbc.databaseurl}" />
+<property name="username" value="${jdbc.username}" />
+<property name="password" value="${jdbc.password}" />
+</bean>
+</constructor-arg>
+</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${jdbc.dialect}</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<context:annotation-config />
+
+	<context:component-scan base-package="edumanage" />
+	
+	<mvc:annotation-driven />
+	
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources -->
+    <mvc:resources mapping="/css/**" location="/css/"/>
+	<mvc:resources mapping="/js/**" location="/js/"/>
+	<mvc:resources mapping="/img/**" location="/img/"/>
+	
+	<mvc:default-servlet-handler />
+	
+	<mvc:interceptors>
+		<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"
+			p:paramName="lang" />
+	</mvc:interceptors>
+	
+	
+	<tx:annotation-driven />
+
+	<bean id="tilesViewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles2.TilesView" />
+	</bean>
+
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles.xml</value>
+			</list>
+		</property>
+	</bean>
+
+
+
+
+
+	<security:http auto-config="true" use-expressions="true">
+
+		<!-- intercepted urls -->
+		<security:intercept-url pattern="/edumanage/users/login"	access="permitAll" />
+		<security:intercept-url pattern="/edumanage/j_spring_security_check" access="permitAll" />
+		<security:intercept-url pattern="/edumanage/pages/*" access="permitAll" />
+		<security:intercept-url pattern="/*" access="hasRole('ROLE_USER')" />
+		<security:session-management session-fixation-protection="migrateSession" />
+
+		<!-- form login -->
+		<security:form-login login-page="/users/login"
+			login-processing-url="/j_spring_security_check"
+			always-use-default-target="false" default-target-url="/menu"
+			authentication-failure-url="/users/logindenied" />
+
+		<!-- logout -->
+		<!-- 
+		--> 
+		<security:logout invalidate-session="true"
+			logout-url="/j_spring_security_logout" 
+			logout-success-url="/pages/adios" 
+			/>
+	</security:http>
+
+	<!-- authentication manager and password hashing -->
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider
+			ref="daoAuthenticationProvider" />
+	</security:authentication-manager>
+
+	<!-- enable support for Expression-based annotations in Spring Security -->
+	<security:global-method-security
+		pre-post-annotations="enabled">
+		<security:expression-handler ref="expressionHandler" />
+	</security:global-method-security>
+
+	<bean id="expressionHandler"
+		class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler">
+	</bean>
+
+	<bean id="daoAuthenticationProvider"
+		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService" ref="userDetailsService" />
+		<property name="saltSource">
+			<bean
+				class="org.springframework.security.authentication.dao.ReflectionSaltSource">
+				<property name="userPropertyToUse" value="username" />
+			</bean>
+		</property>
+		<property name="passwordEncoder" ref="passwordEncoder" />
+	</bean>
+
+	<bean id="userDetailsService" name="userAuthenticationProvider"
+		class="edumanage.service.authentication.form.AuthenticationUserDetailsGetter">
+		<constructor-arg index="0" ref="userRepository" />
+	</bean>
+	<bean id="userRepository" class="edumanage.dao.hibernate.UserDAOImpl">
+	</bean>
+
+	<bean id="passwordEncoder"
+		class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+		<constructor-arg index="0" value="256" />
+	</bean>
+	<bean id="accessDecisionManager"
+		class="org.springframework.security.access.vote.AffirmativeBased">
+		<property name="decisionVoters">
+			<list>
+				<ref bean="roleVoter" />
+				<ref bean="authenticatedVoter" />
+			</list>
+		</property>
+	</bean>
+	<bean class="org.springframework.security.access.vote.RoleVoter"
+		id="roleVoter" />
+	<bean class="org.springframework.security.access.vote.AuthenticatedVoter"
+		id="authenticatedVoter" />
+	
+</beans>
