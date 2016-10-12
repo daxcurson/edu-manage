@@ -15,7 +15,8 @@
 <%@include file="/WEB-INF/jsp/Vista/Inscripciones/buscar-cursos2.js" %>
 <%@include file="/WEB-INF/jsp/Vista/Inscripciones/buscar_paquetes.js" %>
 
-<form:form method="post" action="inscribir" commandName="modelo_inscripcion">
+<form:form method="post" action="inscribir" commandName="modelo_inscripcion"
+class="form-horizontal">
 	<tiles:insertAttribute name="form_persona"/>
 	<tiles:insertAttribute name="form_inscripcion"/>
 	<tiles:insertAttribute name="form_inscripcion_individual"/>

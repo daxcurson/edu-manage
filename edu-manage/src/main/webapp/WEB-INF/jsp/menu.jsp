@@ -1,67 +1,40 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-				<!-- 
-				NOTE: Notice the gaps after each icon usage <i></i>..
-				Please note that these links work a bit different than
-				traditional href="" links. See documentation for details.
-				-->
-
-				<ul>
-					<li class="">						
-						<a href="#" title="MenuPrincipal"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Menu Principal</span></a>
-						<ul>
-							<li class="">
-								<a href="${pageContext.request.contextPath}/menu" title="MenuPrincipal"><span class="menu-item-parent">Men&uacute; Principal</span></a>
-							</li>
-						</ul>	
-					</li>
-					<li>
-						<a href="${pageContext.request.contextPath}/personas/index"><i class="fa fa-lg fa-fw fa-puzzle-piece"></i> <span class="menu-item-parent">Personas</span></a>
-						<ul>
-							<li>
-								<a href="${pageContext.request.contextPath}/personas/index">Inbox </a>
-							</li>
-							<li>
-								<a href="${pageContext.request.contextPath}/personas/index">Email view </a>
-							</li>
-						</ul>	
-					</li>
-					<li>
-						<a href="${pageContext.request.contextPath}/inscripciones/index"><i class="fa fa-lg fa-fw fa-puzzle-piece"></i> <span class="menu-item-parent">Inscripciones</span></a>
-					</li>
-					<li>
-						<a href="${pageContext.request.contextPath}/cursos/index"><i class="fa fa-lg fa-fw fa-puzzle-piece"></i> <span class="menu-item-parent">Cursos</span></a>
-					</li>
-					<li>
-						<a href="${pageContext.request.contextPath}/profesores/index"><i class="fa fa-lg fa-fw fa-puzzle-piece"></i> <span class="menu-item-parent">Profesores</span></a>
-					</li>
-					<li>
-						<a href="${pageContext.request.contextPath}/configuracion/index"><i class="fa fa-lg fa-fw fa-gear"></i> <span class="menu-item-parent">Configuraci&oacute;n</span></a>
-					</li>
-					<li>
-						<a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Informes</span></a>
-						<ul>
-							<li>
-								<a href="ajax/flot.html">Flot Chart</a>
-							</li>
-							<li>
-								<a href="ajax/morris.html">Morris Charts</a>
-							</li>
-							<li>
-								<a href="ajax/sparkline-charts.html">Sparklines</a>
-							</li>
-							<li>
-								<a href="ajax/easypie-charts.html">EasyPieCharts</a>
-							</li>
-							<li>
-								<a href="ajax/dygraphs.html">Dygraphs</a>
-							</li>
-							<li>
-								<a href="ajax/chartjs.html">Chart.js</a>
-							</li>
-							<li>
-								<a href="ajax/hchartable.html">HighchartTable <span class="badge pull-right inbox-badge bg-color-yellow">new</span></a>
-							</li>
-						</ul>
-					</li>
-				</ul>
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Edu-Manage</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <sec:authorize access="hasRole('ROLE_USER')">
+            <li>
+            	<c:url value="/j_spring_security_logout" var="logoutUrl"/>
+				<a href="${logoutUrl}">Salir</a>
+            </li>
+			</sec:authorize>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
