@@ -178,7 +178,9 @@ public class CursosController extends AppController
 	 */
 	@PreAuthorize("isAuthenticated() and hasRole('ROLE_CURSOS_AGREGAR')")
 	@RequestMapping(value="/listar_modalidades")
-	public @ResponseBody List<ModalidadDisponible> ListarModalidades(@ModelAttribute Curso curso
+	public @ResponseBody List<ModalidadDisponible> ListarModalidades(
+			@RequestBody
+			@ModelAttribute Curso curso
 			)
 	{
 		return curso.getModalidades_disponibles();

@@ -1,4 +1,4 @@
-package edumanage.security;
+package edumanage.service.authentication;
 
 
 import org.springframework.dao.DataAccessException;

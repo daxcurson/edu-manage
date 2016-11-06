@@ -96,19 +96,28 @@
 
 
 
-	<security:http auto-config="true" use-expressions="true">
+	<security:http 
+		auto-config="true" 
+		use-expressions="true"
+		disable-url-rewriting="true">
 
 		<!-- intercepted urls -->
-		<security:intercept-url pattern="/edumanage/users/login"	access="permitAll" />
-		<security:intercept-url pattern="/edumanage/j_spring_security_check" access="permitAll" />
-		<security:intercept-url pattern="/edumanage/pages/*" access="permitAll" />
-		<security:intercept-url pattern="/*" access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/users/login" access="permitAll" />
+		<security:intercept-url pattern="/j_spring_security_check" access="permitAll" />
+		<security:intercept-url pattern="/pages/**" access="permitAll" />
+		<security:intercept-url pattern="/css/**" access="permitAll" />
+		<security:intercept-url pattern="/img/**" access="permitAll" />
+		<security:intercept-url pattern="/js/**" access="permitAll" />
+		<security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
 		<security:session-management session-fixation-protection="migrateSession" />
 
 		<!-- form login -->
-		<security:form-login login-page="/users/login"
+		<security:form-login 
+			login-page="/users/login"
+			username-parameter="j_username"
+			password-parameter="j_password"
 			login-processing-url="/j_spring_security_check"
-			always-use-default-target="false" default-target-url="/menu"
+			always-use-default-target="false" default-target-url="/"
 			authentication-failure-url="/users/logindenied" />
 
 		<!-- logout -->
@@ -118,8 +127,13 @@
 			logout-url="/j_spring_security_logout" 
 			logout-success-url="/pages/adios" 
 			/>
+		<security:csrf token-repository-ref="tokenRepository"/>
+		<security:headers disabled="true"/>
 	</security:http>
-
+	<bean id="tokenRepository"
+		class="org.springframework.security.web.csrf.CookieCsrfTokenRepository"
+		p:cookieHttpOnly="false">
+	</bean>
 	<!-- authentication manager and password hashing -->
 	<security:authentication-manager alias="authenticationManager">
 		<security:authentication-provider
@@ -139,25 +153,16 @@
 	<bean id="daoAuthenticationProvider"
 		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
 		<property name="userDetailsService" ref="userDetailsService" />
-		<property name="saltSource">
-			<bean
-				class="org.springframework.security.authentication.dao.ReflectionSaltSource">
-				<property name="userPropertyToUse" value="username" />
-			</bean>
-		</property>
 		<property name="passwordEncoder" ref="passwordEncoder" />
 	</bean>
 
 	<bean id="userDetailsService" name="userAuthenticationProvider"
-		class="edumanage.service.authentication.form.AuthenticationUserDetailsGetter">
-		<constructor-arg index="0" ref="userRepository" />
-	</bean>
-	<bean id="userRepository" class="edumanage.dao.hibernate.UserDAOImpl">
+		class="edumanage.service.impl.AuthenticationUserDetailsGetter">
+		<constructor-arg index="0" ref="userDAOImpl" />
 	</bean>
 
 	<bean id="passwordEncoder"
-		class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
-		<constructor-arg index="0" value="256" />
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
 	</bean>
 	<bean id="accessDecisionManager"
 		class="org.springframework.security.access.vote.AffirmativeBased">

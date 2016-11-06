@@ -1,9 +1,9 @@
-package edumanage.security;
+package edumanage.dao;
 
+import java.util.List;
 import edumanage.model.*;
-import java.util.*;
 
-public interface GroupRepository 
+public interface GroupDAO 
 {
 	List<Group> listAllGroups();
 	Group findGroupById(long id);

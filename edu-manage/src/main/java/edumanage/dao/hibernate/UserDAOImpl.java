@@ -18,7 +18,7 @@ public class UserDAOImpl implements UserDAO
 	@Override
 	public User findByLogin(String login) 
 	{
-		log.trace("Estoy en UserDAO.findByLogin");
+		log.trace("Estoy en UserDAOImpl.findByLogin, login pedido:"+login);
 		return (User) sessionFactory.getCurrentSession().createQuery("from User where username='"+login+"'").getSingleResult();
 	}
 

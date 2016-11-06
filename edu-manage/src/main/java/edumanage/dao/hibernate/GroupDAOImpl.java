@@ -7,11 +7,11 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import edumanage.dao.GroupDAO;
 import edumanage.model.Group;
-import edumanage.security.GroupRepository;
 
 @Repository
-public class GroupDAOImpl implements GroupRepository
+public class GroupDAOImpl implements GroupDAO
 {
 	static Logger log = Logger.getLogger(GroupDAOImpl.class);
 	@Autowired

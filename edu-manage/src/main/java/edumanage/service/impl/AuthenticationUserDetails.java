@@ -1,13 +1,15 @@
-package edumanage.service.authentication.form;
+package edumanage.service.impl;
 
 import java.util.*;
 
 import org.apache.log4j.Logger;
-import org.springframework.security.authentication.encoding.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import edumanage.model.*;
-import edumanage.security.authentication.PermissionGranted;
+import edumanage.model.Group;
+import edumanage.model.Permission;
+import edumanage.model.PermissionGranted;
+import edumanage.model.User;
 
 public class AuthenticationUserDetails implements org.springframework.security.core.userdetails.UserDetails {
     /**
@@ -27,8 +29,8 @@ public class AuthenticationUserDetails implements org.springframework.security.c
         this.login = user.getUsername();
         this.passwordHash = user.getPassword();
         this.enabled = (user.getEnabled()==1 ? true:false);
-        PasswordEncoder pwe=new ShaPasswordEncoder(256);
-        String encodedPassword=pwe.encodePassword("bien2encaminados","admin");
+        BCryptPasswordEncoder pwe=new BCryptPasswordEncoder();
+        String encodedPassword=pwe.encode("bien2encaminados");
         log.trace("El password tiene que ser "+encodedPassword);
         // Convierto los permisos leidos de la base, para el grupo al que pertenece el usuario, en Authorities.
         Group g=user.getGroup();

@@ -1,4 +1,4 @@
-package edumanage.security.authentication;
+package edumanage.model;
 
 import org.springframework.security.core.GrantedAuthority;
 

@@ -5,6 +5,7 @@
 <div class="row">
 	<h1 class="txt-color-red login-header-big">Acceso al sistema Edu-Manage</h1>
 	<form method="post" action="${pageContext.request.contextPath}/j_spring_security_check" id="login-form">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<fieldset>
 		<div class="form-group">
 			<label for="UserUsername">Login</label>

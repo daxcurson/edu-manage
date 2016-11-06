@@ -4,11 +4,12 @@ import java.util.*;
 import edumanage.model.validacion.*;
 import javax.persistence.*;
 
-import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.envers.Audited;
 import org.hibernate.validator.group.GroupSequenceProvider;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @DiscriminatorValue("0")

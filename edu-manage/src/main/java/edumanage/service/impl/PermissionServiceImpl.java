@@ -1,15 +1,18 @@
 package edumanage.service.impl;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import edumanage.dao.GroupDAO;
 import edumanage.model.Group;
 import edumanage.model.Permission;
-import edumanage.security.GroupRepository;
 import edumanage.service.authentication.PermissionService;
 
 @Service
@@ -18,7 +21,7 @@ public class PermissionServiceImpl implements PermissionService
 	static Logger log = Logger.getLogger(PermissionServiceImpl.class);
 
 	@Autowired
-	private GroupRepository groupRepository;
+	private GroupDAO groupRepository;
 
 	@Override
 	@Transactional
@@ -52,6 +55,9 @@ public class PermissionServiceImpl implements PermissionService
 		}
 		else
 		{
+			if(s==null)
+				s=new HashSet<Permission>();
+			g.setPermissions(s);
 			this.agregarPermiso(g, permission);
 			return "true";
 		}

@@ -1,4 +1,4 @@
-package edumanage.service.authentication.form;
+package edumanage.service.impl;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,18 +7,18 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
 import edumanage.dao.UserDAO;
-import edumanage.model.*;
+import edumanage.model.User;
 
-public class AuthenticationUserDetailsGetter implements UserDetailsService {
-	static Logger log = Logger.getLogger(AuthenticationUserDetailsGetter.class);
+public class UserDetailsServiceImpl implements UserDetailsService {
+	static Logger log = Logger.getLogger(UserDetailsServiceImpl.class);
     private UserDAO userRepository;
 
     //required by cglib because I use class based aspect weaving
-    protected AuthenticationUserDetailsGetter() {
+    protected UserDetailsServiceImpl() {
     }
 
-    public AuthenticationUserDetailsGetter(UserDAO userRepository) {
-    	log.trace("Estoy en AuthenticationUserDetailsGetter.constructor");
+    public UserDetailsServiceImpl(UserDAO userRepository) {
+    	log.trace("Estoy en UserDetailsServieImpl.constructor");
         this.userRepository = userRepository;
     }
 

@@ -5,20 +5,20 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import edumanage.dao.UserDAO;
 import edumanage.model.Group;
 import edumanage.model.User;
-import edumanage.security.GroupRepository;
 import edumanage.service.InstalacionService;
+import edumanage.service.authentication.GroupService;
 import edumanage.service.authentication.PermissionService;
+import edumanage.service.authentication.UserService;
 
 @Service
 public class InstalacionServiceImpl implements InstalacionService
 {
 	@Autowired
-	private GroupRepository groupService;
+	private GroupService groupService;
 	@Autowired
-	private UserDAO userService;
+	private UserService userService;
 	@Autowired
 	private PermissionService permissionService;
 	
