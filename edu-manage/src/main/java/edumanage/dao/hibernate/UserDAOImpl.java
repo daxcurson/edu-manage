@@ -7,10 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import edumanage.dao.UserDAO;
 import edumanage.model.User;
-import edumanage.security.UserRepository;
 
 @Repository
-public class UserDAOImpl implements UserRepository, UserDAO
+public class UserDAOImpl implements UserDAO
 {
 	static Logger log = Logger.getLogger(UserDAOImpl.class);
 	@Autowired
@@ -24,9 +23,9 @@ public class UserDAOImpl implements UserRepository, UserDAO
 	}
 
 	@Override
-	public User save(User user) {
-		// TODO Auto-generated method stub
-		return null;
+	public void save(User user) 
+	{
+		sessionFactory.getCurrentSession().saveOrUpdate(user);
 	}
 
 	@Override

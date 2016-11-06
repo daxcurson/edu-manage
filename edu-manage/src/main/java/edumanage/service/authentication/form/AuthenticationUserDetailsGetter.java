@@ -6,18 +6,18 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
+import edumanage.dao.UserDAO;
 import edumanage.model.*;
-import edumanage.security.UserRepository;
 
 public class AuthenticationUserDetailsGetter implements UserDetailsService {
 	static Logger log = Logger.getLogger(AuthenticationUserDetailsGetter.class);
-    private UserRepository userRepository;
+    private UserDAO userRepository;
 
     //required by cglib because I use class based aspect weaving
     protected AuthenticationUserDetailsGetter() {
     }
 
-    public AuthenticationUserDetailsGetter(UserRepository userRepository) {
+    public AuthenticationUserDetailsGetter(UserDAO userRepository) {
     	log.trace("Estoy en AuthenticationUserDetailsGetter.constructor");
         this.userRepository = userRepository;
     }
