@@ -20,7 +20,7 @@ public class UserDAOImpl implements UserRepository, UserDAO
 	public User findByLogin(String login) 
 	{
 		log.trace("Estoy en UserDAO.findByLogin");
-		return (User) sessionFactory.getCurrentSession().createQuery("from User where username='"+login+"'").uniqueResult();
+		return (User) sessionFactory.getCurrentSession().createQuery("from User where username='"+login+"'").getSingleResult();
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class UserDAOImpl implements UserRepository, UserDAO
 	public User findById(Long userId) 
 	{
 		log.trace("Estoy en UserDAO.findById");
-		return (User) sessionFactory.getCurrentSession().createQuery("from User where User.id"+userId).uniqueResult();
+		return (User) sessionFactory.getCurrentSession().createQuery("from User where User.id"+userId).getSingleResult();
 	}
 
 	@Override

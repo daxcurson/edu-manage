@@ -18,7 +18,7 @@ public class PersonaDAOImpl implements PersonaDAO
 	@SuppressWarnings("unchecked")
 	public List<Persona> listPersona() 
 	{
-		return (List<Persona>) sessionFactory.getCurrentSession().createQuery("from Persona").list();
+		return (List<Persona>) sessionFactory.getCurrentSession().createQuery("from Persona").getResultList();
 	}
 
 	public void removePersona(Integer id) 
@@ -33,7 +33,7 @@ public class PersonaDAOImpl implements PersonaDAO
 	@Override
 	public Persona getById(long id) 
 	{
-		return (Persona) sessionFactory.getCurrentSession().createQuery("from Persona where id="+id).uniqueResult();
+		return (Persona) sessionFactory.getCurrentSession().createQuery("from Persona where id="+id).getSingleResult();
 	}
 
 	@Override

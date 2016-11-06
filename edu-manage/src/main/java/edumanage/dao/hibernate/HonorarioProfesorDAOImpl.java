@@ -3,7 +3,7 @@ package edumanage.dao.hibernate;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Query;
+import org.hibernate.query.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,16 +21,16 @@ public class HonorarioProfesorDAOImpl implements HonorarioProfesorDAO
 	@Override
 	public HonorarioProfesor getById(long id) 
 	{
-		return (HonorarioProfesor)sessionFactory.getCurrentSession().createQuery("from HonorarioProfesor where id="+id).uniqueResult();
+		return (HonorarioProfesor)sessionFactory.getCurrentSession().createQuery("from HonorarioProfesor where id="+id).getSingleResult();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<HonorarioProfesor> buscarHonorariosIdioma(long idiomaEstudiarId) 
 	{
-		Query q=sessionFactory.getCurrentSession().createQuery("from HonorarioProfesor where idioma_estudiar.id=:idiomaEstudiarId");
-		q.setLong("idiomaEstudiarId", idiomaEstudiarId);
-		return q.list();
+		Query<HonorarioProfesor> q=sessionFactory.getCurrentSession().createQuery("from HonorarioProfesor where idioma_estudiar.id=:idiomaEstudiarId");
+		q.setParameter("idiomaEstudiarId", idiomaEstudiarId);
+		return q.getResultList();
 	}
 
 	@Override
@@ -43,6 +43,6 @@ public class HonorarioProfesorDAOImpl implements HonorarioProfesorDAO
 	@Override
 	public List<HonorarioProfesor> listarHonorarios() 
 	{
-		return sessionFactory.getCurrentSession().createQuery("from HonorarioProfesor").list();
+		return sessionFactory.getCurrentSession().createQuery("from HonorarioProfesor").getResultList();
 	}
 }

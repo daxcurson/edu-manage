@@ -5,7 +5,7 @@ import java.util.List;
 
 
 //import org.hibernate.Hibernate;
-import org.hibernate.Query;
+import org.hibernate.query.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,13 +27,13 @@ public class ModalidadCursoDAOImpl implements ModalidadCursoDAO
 	@Override
 	public ModalidadCurso getById(long id) 
 	{
-		return (ModalidadCurso)sessionFactory.getCurrentSession().createQuery("from ModalidadCurso where id="+id).uniqueResult();
+		return (ModalidadCurso)sessionFactory.getCurrentSession().createQuery("from ModalidadCurso where id="+id).getSingleResult();
 	}
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<ModalidadCurso> listarModalidadesCurso() 
 	{
-		return (List<ModalidadCurso>) sessionFactory.getCurrentSession().createQuery("from ModalidadCurso").list();
+		return (List<ModalidadCurso>) sessionFactory.getCurrentSession().createQuery("from ModalidadCurso").getResultList();
 	}
 	@Override
 	public void addModalidadCurso(ModalidadCurso modalidad_curso) 
@@ -49,10 +49,10 @@ public class ModalidadCursoDAOImpl implements ModalidadCursoDAO
 	@Override
 	public List<ModalidadCurso> listarModalidadesCursoPorIdiomaTipo(int idioma_estudiar_id, int tipo_curso_id) 
 	{
-		Query queryModalidades=sessionFactory.getCurrentSession().createQuery(this.queryModalidadesPorIdiomaTipo);
+		Query<ModalidadCurso> queryModalidades=sessionFactory.getCurrentSession().createQuery(this.queryModalidadesPorIdiomaTipo);
 		queryModalidades.setParameter("idioma", idioma_estudiar_id);
 		queryModalidades.setParameter("tipo_curso", tipo_curso_id);
-		return queryModalidades.list();
+		return queryModalidades.getResultList();
 	}
 	@Override
 	public ModalidadDisponible grabarModalidadDisponible(ModalidadDisponible m) 

@@ -8,7 +8,7 @@ import java.sql.Types;
 
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
-import org.hibernate.engine.spi.SessionImplementor;
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.usertype.UserType;
 
 public class PersonaEstadoUserType implements UserType
@@ -46,10 +46,9 @@ public class PersonaEstadoUserType implements UserType
 	{
 		return x.hashCode();
 	}
-
 	@Override
-	public Object nullSafeGet(ResultSet rs, String[] names, SessionImplementor session, Object owner)
-			throws HibernateException, SQLException 
+	public Object nullSafeGet(ResultSet rs, String[] names, SharedSessionContractImplementor session, Object owner)
+			throws HibernateException, SQLException
 	{
 		// Null safe validations should be included
 		log.trace("Estoy en nullSafeGet");
@@ -74,8 +73,8 @@ public class PersonaEstadoUserType implements UserType
 		}
 	}
 	@Override
-	public void nullSafeSet(PreparedStatement st, Object value, int index, SessionImplementor session)
-			throws HibernateException, SQLException 
+	public void nullSafeSet(PreparedStatement st, Object value, int index, SharedSessionContractImplementor session)
+			throws HibernateException, SQLException
 	{
 		log.trace("Estoy en nullSafeSet");
 		PersonaEstado estado=(PersonaEstado) value;
@@ -107,4 +106,5 @@ public class PersonaEstadoUserType implements UserType
 	public Object replace(Object original, Object target, Object owner) throws HibernateException {
 		return deepCopy(original);
 	}
+
 }

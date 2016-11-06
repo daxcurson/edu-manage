@@ -19,12 +19,12 @@ public class ComoSupoDAOImpl implements ComoSupoDAO
 	@SuppressWarnings("unchecked")
 	public List<ComoSupo> listarComoSupo() 
 	{
-		return (List<ComoSupo>) sessionFactory.getCurrentSession().createQuery("from ComoSupo").list();
+		return (List<ComoSupo>) sessionFactory.getCurrentSession().createQuery("from ComoSupo").getResultList();
 	}
 
 	@Override
 	public ComoSupo getById(long id) 
 	{
-		return (ComoSupo) sessionFactory.getCurrentSession().createQuery("from ComoSupo where id="+id).uniqueResult();
+		return (ComoSupo) sessionFactory.getCurrentSession().createQuery("from ComoSupo where id="+id).getSingleResult();
 	}
 }

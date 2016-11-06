@@ -18,14 +18,14 @@ public class NacionalidadDAOImpl implements NacionalidadDAO
 	@Override
 	public Nacionalidad getById(long id) 
 	{
-		return (Nacionalidad) sessionFactory.getCurrentSession().createQuery("from Nacionalidad where id="+id).uniqueResult();
+		return (Nacionalidad) sessionFactory.getCurrentSession().createQuery("from Nacionalidad where id="+id).getSingleResult();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Nacionalidad> listarNacionalidades() 
 	{
-		return (List<Nacionalidad>) sessionFactory.getCurrentSession().createQuery("from Nacionalidad").list();
+		return (List<Nacionalidad>) sessionFactory.getCurrentSession().createQuery("from Nacionalidad").getResultList();
 	}
 
 }

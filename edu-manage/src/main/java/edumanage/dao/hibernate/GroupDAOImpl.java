@@ -21,13 +21,13 @@ public class GroupDAOImpl implements GroupRepository
 	@Override
 	public List<Group> listAllGroups() 
 	{
-		return sessionFactory.getCurrentSession().createQuery("from Group").list();
+		return sessionFactory.getCurrentSession().createQuery("from Group").getResultList();
 	}
 
 	@Override
 	public Group findGroupById(long id) 
 	{
-		return (Group)sessionFactory.getCurrentSession().createQuery("from Group where id="+id).uniqueResult();
+		return (Group)sessionFactory.getCurrentSession().createQuery("from Group where id="+id).getSingleResult();
 	}
 
 	@Override

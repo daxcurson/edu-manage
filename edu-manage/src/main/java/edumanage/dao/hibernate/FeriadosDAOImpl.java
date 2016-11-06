@@ -3,7 +3,7 @@ package edumanage.dao.hibernate;
 import java.util.Date;
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.query.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,17 +23,17 @@ public class FeriadosDAOImpl implements FeriadosDAO
 	@Override
 	public List<Feriado> listarFeriados(Date desde, Date hasta) 
 	{
-		Query queryFeriados=sessionFactory.getCurrentSession().createQuery(this.feriadosEntreFechas);
-		queryFeriados.setDate("fechaDesde", desde);
-		queryFeriados.setDate("fechaHasta", hasta);
-		return queryFeriados.list();
+		Query<Feriado> queryFeriados=sessionFactory.getCurrentSession().createQuery(this.feriadosEntreFechas);
+		queryFeriados.setParameter("fechaDesde", desde);
+		queryFeriados.setParameter("fechaHasta", hasta);
+		return queryFeriados.getResultList();
 	}
 
 	@Override
 	public Feriado buscarFeriadoEnFecha(Date fecha) 
 	{
-		Query queryFeriados=sessionFactory.getCurrentSession().createQuery("from Feriado where fecha=:fechaFeriado");
-		queryFeriados.setDate("fechaFeriado", fecha);
-		return (Feriado) queryFeriados.uniqueResult();
+		Query<Feriado> queryFeriados=sessionFactory.getCurrentSession().createQuery("from Feriado where fecha=:fechaFeriado",Feriado.class);
+		queryFeriados.setParameter("fechaFeriado", fecha);
+		return (Feriado) queryFeriados.getSingleResult();
 	}
 }

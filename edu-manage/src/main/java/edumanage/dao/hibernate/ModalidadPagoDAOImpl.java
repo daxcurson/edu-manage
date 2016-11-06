@@ -19,12 +19,12 @@ public class ModalidadPagoDAOImpl implements ModalidadPagoDAO
 	@Override
 	public List<ModalidadPago> listarModalidadesPago() 
 	{
-		return (List<ModalidadPago>) sessionFactory.getCurrentSession().createQuery("from ModalidadPago").list();
+		return (List<ModalidadPago>) sessionFactory.getCurrentSession().createQuery("from ModalidadPago").getResultList();
 	}
 
 	@Override
 	public ModalidadPago getById(long id) 
 	{
-		return (ModalidadPago)sessionFactory.getCurrentSession().createQuery("from ModalidadPago where id="+id).uniqueResult();
+		return (ModalidadPago)sessionFactory.getCurrentSession().createQuery("from ModalidadPago where id="+id).getSingleResult();
 	}
 }

@@ -4,7 +4,8 @@ import java.util.*;
 
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.log4j.Logger;
-import org.hibernate.*;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -42,9 +43,9 @@ public class CursoDAOImpl implements CursoDAO
 	@SuppressWarnings("unchecked")
 	public List<Curso> listarCursosVigentes()
 	{
-		Query querycursos=sessionFactory.getCurrentSession().createQuery(queryCursosVigentes);
+		Query<Curso> querycursos=sessionFactory.getCurrentSession().createQuery(queryCursosVigentes);
 		querycursos.setParameter("fecha_fin", DateUtils.truncate(new java.util.Date(), Calendar.DATE));
-		List<Curso> listaCursos=querycursos.list();
+		List<Curso> listaCursos=querycursos.getResultList();
 		return listaCursos;
 	}
 	@Override
@@ -59,21 +60,21 @@ public class CursoDAOImpl implements CursoDAO
 	@Override
 	public Curso getById(long id) 
 	{
-		return (Curso) sessionFactory.getCurrentSession().createQuery("from Curso where id="+id).uniqueResult();
+		return (Curso) sessionFactory.getCurrentSession().createQuery("from Curso where id="+id).getSingleResult();
 	}
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Curso> listarCursosIdiomaNivel(int idioma, int nivel) 
 	{
 		List<Curso> listaCursos=null;
-		Query querycursos=sessionFactory.getCurrentSession().createQuery(this.queryCursosIdiomaNivel);
-		querycursos.setInteger("idiomaEstudiarId",idioma);
-		querycursos.setInteger("nivelId",nivel);
+		Query<Curso> querycursos=sessionFactory.getCurrentSession().createQuery(this.queryCursosIdiomaNivel);
+		querycursos.setParameter("idiomaEstudiarId",idioma);
+		querycursos.setParameter("nivelId",nivel);
 		Date d=new Date();
 		String dateformat="yyyy-MM-dd";
 		SimpleDateFormat sdf=new SimpleDateFormat(dateformat);
-		querycursos.setString("fechaHoy",sdf.format(d));
-		listaCursos=querycursos.list();
+		querycursos.setParameter("fechaHoy",sdf.format(d));
+		listaCursos=querycursos.getResultList();
 		return listaCursos;
 	}
 	@Override
@@ -81,12 +82,12 @@ public class CursoDAOImpl implements CursoDAO
 	public List<Curso> listarCursosSinClases() 
 	{
 		List<Curso> listaCursos=null;
-		Query querycursos=sessionFactory.getCurrentSession().createQuery(this.queryCursosSinClases);
+		Query<Curso> querycursos=sessionFactory.getCurrentSession().createQuery(this.queryCursosSinClases);
 		Date d=new Date();
 		String dateformat="yyyy-MM-dd";
 		SimpleDateFormat sdf=new SimpleDateFormat(dateformat);
-		querycursos.setString("fechaHoy",sdf.format(d));
-		listaCursos=querycursos.list();
+		querycursos.setParameter("fechaHoy",sdf.format(d));
+		listaCursos=querycursos.getResultList();
 		return listaCursos;
 	}
 	@SuppressWarnings("unchecked")
@@ -116,12 +117,12 @@ public class CursoDAOImpl implements CursoDAO
 			queryCursos+=" and curso.idioma_estudiar="+idioma_estudiar_id;
 		if(nivel_id!=0)
 			queryCursos+=" and curso.nivel="+nivel_id;
-		Query querycursos=sessionFactory.getCurrentSession().createQuery(queryCursos);
+		Query<Curso> querycursos=sessionFactory.getCurrentSession().createQuery(queryCursos);
 		Date d=new Date();
 		String dateformat="yyyy-MM-dd";
 		SimpleDateFormat sdf=new SimpleDateFormat(dateformat);
-		querycursos.setString("fechaHoy", sdf.format(d));
-		listaCursos=querycursos.list();
+		querycursos.setParameter("fechaHoy", sdf.format(d));
+		listaCursos=querycursos.getResultList();
 		return listaCursos;
 	}
 	@Override

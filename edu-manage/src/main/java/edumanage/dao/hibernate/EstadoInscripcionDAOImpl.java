@@ -19,19 +19,19 @@ public class EstadoInscripcionDAOImpl implements EstadoInscripcionDAO
 	@SuppressWarnings("unchecked")
 	public List<EstadoInscripcion> listarEstados() 
 	{
-		return (List<EstadoInscripcion>) sessionFactory.getCurrentSession().createQuery("from EstadoInscripcion").list();
+		return (List<EstadoInscripcion>) sessionFactory.getCurrentSession().createQuery("from EstadoInscripcion").getResultList();
 	}
 
 	@Override
 	public EstadoInscripcion getById(long id) 
 	{
-		return (EstadoInscripcion) sessionFactory.getCurrentSession().createQuery("from EstadoInscripcion where id="+id).uniqueResult();
+		return (EstadoInscripcion) sessionFactory.getCurrentSession().createQuery("from EstadoInscripcion where id="+id).getSingleResult();
 	}
 
 	@Override
 	public EstadoInscripcion getByAbreviatura(String abreviatura) 
 	{
-		return (EstadoInscripcion) sessionFactory.getCurrentSession().createQuery("from EstadoInscripcion where abreviatura='"+abreviatura+"'").uniqueResult();
+		return (EstadoInscripcion) sessionFactory.getCurrentSession().createQuery("from EstadoInscripcion where abreviatura='"+abreviatura+"'").getSingleResult();
 	}
 
 }

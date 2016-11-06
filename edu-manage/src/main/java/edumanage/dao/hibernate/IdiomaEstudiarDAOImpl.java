@@ -19,13 +19,13 @@ public class IdiomaEstudiarDAOImpl implements IdiomaEstudiarDAO
 	@SuppressWarnings("unchecked")
 	public List<IdiomaEstudiar> listarIdiomasEstudiar() 
 	{
-		return (List<IdiomaEstudiar>) sessionFactory.getCurrentSession().createQuery("from IdiomaEstudiar").list();
+		return (List<IdiomaEstudiar>) sessionFactory.getCurrentSession().createQuery("from IdiomaEstudiar").getResultList();
 	}
 
 	@Override
 	public IdiomaEstudiar getById(long id) 
 	{
-		return (IdiomaEstudiar) sessionFactory.getCurrentSession().createQuery("from IdiomaEstudiar where id="+id).uniqueResult();
+		return (IdiomaEstudiar) sessionFactory.getCurrentSession().createQuery("from IdiomaEstudiar where id="+id).getSingleResult();
 	}
 
 }

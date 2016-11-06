@@ -18,12 +18,12 @@ public class OrientacionDAOImpl implements OrientacionDAO
 	@SuppressWarnings("unchecked")
 	public List<Orientacion> listarOrientaciones() 
 	{
-		return (List<Orientacion>) sessionFactory.getCurrentSession().createQuery("from Orientacion").list();
+		return (List<Orientacion>) sessionFactory.getCurrentSession().createQuery("from Orientacion").getResultList();
 	}
 	
 	@Override
 	public Orientacion getById(long id) 
 	{
-		return (Orientacion) sessionFactory.getCurrentSession().createQuery("from Orientacion where id="+id).uniqueResult();
+		return (Orientacion) sessionFactory.getCurrentSession().createQuery("from Orientacion where id="+id).getSingleResult();
 	}
 }

@@ -19,12 +19,12 @@ public class PerfilProfesorDAOImpl implements PerfilProfesorDAO
 	@Override
 	public List<PerfilProfesor> listarPerfiles() 
 	{
-		return (List<PerfilProfesor>) sessionFactory.getCurrentSession().createQuery("from PerfilProfesor").list();
+		return (List<PerfilProfesor>) sessionFactory.getCurrentSession().createQuery("from PerfilProfesor").getResultList();
 	}
 
 	@Override
 	public PerfilProfesor getById(long id) 
 	{
-		return (PerfilProfesor) sessionFactory.getCurrentSession().createQuery("from PerfilProfesor where id="+id).uniqueResult();
+		return (PerfilProfesor) sessionFactory.getCurrentSession().createQuery("from PerfilProfesor where id="+id).getSingleResult();
 	}
 }

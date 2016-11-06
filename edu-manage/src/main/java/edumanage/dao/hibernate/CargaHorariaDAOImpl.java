@@ -17,14 +17,14 @@ public class CargaHorariaDAOImpl implements CargaHorariaDAO
 	@Override
 	public CargaHoraria getById(long id) 
 	{
-		return (CargaHoraria) sessionFactory.getCurrentSession().createQuery("from CargaHoraria where id="+id).uniqueResult();
+		return (CargaHoraria) sessionFactory.getCurrentSession().createQuery("from CargaHoraria where id="+id).getSingleResult();
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<CargaHoraria> listarCargasHorarias() 
 	{
-		return (List<CargaHoraria>) sessionFactory.getCurrentSession().createQuery("from CargaHoraria").list();
+		return (List<CargaHoraria>) sessionFactory.getCurrentSession().createQuery("from CargaHoraria").getResultList();
 	}
 
 	@Override

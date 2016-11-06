@@ -48,11 +48,5 @@
 			</div>
 			<form:errors path="inscripcionGrupal.curso.id" cssClass="error" element="div" />
 		</div>
-		<div class="form-group">
-			<div id="ListaEspera">
-				<form:label path="inscripcionGrupal.lista_espera" id="LabelInscripcionIndividualListaEspera"><spring:message code="label.quiero_lista_espera"/></form:label>
-				<form:checkbox path="inscripcionGrupal.lista_espera" id="InscripcionIndividualListaEspera" value="1"/>
-			</div>
-		</div>
 	</fieldset>
 </div>

@@ -20,13 +20,13 @@ public class HorarioCursoDAOImpl implements HorarioCursoDAO
 	@SuppressWarnings("unchecked")
 	public List<HorarioCurso> listarHorariosCurso(Curso curso) 
 	{
-		return (List<HorarioCurso>) sessionFactory.getCurrentSession().createQuery("from HorarioCurso where curso_id="+curso.getId()).list();
+		return (List<HorarioCurso>) sessionFactory.getCurrentSession().createQuery("from HorarioCurso where curso_id="+curso.getId()).getResultList();
 	}
 
 	@Override
 	public HorarioCurso getById(long id) 
 	{
-		return (HorarioCurso) sessionFactory.getCurrentSession().createQuery("from HorarioCurso where id="+id).uniqueResult();
+		return (HorarioCurso) sessionFactory.getCurrentSession().createQuery("from HorarioCurso where id="+id).getSingleResult();
 	}
 
 }

@@ -19,12 +19,12 @@ public class NivelDAOImpl implements NivelDAO
 	@Override
 	public List<Nivel> listarNiveles() 
 	{
-		return (List<Nivel>) sessionFactory.getCurrentSession().createQuery("from Nivel").list();
+		return (List<Nivel>) sessionFactory.getCurrentSession().createQuery("from Nivel").getResultList();
 	}
 	
 	@Override
 	public Nivel getById(long id) 
 	{
-		return (Nivel) sessionFactory.getCurrentSession().createQuery("from Nivel where id="+id).uniqueResult();
+		return (Nivel) sessionFactory.getCurrentSession().createQuery("from Nivel where id="+id).getSingleResult();
 	}
 }

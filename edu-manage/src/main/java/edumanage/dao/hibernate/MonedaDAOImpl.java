@@ -19,12 +19,12 @@ public class MonedaDAOImpl implements MonedaDAO
 	@Override
 	public List<Moneda> listarMonedas() 
 	{
-		return (List<Moneda>) sessionFactory.getCurrentSession().createQuery("from Moneda").list();
+		return (List<Moneda>) sessionFactory.getCurrentSession().createQuery("from Moneda").getResultList();
 	}
 
 	@Override
 	public Moneda getById(long id) 
 	{
-		return (Moneda)sessionFactory.getCurrentSession().createQuery("from Moneda where id="+id).uniqueResult();
+		return (Moneda)sessionFactory.getCurrentSession().createQuery("from Moneda where id="+id).getSingleResult();
 	}
 }

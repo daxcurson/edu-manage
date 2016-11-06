@@ -19,13 +19,13 @@ public class PersonaEstadoDAOImpl implements PersonaEstadoDAO
 	@SuppressWarnings("unchecked")
 	public List<PersonaEstado> listarEstados() 
 	{
-		return (List<PersonaEstado>) sessionFactory.getCurrentSession().createQuery("from PersonaEstado").list();
+		return (List<PersonaEstado>) sessionFactory.getCurrentSession().createQuery("from PersonaEstado").getResultList();
 	}
 
 	@Override
 	public PersonaEstado getById(long id) 
 	{
-		return (PersonaEstado) sessionFactory.getCurrentSession().createQuery("from PersonaEstado where id="+id).uniqueResult();
+		return (PersonaEstado) sessionFactory.getCurrentSession().createQuery("from PersonaEstado where id="+id).getSingleResult();
 	}
 
 }

@@ -26,7 +26,7 @@ public class PermissionServiceImpl implements PermissionService
 	{
 		Set<Permission> s=g.getPermissions();
 		// El grupo puede no tener ningun permiso, si o si hay que agregar.
-		if(!s.isEmpty())
+		if(s!=null && !s.isEmpty())
 		{
 			Iterator<Permission> i=s.iterator();
 			boolean encontradoPermiso=false;

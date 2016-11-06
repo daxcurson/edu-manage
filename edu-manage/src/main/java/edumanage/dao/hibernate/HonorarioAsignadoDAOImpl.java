@@ -2,7 +2,7 @@ package edumanage.dao.hibernate;
 
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.query.Query;
 
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
@@ -24,9 +24,9 @@ public class HonorarioAsignadoDAOImpl implements HonorarioAsignadoDAO
 	@Override
 	public List<HonorarioAsignado> listarHonorariosAsignados(long profesorId) 
 	{
-		Query query=sessionFactory.getCurrentSession().createQuery(queryHonorariosAsignadosProfesor);
-		query.setLong("profesorId", profesorId);
-		return query.list();
+		Query<HonorarioAsignado> query=sessionFactory.getCurrentSession().createQuery(queryHonorariosAsignadosProfesor);
+		query.setParameter("profesorId", profesorId);
+		return query.getResultList();
 	}
 
 }

@@ -19,13 +19,13 @@ public class SucursalDAOImpl implements SucursalDAO
 	@Override
 	public List<Sucursal> listarSucursales() 
 	{
-		return (List<Sucursal>) sessionFactory.getCurrentSession().createQuery("from Sucursal").list();
+		return (List<Sucursal>) sessionFactory.getCurrentSession().createQuery("from Sucursal").getResultList();
 	}
 
 	@Override
 	public Sucursal getById(long id) 
 	{
-		return (Sucursal) sessionFactory.getCurrentSession().createQuery("from Sucursal where id="+id).uniqueResult();
+		return (Sucursal) sessionFactory.getCurrentSession().createQuery("from Sucursal where id="+id).getSingleResult();
 	}
 
 }

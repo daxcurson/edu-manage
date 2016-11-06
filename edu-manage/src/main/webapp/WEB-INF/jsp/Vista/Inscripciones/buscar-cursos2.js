@@ -53,14 +53,10 @@ $(document).ready(function()
 	$('#PersonaIdiomaEstudiarId').change(function()
 	{
 		accionBuscarCursos();
-		accionMostrarCamposListaEspera();
 		accionInscripcionCursoEspanol();
 		accionInscripcionCursoIngles();
 	});
 	accionInscripcionCursoIngles();
-	// Je, esta linea estaba comentada porque basicamente esta llamada estaba 2 veces!
-	// La 2da es la que le sigue a la definicion del Change para InscripcionIndividualListaEspera
-	//accionMostrarCamposListaEspera();
 	$('#PersonaNivelId').change(function()
 	{
 		accionBuscarCursos();
@@ -80,16 +76,6 @@ $(document).ready(function()
 	accionInscripcionIndividualIdiomaEstudiarId();
 	accionInscripcionCursoEspanol();
 	/*
-	 * #9 - Lista de espera.
-	 * Si tildan el casillero de lista de espera, hay que mostrar tipo de curso
-	 * en vez de permitirle al estudiante elegir los dias y horas de cursada.
-	 */
-	$('#InscripcionIndividualListaEspera').change(function()
-	{
-		accionMostrarCamposListaEspera();
-	});
-	accionMostrarCamposListaEspera();
-	/*
 	 * #79 - Agregar nivel que el estudiante cree que tiene.
 	 */
 	$('#PersonaHizoTestNivel').change(function()
@@ -106,94 +92,6 @@ $(document).ready(function()
 		$('input[type=submit]', this).attr('disabled', 'true').val("Por favor espere");
 	});
 });
-
-/**
- * Si los cursos son grupales y se chequeo el cuadro de lista de espera,
- * hay que mostrar las opciones de lista de espera.
- * 
- * El conjunto de campos en lista de espera se superpone con el de 
- * campos individuales. Pero de todos modos, si se selecciona curso individual,
- * seleccionar lista de espera es imposible, asi que aunque son conjuntos de campos
- * superpuestos, nunca estan elegidos a la vez. 
- * @returns
- */
-function accionMostrarCamposListaEspera()
-{
-	var cursoTipoCurso=$('#CursoTipoCurso').val();
-	if(cursoTipoCurso==2)
-	{
-		ocultarCamposListaEspera();
-		if($('#InscripcionIndividualListaEspera').is(':checked'))
-		{
-			mostrarCamposListaEspera();
-		}
-	}
-}
-
-/**
- * Oculta los campos de inscripcion en lista de espera
- * @returns
- */
-function ocultarCamposListaEspera()
-{
-	$('#LabelClaseCursoId').hide();
-	$('#InscripcionIndividualClaseCursoId').hide();
-	$('#LabelSucursalId').hide();
-	$('#InscripcionIndividualSucursalId').hide();
-	$('#LabelFechaEstimadaComienzo').hide();
-	$('#InscripcionIndividualFechaEstimadaComienzo').hide();
-	$('#LabelDiasPreferidos').hide();
-	$('#InscripcionIndividualDiasPreferidos').hide();
-	$('#InscripcionIndividualDiasPreferidos').removeAttr('required');
-	$('#LabelHorarioPreferido').hide();
-	$('#InscripcionIndividualHorarioPreferido').hide();
-	$('#InscripcionIndividualHorarioPreferido').removeAttr('required');
-	$('#LabelDiasAlternativos').hide();
-	$('#InscripcionIndividualDiasAlternativos').hide();
-	$('#LabelHorarioAlternativo').hide();
-	$('#InscripcionIndividualHorarioAlternativo').hide();
-	$('#LabelSexoProfesor').hide();
-	$('#InscripcionIndividualSexoProfesor').hide();
-	
-	/*
-	 * Detalle super importante sobre los cursos de lista de espera!!!!!
-	 * A pesar de que en una inscripcion en lista de espera se presentan la mayoria
-	 * de los campos de una inscripcion individual, el campo idioma y nivel a ser considerados
-	 * siguen siendo los de una inscripcion GRUPAL!!! Y por lo tanto son los de PERSONA!!!
-	 * Aca tengo que ocultar los campos tanto de Persona como de InscripcionIndividual,
-	 * y a la hora de mostrar, muestro solamente los de Persona.
-	 */
-	$('#InscripcionIndividualNivelId').hide();
-	$('#LabelNivelId').hide();
-	$('#PersonaIdiomaEstudiarId').hide();
-	$('#LabelPersonaIdiomaEstudiarId').hide();
-}
-
-/**
- * Muestra los campos de inscripcion en lista de espera.
- * @returns
- */
-function mostrarCamposListaEspera()
-{
-	$('#LabelClaseCursoId').show();
-	$('#InscripcionIndividualClaseCursoId').show();
-	$('#LabelSucursalId').show();
-	$('#InscripcionIndividualSucursalId').show();
-	$('#LabelFechaEstimadaComienzo').show();
-	$('#InscripcionIndividualFechaEstimadaComienzo').show();
-	$('#LabelDiasPreferidos').show();
-	$('#InscripcionIndividualDiasPreferidos').show();
-	$('#LabelHorarioPreferido').show();
-	$('#InscripcionIndividualHorarioPreferido').show();
-	$('#LabelDiasAlternativos').show();
-	$('#InscripcionIndividualDiasAlternativos').show();
-	$('#LabelHorarioAlternativo').show();
-	$('#InscripcionIndividualHorarioAlternativo').show();
-	$('#LabelSexoProfesor').show();
-	$('#InscripcionIndividualSexoProfesor').show();
-	$('#PersonaIdiomaEstudiarId').show();
-	$('#LabelPersonaIdiomaEstudiarId').show();
-}
 
 /**
  * Si la persona selecciono que no hizo el test de nivel, preguntarle el nivel que cree que tiene.
@@ -432,8 +330,6 @@ function mostrarCamposIndividuales()
 	$('#InscripcionIndividualClasesSemanales').show();
 	$('#LabelHorasClase').show();
 	$('#InscripcionIndividualHorasClase').show();
-	$('#LabelPaquetes').show();
-	$('#InscripcionIndividualPaquetes').show();
 	$('#LabelFechaEstimadaComienzo').show();
 	$('#LabelDiasPreferidos').show();
 	$('#InscripcionIndividualFechaEstimadaComienzo').show();
@@ -463,8 +359,6 @@ function ocultarCamposIndividuales()
 	$('#InscripcionIndividualClasesSemanales').hide();
 	$('#LabelHorasClase').hide();
 	$('#InscripcionIndividualHorasClase').hide();
-	$('#LabelPaquetes').hide();
-	$('#InscripcionIndividualPaquetes').hide();
 	$('#LabelFechaEstimadaComienzo').hide();
 	$('#LabelDiasPreferidos').hide();
 	$('#InscripcionIndividualFechaEstimadaComienzo').hide();
@@ -511,7 +405,6 @@ function accionCuadroSeleccionCursos()
 function mostrarCuadroSeleccionCursos()
 {
 	$('#ListaCursos').show();
-	$('#ListaEspera').show();
 }
 /**
  * Oculta el cuadro de seleccion de cursos grupales y el tilde para anotarse en lista de espera.
@@ -520,7 +413,6 @@ function mostrarCuadroSeleccionCursos()
 function ocultarCuadroSeleccionCursos()
 {
 	$('#ListaCursos').hide();
-	$('#ListaEspera').hide();
 }
 /**
  * Muestra los campos de seleccion de idioma para cursos grupales 
@@ -587,41 +479,14 @@ function ocultarCamposTutor()
 function accionInscripcionCursoEspanol()
 {
 	ocultarCamposInscripcionCursoEspanol();
-	ocultarFormPaquetes();
 	var idiomaIndividual=($('#InscripcionIndividualIdiomaEstudiarId').is(':visible') &&  $('#InscripcionIndividualIdiomaEstudiarId').val()==2);
 	var idiomaGrupal=($('#PersonaIdiomaEstudiarId').is(':visible') && $('#PersonaIdiomaEstudiarId').val()==2);
 	if(idiomaIndividual || idiomaGrupal)
 	{
 		mostrarCamposInscripcionCursoEspanol();
-		mostrarFormPaquetes();
-		buscarPaquetes();
-	}
-	else
-	{
-		// La opcion de paquete de 10 horas es valida solamente para espanol!!		
-		// Bien, resulta que para espanol hay que suprimir el paquete de 10 horas.
-		$("#InscripcionIndividualPaquetes option[value='Paquete intensivo 10 horas']").remove();
 	}
 }
 
-/**
- * Oculta el formulario para mostrar y seleccionar paquetes
- * @returns
- */
-function ocultarFormPaquetes()
-{
-	$("#PaquetesEspanol").hide();
-	$("#ListaPaquetes").hide();
-}
-/**
- * Muestra el formulario para mostrar y seleccionar paquetes
- * @returns
- */
-function mostrarFormPaquetes()
-{
-	$("#PaquetesEspanol").show();
-	$("#ListaPaquetes").show();
-}
 /**
  * Oculta los campos de inscripcion en curso de espanol.
  * @returns
@@ -629,14 +494,6 @@ function mostrarFormPaquetes()
 function ocultarCamposInscripcionCursoEspanol()
 {
 	$('#LinkTestNivelEspanol').hide();
-	$('#LabelAccomodationServices').hide();
-	$('#PersonaAccomodationServices').hide();
-	$('#LabelPickedUpAirport').hide();
-	$('#PersonaPickedUpAirport').hide();
-	$('#LabelDroppedOffAirport').hide();
-	$('#PersonaDroppedOffAirport').hide();
-	$('#LabelDondeEstabas').hide();
-	$('#PersonaDondeEstabas').hide();
 }
 /**
  * Muestra los campos de inscripcion en curso de espanol
@@ -645,14 +502,6 @@ function ocultarCamposInscripcionCursoEspanol()
 function mostrarCamposInscripcionCursoEspanol()
 {
 	$('#LinkTestNivelEspanol').show();
-	$('#LabelAccomodationServices').show();
-	$('#PersonaAccomodationServices').show();
-	$('#LabelPickedUpAirport').show();
-	$('#PersonaPickedUpAirport').show();
-	$('#LabelDroppedOffAirport').show();
-	$('#PersonaDroppedOffAirport').show();
-	$('#LabelDondeEstabas').show();
-	$('#PersonaDondeEstabas').show();
 }
 /**
  * Si la edad de la persona es menor que 18, mostrar los campos de tutor

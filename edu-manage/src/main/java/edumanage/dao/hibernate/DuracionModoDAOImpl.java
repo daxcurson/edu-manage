@@ -18,12 +18,12 @@ public class DuracionModoDAOImpl implements DuracionModoDAO
 	@Override
 	public DuracionModo getById(long id) 
 	{
-		return (DuracionModo) sessionFactory.getCurrentSession().createQuery("from DuracionModo where id="+id).uniqueResult();
+		return (DuracionModo) sessionFactory.getCurrentSession().createQuery("from DuracionModo where id="+id).getSingleResult();
 	}
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<DuracionModo> listarDuraciones() 
 	{
-		return (List<DuracionModo>) sessionFactory.getCurrentSession().createQuery("from DuracionModo").list();
+		return (List<DuracionModo>) sessionFactory.getCurrentSession().createQuery("from DuracionModo").getResultList();
 	}
 }

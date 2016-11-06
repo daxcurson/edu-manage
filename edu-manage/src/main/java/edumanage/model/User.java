@@ -17,8 +17,10 @@ public class User
 	private int id;
 	private String username;
 	private String password;
+	@Transient
+	private String confirm_password;
 	private int enabled;
-	
+
 	@OneToOne
 	private Group group;
 	
@@ -65,5 +67,11 @@ public class User
 	 */
 	public void setEnabled(int enabled) {
 		this.enabled = enabled;
+	}
+	public String getConfirm_password() {
+		return confirm_password;
+	}
+	public void setConfirm_password(String confirm_password) {
+		this.confirm_password = confirm_password;
 	}
 }

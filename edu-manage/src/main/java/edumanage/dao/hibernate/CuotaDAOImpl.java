@@ -16,7 +16,7 @@ public class CuotaDAOImpl implements CuotaDAO
 	@Override
 	public Cuota getById(long id) 
 	{
-		return (Cuota) sessionFactory.getCurrentSession().createQuery("from Cuota where id="+id).uniqueResult();
+		return (Cuota) sessionFactory.getCurrentSession().createQuery("from Cuota where id="+id).getSingleResult();
 	}
 
 }

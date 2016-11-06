@@ -5,8 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,7 +51,7 @@ public class InscripcionDAOImpl implements InscripcionDAO
 	@Transactional
 	public Inscripcion getById(long id) 
 	{
-		return (Inscripcion) sessionFactory.getCurrentSession().createQuery("from Inscripcion where id="+id).uniqueResult();
+		return (Inscripcion) sessionFactory.getCurrentSession().createQuery("from Inscripcion where id="+id).getSingleResult();
 	}
 
 	@Override
@@ -72,9 +72,9 @@ public class InscripcionDAOImpl implements InscripcionDAO
 	@Transactional
 	public List<Inscripcion> listarInscripcionesAConfirmar() 
 	{
-		Query queryinscripciones=sessionFactory.getCurrentSession().createQuery(queryInscripcionesAConfirmar);
-		@SuppressWarnings("unchecked")
-		List<Inscripcion> listaInscripciones=queryinscripciones.list();
+		Query<Inscripcion> queryinscripciones=sessionFactory.getCurrentSession().createQuery(queryInscripcionesAConfirmar,Inscripcion.class);
+		
+		List<Inscripcion> listaInscripciones=queryinscripciones.getResultList();
 		return listaInscripciones;
 	}
 
@@ -82,11 +82,11 @@ public class InscripcionDAOImpl implements InscripcionDAO
 	@Override
 	public List<Inscripcion> buscarIntegrantesCurso(CursoGenerico curso) 
 	{
-		Query queryIntegrantes=sessionFactory.getCurrentSession().createQuery(this.queryIntegrantesCurso);
+		Query<Inscripcion> queryIntegrantes=sessionFactory.getCurrentSession().createQuery(this.queryIntegrantesCurso);
 		Date d=new Date();
 		String dateformat="yyyy-MM-dd";
 		SimpleDateFormat sdf=new SimpleDateFormat(dateformat);
-		queryIntegrantes.setString("fechaHoy", sdf.format(d));
-		return queryIntegrantes.list();
+		queryIntegrantes.setParameter("fechaHoy", sdf.format(d));
+		return queryIntegrantes.getResultList();
 	}
 }
