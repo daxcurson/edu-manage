@@ -116,6 +116,12 @@
     <definition name="inscripcion_confirmar_inscripcion" extends="base.definition">
     	<put-attribute name="content" value="/WEB-INF/jsp/Vista/Inscripciones/confirmar_inscripcion.jsp" />
     </definition>
+    <definition name="instalacion_index" extends="base.definition">
+    	<put-attribute name="content" value="/WEB-INF/jsp/Vista/Instalacion/index.jsp" />
+    </definition>
+    <definition name="instalacion_user_add" extends="base.definition">
+    	<put-attribute name="content" value="/WEB-INF/jsp/Vista/Instalacion/user_add.jsp" />
+    </definition>
     <definition name="modalidad_curso_index" extends="base.definition">
     	<put-attribute name="content" value="/WEB-INF/jsp/Vista/ModalidadCurso/index.jsp" />
     </definition>

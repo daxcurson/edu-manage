@@ -30,11 +30,11 @@ public class InstalacionController extends AppController
 	@RequestMapping({"/","/index"})
 	public ModelAndView MostrarMenu()
 	{
-		return new ModelAndView("instalacion/instalacion_index");
+		return new ModelAndView("instalacion_index");
 	}
 	private ModelAndView cargarFormUsuario(User user)
 	{
-		ModelAndView modelo=new ModelAndView("instalacion/user_add");
+		ModelAndView modelo=new ModelAndView("instalacion_user_add");
 		modelo.addObject(user);
 		// Esta pantalla es "seleccione el nombre del usuario administrador",
 		// por lo cual vamos a asumir que ese es el grupo del usuario.
@@ -69,7 +69,7 @@ public class InstalacionController extends AppController
 			// para realizar esto.
 			instalacionService.grabarUsuarioAdministrador(user);
 			model.addAttribute("message","Usuario grabado exitosamente");
-			return new ModelAndView("instalacion/instalacion_index");
+			return new ModelAndView("instalacion_index");
 		}
 	}
 }

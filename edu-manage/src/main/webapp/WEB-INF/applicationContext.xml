@@ -108,6 +108,7 @@
 		<security:intercept-url pattern="/css/**" access="permitAll" />
 		<security:intercept-url pattern="/img/**" access="permitAll" />
 		<security:intercept-url pattern="/js/**" access="permitAll" />
+		<security:intercept-url pattern="/instalacion/**" access="permitAll" />
 		<security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
 		<security:session-management session-fixation-protection="migrateSession" />
 
