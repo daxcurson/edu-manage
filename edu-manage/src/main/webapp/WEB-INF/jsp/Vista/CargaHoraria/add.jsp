@@ -12,7 +12,7 @@
 <div class="actions">
 	<h3>Acciones</h3>
 	<ul>
-		<li><a href="${pageContext.request.contextPath}/carga_horaria/index">Listar Cargas horarias</li>
-		<li><a href="${pageContext.request.contextPath}/tipo_curso/index">Listar tipos de curso</li>
+		<li><a href="${pageContext.request.contextPath}/carga_horaria/index">Listar Cargas horarias</a></li>
+		<li><a href="${pageContext.request.contextPath}/tipo_curso/index">Listar tipos de curso</a></li>
 	</ul>
 </div>
