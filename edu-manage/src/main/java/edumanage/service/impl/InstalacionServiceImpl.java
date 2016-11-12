@@ -49,6 +49,7 @@ public class InstalacionServiceImpl implements InstalacionService
 		adminGroup.setGroupName("Administradores");
 		groupService.save(adminGroup);
 		permissionService.grantOrRevokePermission(adminGroup, "ROLE_ADMIN");
+		permissionService.grantOrRevokePermission(adminGroup, "ROLE_USER");
 		user.setGroup(adminGroup);
 		// Aca tenemos que encriptar la password!!!!
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
