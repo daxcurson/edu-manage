@@ -5,7 +5,7 @@
 
 <div class="cargaHorarias index">
 	<h2>Cargas Horarias</h2>
-	<table cellpadding="0" cellspacing="0">
+	<table>
 	<tr>
 			<th>Id</th>
 			<th>Tipo de Curso</th>

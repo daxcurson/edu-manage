@@ -2,7 +2,7 @@
 
 <div class="honorarioProfesoresHistorico index">
 	<h2><?php echo __('Historico de Honorarios a profesores'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table>
 	<tr>
 			<th>Honorario Profesor</th>
 			<th>Fecha Desde</th>

@@ -4,7 +4,7 @@
 
 <div class="modalidadCursos index">
 	<h2>Modalidades de Curso</h2>
-	<table cellpadding="0" cellspacing="0">
+	<table>
 	<tr>
 			<th>Id</th>
 			<th>Carga Horaria</th>

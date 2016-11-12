@@ -1,3 +1,7 @@
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <div id="PaquetesEspanol">
 <p>Would you like to sign up for any of our extras? You get 15% off your 1st Spanish course if you book accommodation through us!</p>
 <div id="ListaPaquetes">

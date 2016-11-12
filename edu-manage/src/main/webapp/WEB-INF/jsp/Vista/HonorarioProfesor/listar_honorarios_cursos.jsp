@@ -4,7 +4,7 @@
 	Profesor: <?php echo $profesor['Profesor']['nombre']; ?>
 	</p>
 	<h2>Cursos vigentes, actualmente asignado</h2>
-	<table cellpadding="0" cellspacing="0">
+	<table>
 	<tr>
 			<th>Id</th>
 			<th>C&oacute;digo Curso</th>
@@ -54,7 +54,7 @@
 	</table>
 
 	<h2>Cursos vigentes, ya no asignado</h2>
-	<table cellpadding="0" cellspacing="0">
+	<table>
 	<tr>
 			<th>Id</th>
 			<th>C&oacute;digo Curso</th>
@@ -87,7 +87,7 @@
 	</table>
 
 	<h2>Cursos no vigentes</h2>
-	<table cellpadding="0" cellspacing="0">
+	<table>
 	<tr>
 			<th>Id</th>
 			<th>C&oacute;digo Curso</th>
