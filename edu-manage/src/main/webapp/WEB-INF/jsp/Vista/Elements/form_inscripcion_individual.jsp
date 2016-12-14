@@ -6,7 +6,9 @@
 	<fieldset>
 		<div class="form-group">
 			<form:label path="inscripcionIndividual.sucursal" id="LabelSucursalId"><spring:message code="label.inscripcion_sucursal"/></form:label>
-			<form:input path="inscripcionIndividual.sucursal" id="InscripcionIndividualSucursalId" class="form-control"/>
+			<form:select path="inscripcionIndividual.sucursal" id="InscripcionIndividualSucursalId" class="form-control">
+			<form:options items="${sucursales}" itemValue="id" itemLabel="nombre" />
+			</form:select>
 		</div>
 		<div class="form-group">
 			<form:label path="inscripcionIndividual.idioma_estudiar" id="LabelIdiomaEstudiar"><spring:message code="label.inscripcion_individual_idioma_estudiar"/></form:label>

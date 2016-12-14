@@ -51,7 +51,9 @@ public class InscripcionServiceImpl implements InscripcionService, ApplicationEv
 		insc.setPersona(persona);
 		persona.setEstado(estadoEstudianteDAO.getById(4));
 		personaDAO.save(persona);
-		log.trace("La inscripcion es de tipo '"+insc.getDiscriminatorValue()+"' y es para el curso "+insc.getCurso().getId()+", de codigo "+insc.getCurso().getCodigo_curso());
+		// Esto de aqui tiene sentido solamente para inscripcion grupal!!!
+		if(insc.getClass().isAssignableFrom(InscripcionGrupal.class))
+			log.trace("La inscripcion es de tipo '"+insc.getDiscriminatorValue()+"' y es para el curso "+insc.getCurso().getId()+", de codigo "+insc.getCurso().getCodigo_curso());
 		if(insc.getDiscriminatorValue().equals("Grupal"))
 		{
 			CursoGenerico curso=cursoDAO.getById(insc.getCurso().getId());
@@ -60,7 +62,8 @@ public class InscripcionServiceImpl implements InscripcionService, ApplicationEv
 		}
 		else
 		{
-			log.trace("El curso seleccionado en el form no es grupal. El curso es del tipo: "+insc.getDiscriminatorValue()+" y su ID es "+insc.getCurso().getId());
+			if(insc.getClass().isAssignableFrom(InscripcionGrupal.class))
+				log.trace("El curso seleccionado en el form no es grupal. El curso es del tipo: "+insc.getDiscriminatorValue()+" y su ID es "+insc.getCurso().getId());
 		}
 		insc.setEstadoInscripcion(estadoInscripcionDAO.getByAbreviatura("N"));
 		inscripcionDAO.grabarNueva(insc);

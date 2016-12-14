@@ -1,5 +1,7 @@
 package edumanage.service.impl;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,5 +22,10 @@ public class SucursalServiceImpl implements SucursalService
 	public Sucursal getById(long id) 
 	{
 		return sucursalDAO.getById(id);
+	}
+	@Override
+	public List<Sucursal> listarSucursales()
+	{
+		return sucursalDAO.listarSucursales();
 	}
 }

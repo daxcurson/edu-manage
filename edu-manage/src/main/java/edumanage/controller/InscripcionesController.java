@@ -112,6 +112,7 @@ public class InscripcionesController extends AppController
 		listaIdiomas.add(new IdiomaEstudiar(0,"Otros/Other"));
 		modelo.addObject("idiomasIndividuales",listaIdiomas);
 		modelo.addObject("orientaciones",orientacionService.listarOrientaciones());
+		modelo.addObject("sucursales",sucursalService.listarSucursales());
 		return modelo;
 	}
 	@RequestMapping(value="/inscribir",method=RequestMethod.GET)
