@@ -2,5 +2,4 @@
 /target/
 /.project
 /.classpath
-/.settings/
-/.settings/**
+.settings/
