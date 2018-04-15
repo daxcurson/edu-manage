@@ -13,18 +13,34 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="${pageContext.request.contextPath}/menu">Pantalla Inicial</a></li>
+			<c:set var="class" value=""/>
+			<c:if test=${empty controller}>
+			<c:set var="class" value="active"/>
+			</c:if>
+				<li class="${class}"><a href="${pageContext.request.contextPath}/menu">Pantalla Inicial</a></li>
 				<sec:authorize access="hasRole('ROLE_PERSONAS_MOSTRAR_MENU')">
-					<li><a href="${pageContext.request.contextPath}/personas/">Personas</a></li>
+            <c:if test=${controller=="Personas"}>
+            <c:set var="class" value="active"/>
+            </c:if>
+					<li class="${class}"><a href="${pageContext.request.contextPath}/personas/">Personas</a></li>
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_INSCRIPCIONES_MOSTRAR_MENU')">
-					<li><a href="${pageContext.request.contextPath}/inscripciones/">Inscripciones</a></li>
+            <c:if test=${controller=="Inscripciones"}>
+            <c:set var="class" value="active"/>
+            </c:if>
+					<li  class="${class}"><a href="${pageContext.request.contextPath}/inscripciones/">Inscripciones</a></li>
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_CURSOS_MOSTRAR_MENU')">
-					<li><a href="${pageContext.request.contextPath}/cursos/">Cursos</a></li>
+            <c:if test=${controller=="Cursos"}>
+            <c:set var="class" value="active"/>
+            </c:if>
+					<li class="${class}"><a href="${pageContext.request.contextPath}/cursos/">Cursos</a></li>
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_PROFESORES_SERVICE')">
-					<li><a href="${pageContext.request.contextPath}/profesores/">Profesores</a></li>
+            <c:if test=${controller=="Profesores"}>
+            <c:set var="class" value="active"/>
+            </c:if>
+					<li class="${class}"><a href="${pageContext.request.contextPath}/profesores/">Profesores</a></li>
 				</sec:authorize>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -42,7 +58,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<sec:authorize access="hasRole('ROLE_USER')">
 					<li>
-						<c:url value="${pageContext.request.contextPath}/j_spring_security_logout" var="logoutUrl"/>
+						<c:url value="/j_spring_security_logout" var="logoutUrl"/>
 						<a href="${logoutUrl}">Salir</a>
 					</li>
 				</sec:authorize>

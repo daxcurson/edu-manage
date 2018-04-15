@@ -20,6 +20,7 @@ import org.springframework.validation.*;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edumanage.model.*;
 import edumanage.model.propertyeditor.*;
@@ -54,7 +55,7 @@ public class CursosController extends AppController
 	private ProfesorService profesorService;
 
 	@InitBinder
-    public void initBinder(WebDataBinder binder) 
+	public void initBinder(WebDataBinder binder) 
 	{
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		dateFormat.setLenient(false);
@@ -76,11 +77,13 @@ public class CursosController extends AppController
 	public ModelAndView mostrarMenu(Model model) 
 	{
 		ModelAndView modelo=new ModelAndView("curso_index");
+		modelo.addObject("controller","Cursos");
 		return modelo;
 	}
 	private ModelAndView cargarFormCurso(Curso curso)
 	{
 		ModelAndView modelo=new ModelAndView("curso_add");
+		modelo.addObject("controller","Cursos");
 		modelo.addObject("curso",curso);
 		// Leo la lista de modalidades.
 		// Tengo que guardar en una variable de sesion la lista de modalidades
@@ -109,7 +112,7 @@ public class CursosController extends AppController
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ModelAndView addCurso(@Valid @ModelAttribute("curso")
 	Curso curso,
-	BindingResult result,ModelMap model)
+	BindingResult result,ModelMap model,RedirectAttributes redirectAttributes)
 	{
 		// Las modalidades venian separadas, tengo que ir e incorporarlas
 		// al curso que me acabo de traer.
@@ -128,8 +131,8 @@ public class CursosController extends AppController
 		else
 		{
 			cursoService.addCurso(curso);
-			model.addAttribute("message","Curso agregado exitosamente");
-			return new ModelAndView("curso_index");
+			redirectAttributes.addFlashAttribute("message","Curso agregado exitosamente");
+			return new ModelAndView("redirect:/cursos/index");
 		}
 	}
 	@Descripcion(value="Mostrar cursos vigentes",permission="ROLE_CURSOS_LISTAR_VIGENTES")

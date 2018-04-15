@@ -21,7 +21,7 @@ public class PersonasController extends AppController
 
 	@Descripcion(value="Mostrar menu",permission="ROLE_PERSONAS_MOSTRAR_MENU")
 	@PreAuthorize("isAuthenticated() and hasRole('ROLE_PERSONAS_MOSTRAR_MENU')")
-	@RequestMapping("/index")
+	@RequestMapping({"/","/index"})
 	public ModelAndView mostrarMenu(Model model) 
 	{
 		ModelAndView modelo=new ModelAndView("persona_index");

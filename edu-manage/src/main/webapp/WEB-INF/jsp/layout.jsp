@@ -12,16 +12,20 @@
     <meta name="author" content="">
 
     <title>Edu-Manage</title>
+<!-- Estilos para todo el sistema -->
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<link type="text/css" href="${pageContext.request.contextPath}/css/theme.css" rel="stylesheet">
+<link type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui.css" rel="stylesheet">
 
-    <!-- Bootstrap core CSS -->
-    <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<!-- Scripts para todo el sistema -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
 
-    <!-- Custom styles for this template -->
-    <link href="${pageContext.request.contextPath}/css/theme.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/jquery-ui.css" rel="stylesheet">
-    <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
+<!-- Incluyo estilos para paginas que los definan especificamente -->
+    <tiles:insertAttribute name="styles"/>
+<!-- Incluyo scripts para paginas que los definan especificamente -->
+    <tiles:insertAttribute name="scripts"/>
   </head>
 
   <body>

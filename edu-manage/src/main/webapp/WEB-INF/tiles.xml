@@ -7,6 +7,7 @@
         template="/WEB-INF/jsp/layout.jsp">
         <put-attribute name="flash" value="/WEB-INF/jsp/flash.jsp" />
         <put-attribute name="header" value="/WEB-INF/jsp/header.jsp" />
+        <put-attribute name="styles" value="/WEB-INF/jsp/styles.jsp" />
         <put-attribute name="scripts" value="/WEB-INF/jsp/scripts.jsp" />
         <put-attribute name="menu" value="/WEB-INF/jsp/menu.jsp" />
         <put-attribute name="content" value="" />
