@@ -11,4 +11,5 @@ public interface InscripcionService
 	public void grabar_inscripcion(Inscripcion insc,Persona persona);
 	public List<Inscripcion> listarInscripcionesAConfirmar();
 	public void confirmar_inscripcion(Inscripcion insc);
+	public List<Inscripcion> listarInscripcionesTerminanHoy();
 }

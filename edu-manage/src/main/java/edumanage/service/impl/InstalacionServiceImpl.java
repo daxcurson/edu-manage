@@ -5,6 +5,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import edumanage.excepciones.GrupoExistenteException;
+import edumanage.excepciones.UsuarioExistenteException;
 import edumanage.model.Group;
 import edumanage.model.User;
 import edumanage.service.InstalacionService;
@@ -28,10 +30,12 @@ public class InstalacionServiceImpl implements InstalacionService
 	 * es parte del proceso de instalacion del sistema y deberia ejecutarse
 	 * una sola vez. Es mas, quiza deba verificar en una tabla que esta
 	 * instalacion ya se llevo a cabo y no proceder.
+	 * @throws GrupoExistenteException 
+	 * @throws UsuarioExistenteException 
 	 */
 	@Override
 	@Transactional
-	public void grabarUsuarioAdministrador(User user) 
+	public void grabarUsuarioAdministrador(User user) throws GrupoExistenteException, UsuarioExistenteException 
 	{
 		// Los metodos del controller de permisos tienen hard-codeado que el
 		// ROLE_ADMIN puede entrar, aparte del rol que le 

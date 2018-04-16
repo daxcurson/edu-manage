@@ -1,5 +1,7 @@
 package edumanage.dao.hibernate;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +53,13 @@ public class UserDAOImpl implements UserDAO
 	public User findByFacebookId(Long facebookId) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> listUsers()
+	{
+		return sessionFactory.getCurrentSession().createQuery("from User").getResultList();
 	}
 
 }

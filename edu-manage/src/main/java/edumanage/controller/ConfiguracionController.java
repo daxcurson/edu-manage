@@ -30,7 +30,7 @@ public class ConfiguracionController extends AppController
 	@Autowired
 	private ConfiguracionService configuracionService;
 	@PreAuthorize("isAuthenticated() and (hasRole('ROLE_ADMIN') or hasRole('ROLE_CONFIGURACION_MOSTRAR_MENU'))")
-	@RequestMapping("/index")
+	@RequestMapping({"/","/index"})
 	@Descripcion(value="Mostrar opciones configurables",permission="ROLE_CONFIGURACION_MOSTRAR_MENU")
 	public String menuConfiguracion()
 	{

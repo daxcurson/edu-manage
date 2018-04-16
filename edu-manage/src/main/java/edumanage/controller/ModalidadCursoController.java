@@ -52,7 +52,7 @@ public class ModalidadCursoController
 	
 	@Descripcion(value="Mostrar menu",permission="ROLE_MODALIDAD_CURSOS_MOSTRAR_MENU")
 	@PreAuthorize("isAuthenticated() and hasRole('ROLE_MODALIDAD_CURSOS_MOSTRAR_MENU')")
-	@RequestMapping("/index")
+	@RequestMapping({"/","/index"})
 	public ModelAndView mostrarMenu()
 	{
 		ModelAndView modelo=new ModelAndView("modalidad_curso_index");

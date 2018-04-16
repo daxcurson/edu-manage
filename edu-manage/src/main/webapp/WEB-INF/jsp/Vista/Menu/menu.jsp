@@ -1,6 +1,27 @@
+<%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<!-- Conjunto de tarjetas con alguna informacion que tiene que estar a primera vista 
+-->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Estudiantes que terminan hoy</h3>
+                    <tiles:insertAttribute name="inscripcion_estudiantes_terminan_hoy"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+</div>
 
 <h2>Men&uacute; principal</h2>
 

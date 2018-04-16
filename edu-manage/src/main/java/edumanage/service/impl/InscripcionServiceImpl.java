@@ -101,4 +101,10 @@ public class InscripcionServiceImpl implements InscripcionService, ApplicationEv
 	{
 		this.publisher=publisher;
 	}
+
+	@Override
+	public List<Inscripcion> listarInscripcionesTerminanHoy()
+	{
+		return inscripcionDAO.listarInscripcionesTerminanHoy();
+	}
 }

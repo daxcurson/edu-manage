@@ -13,7 +13,11 @@
         <put-attribute name="content" value="" />
     </definition>
     <definition name="menu" extends="base.definition">
-        <put-attribute name="content" value="/WEB-INF/jsp/Vista/Menu/menu.jsp" />
+        <put-attribute name="content">
+            <definition template="/WEB-INF/jsp/Vista/Menu/menu.jsp">
+                <put-attribute name="inscripcion_estudiantes_terminan_hoy" value="/WEB-INF/jsp/Vista/Inscripciones/snippet-terminan-hoy/index.jsp"/>
+            </definition>
+        </put-attribute>
     </definition> 
     <definition name="adios" extends="base.definition">
         <put-attribute name="content" value="/WEB-INF/jsp/Vista/Pages/adios.jsp" />
@@ -97,6 +101,9 @@
     </definition>
     <definition name="honorario_profesor_ver_cambios" extends="base.definition">
     	<put-attribute name="content" value="/WEB-INF/jsp/Vista/HonorarioProfesor/ver_cambios.jsp" />
+    </definition>
+    <definition name="inscripcion_estudiantes_terminan_hoy" extends="base.definition">
+        <put-attribute name="content" value="/WEB-INF/jsp/Vista/Inscripciones/snippet-terminan-hoy/index.jsp"/>
     </definition>
     <definition name="inscripcion_index" extends="base.definition">
     	<put-attribute name="content" value="/WEB-INF/jsp/Vista/Inscripciones/index.jsp" />

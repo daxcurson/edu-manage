@@ -36,7 +36,35 @@ public class InscripcionDAOImpl implements InscripcionDAO
 			+ 		"inscripcion.baja=1 and inscripcion.fecha_baja>= cast(:fechaHoy as date) "
 			+ 	")"
 			+ ")";
-
+	/**
+	 * Estudiantes que terminan hoy: estudiantes con inscripcion confirmada, que no se hayan
+	 * borrado, o dado de baja, y que si fueron, que sea despues de hoy, y que,
+	 * tengan una fecha de fin de inscripcion igual a hoy o que su curso tenga una fecha
+	 * de fin igual a hoy, este abierto, no haya sido de baja o si lo fue, que haya sido despues de hoy.
+	 */
+	private String queryTerminanHoy="from Inscripcion inscripcion where "
+			+ "inscripcion.confirmada=1 "
+			+ "and inscripcion.borrada=0 "
+			+ "and ("
+			+ 	"inscripcion.fecha_finalizacion = cast(:fechaHoy as date)"
+			+ 	"or "
+			+ 	"inscripcion.curso.fecha_fin=cast(:fechaHoy as date)"
+			+ ")"
+			+ "and inscripcion.curso.abierto='S' and ("
+			+ 	"inscripcion.curso.baja=0 or ("
+			+ 		"inscripcion.curso.baja=1 and inscripcion.curso.fecha_baja>=cast(:fechaHoy as date)"
+			+ 	")"
+			+ ") "
+			+ "and ("
+			+ 	"inscripcion.persona.baja=0 or ("
+			+ 		"inscripcion.persona.baja=1 and inscripcion.persona.fecha_baja>= cast(:fechaHoy as date) "
+			+ 	")"
+			+ ") "
+			+ "and ("
+			+ 	"inscripcion.baja=0 or ("
+			+ 		"inscripcion.baja=1 and inscripcion.fecha_baja>= cast(:fechaHoy as date) "
+			+ 	")"
+			+ ")";
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -88,5 +116,17 @@ public class InscripcionDAOImpl implements InscripcionDAO
 		SimpleDateFormat sdf=new SimpleDateFormat(dateformat);
 		queryIntegrantes.setParameter("fechaHoy", sdf.format(d));
 		return queryIntegrantes.getResultList();
+	}
+
+	@Override
+	public List<Inscripcion> listarInscripcionesTerminanHoy()
+	{
+		@SuppressWarnings("unchecked")
+		Query<Inscripcion> queryInscripcionesTerminanHoy=sessionFactory.getCurrentSession().createQuery(this.queryTerminanHoy);
+		Date d=new Date();
+		String dateformat="yyyy-MM-dd";
+		SimpleDateFormat sdf=new SimpleDateFormat(dateformat);
+		queryInscripcionesTerminanHoy.setParameter("fechaHoy", sdf.format(d));
+		return queryInscripcionesTerminanHoy.getResultList();
 	}
 }

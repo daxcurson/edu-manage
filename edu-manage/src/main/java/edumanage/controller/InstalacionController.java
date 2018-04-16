@@ -3,6 +3,7 @@ package edumanage.controller;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import edumanage.excepciones.GrupoExistenteException;
+import edumanage.excepciones.UsuarioExistenteException;
 import edumanage.model.User;
 import edumanage.service.InstalacionService;
 
@@ -22,7 +25,7 @@ import edumanage.service.InstalacionService;
 @RequestMapping("instalacion")
 public class InstalacionController extends AppController
 {
-	static Logger log = Logger.getLogger(InstalacionController.class);
+	private static Logger log=LogManager.getLogger(InstalacionController.class);
 	
 	@Autowired
 	private InstalacionService instalacionService;
@@ -67,9 +70,29 @@ public class InstalacionController extends AppController
 		{
 			// El servicio de instalacion ya tiene el metodo necesario
 			// para realizar esto.
-			instalacionService.grabarUsuarioAdministrador(user);
-			model.addAttribute("message","Usuario grabado exitosamente");
-			return new ModelAndView("instalacion_index");
+			// Como se puede tirar una excepcion, vamos a asegurarnos que
+			// este metodo devuelva algo creando ahora el objeto de respuesta.
+			ModelAndView modelo=new ModelAndView("redirect:/instalacion/index");
+			try
+			{
+				instalacionService.grabarUsuarioAdministrador(user);
+				model.addAttribute("message","Usuario grabado exitosamente");
+			}
+			catch(GrupoExistenteException e)
+			{
+				modelo=this.cargarFormUsuario(user);
+				model.addAttribute("message","El grupo admin ya existe, imposible agregar otro");
+			}
+			catch(UsuarioExistenteException e)
+			{
+				// Si ya existe en usuario, ir a decirlo.
+				modelo=this.cargarFormUsuario(user);
+				model.addAttribute("message", "El usuario admin ya existe, imposible agregar otro");
+			}
+			finally
+			{
+			}
+			return modelo;
 		}
 	}
 }

@@ -242,4 +242,10 @@ public class InscripcionesController extends AppController
 		redirectAttributes.addFlashAttribute("message",this.getMessage("inscripcion_confirmada"));
 		return "redirect:/inscripciones/listar_inscripciones_confirmar";
 	}
+	@PreAuthorize("isAuthenticated() and hasRole('ROLE_INSCRIPCIONES_LISTAR_INSCRIPCIONES_CONFIRMAR')")
+	@RequestMapping(value="/estudiantes_terminan_hoy",method=RequestMethod.GET)
+	public @ResponseBody List<Inscripcion> estudiantesTerminanHoy()
+	{
+		return inscripcionService.listarInscripcionesTerminanHoy();
+	}
 }

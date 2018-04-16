@@ -13,4 +13,5 @@ public interface InscripcionDAO
 	public void grabar(Inscripcion insc);
 	public List<Inscripcion> listarInscripcionesAConfirmar();
 	public List<Inscripcion> buscarIntegrantesCurso(CursoGenerico curso);
+	public List<Inscripcion> listarInscripcionesTerminanHoy();
 }
