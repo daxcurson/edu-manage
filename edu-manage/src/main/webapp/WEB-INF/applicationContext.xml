@@ -125,8 +125,9 @@
 		<!-- 
 		--> 
 		<security:logout invalidate-session="true"
-			logout-url="/j_spring_security_logout" 
-			logout-success-url="/pages/adios" 
+			logout-url="/users/logout" 
+			logout-success-url="/pages/adios"
+			delete-cookies="yes" 
 			/>
 		<security:csrf token-repository-ref="tokenRepository"/>
 		<security:headers disabled="true"/>

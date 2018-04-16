@@ -2,11 +2,13 @@ package edumanage.service.impl;
 
 import java.util.List;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edumanage.dao.MonedaDAO;
+import edumanage.excepciones.MonedaExistenteException;
 import edumanage.model.Moneda;
 import edumanage.service.MonedaService;
 
@@ -28,5 +30,18 @@ public class MonedaServiceImpl implements MonedaService
 	public List<Moneda> listarMonedas() 
 	{
 		return monedaDAO.listarMonedas();
+	}
+
+	@Override
+	public void save(Moneda moneda) throws MonedaExistenteException
+	{
+		try
+		{
+			monedaDAO.save(moneda);
+		}
+        catch(ConstraintViolationException e)
+        {
+        	throw new MonedaExistenteException("Esa moneda ya existe");
+        }
 	}
 }

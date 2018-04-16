@@ -1,6 +1,14 @@
 package edumanage.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +24,7 @@ import edumanage.documentation.DescripcionClase;
 @DescripcionClase(value="Usuarios")
 public class UsersController extends AppController
 {
+	private static Logger log=LogManager.getLogger(UsersController.class);
 	@RequestMapping("/login")
 	public ModelAndView login(Model model) 
 	{
@@ -36,5 +45,19 @@ public class UsersController extends AppController
 	{
 		ModelAndView modelo=new ModelAndView("users_listar");
 		return modelo;
+	}
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request, HttpServletResponse response)
+	{
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null)
+		{
+			log.trace("Realizando accion de Logout");
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+			log.trace("Acciones realizadas, nos vemos pronto!");
+		}
+		else
+			log.trace("Autenticacion nula, no hago nada");
+		return "redirect:/users/login";
 	}
 }

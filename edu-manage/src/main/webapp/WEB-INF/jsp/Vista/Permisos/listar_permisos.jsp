@@ -7,7 +7,7 @@
 
 <h1>Permisos</h1>
 
-<table>
+<table class="table">
 <tr><th>M&oacute;dulo</th><th>Permiso</th>
 <%
 // Aca recorro la lista de grupos

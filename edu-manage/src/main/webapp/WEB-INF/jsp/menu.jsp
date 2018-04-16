@@ -88,7 +88,7 @@
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<sec:authorize access="hasRole('ROLE_USER')">
-				<li><c:url value="/j_spring_security_logout" var="logoutUrl" />
+				<li><c:url value="/users/logout" var="logoutUrl" />
 					<a href="${logoutUrl}">Salir</a></li>
 			</sec:authorize>
 		</ul>

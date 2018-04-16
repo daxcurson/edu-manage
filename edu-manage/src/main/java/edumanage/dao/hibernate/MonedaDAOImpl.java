@@ -27,4 +27,10 @@ public class MonedaDAOImpl implements MonedaDAO
 	{
 		return (Moneda)sessionFactory.getCurrentSession().createQuery("from Moneda where id="+id).getSingleResult();
 	}
+
+	@Override
+	public void save(Moneda arg0)
+	{
+		sessionFactory.getCurrentSession().saveOrUpdate(arg0);
+	}
 }
