@@ -16,7 +16,14 @@ public class CargaHorariaEditor extends PropertyEditorSupport
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException 
 	{
-		CargaHoraria carga = cargaHorariaService.getById(Long.parseLong(text));
+		// Si el texto de la propiedad a comparar es en blanco, 
+		// a la carga hay que darle el valor NULO, de lo contrario hay que 
+		// ir a buscar el valor a la base de datos.
+		CargaHoraria carga;
+		if(text.equals(""))
+			carga=null;
+		else
+			carga = cargaHorariaService.getById(Long.parseLong(text));
         setValue(carga);
 	}
 

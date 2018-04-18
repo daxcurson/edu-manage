@@ -37,7 +37,7 @@
 
 	<tiles:insertAttribute name="flash"/>
 
-    <div class="container theme-showcase" role="main">
+    <div class="container" role="main">
     <tiles:insertAttribute name="content"/>
     </div>
   </body>
