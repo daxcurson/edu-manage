@@ -16,8 +16,14 @@ public class IdiomaEstudiarEditor extends PropertyEditorSupport
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException 
 	{
-		IdiomaEstudiar idioma = idiomaEstudiarService.getById(Long.parseLong(text));
-        setValue(idioma);
+		// si text viene en blanco o es cero, evitar hacer esta busqueda.
+		if(text==null || text.equals("") || Integer.parseInt(text)==0)
+			setValue(null);
+		else
+		{
+			IdiomaEstudiar idioma = idiomaEstudiarService.getById(Long.parseLong(text));
+			setValue(idioma);
+		}
 	}
 
 }

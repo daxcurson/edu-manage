@@ -5,7 +5,15 @@
 
 <%@include file="/WEB-INF/jsp/Vista/Cursos/buscar_modalidades_curso.js" %>
 
-<form:form method="post" action="add" commandName="curso">
-	<tiles:insertAttribute name="form_curso"/>
-	<input type="submit" name="agregar_curso" value="Agregar Curso">
-</form:form>
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h1 class="panel-title">Agregar Curso</h1>
+	</div>
+	<div class="panel-body">
+
+		<form:form method="post" action="add" commandName="curso">
+			<tiles:insertAttribute name="form_curso"/>
+			<input type="submit" name="agregar_curso" value="Agregar Curso">
+		</form:form>
+	</div>
+</div>

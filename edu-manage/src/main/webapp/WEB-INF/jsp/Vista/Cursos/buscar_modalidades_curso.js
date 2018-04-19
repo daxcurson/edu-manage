@@ -74,7 +74,7 @@ function buscarModalidadesActuales()
  */
 function tabla_modalidades(modalidades)
 {
-	var options="<table>"+
+	var options='<table class="table">'+
 	"<tr><th>Elegir</th><th>Descripci&oacute;n</th><th>Carga horaria</th><th>Duraci&oacute;n cantidad</th><th>Duraci&oacute;n modo</th><th>Precio</th><th>Moneda</th><th>Modalidad</th></tr>";
 	$.each(modalidades,function(index,modalidad)
 	{

@@ -67,7 +67,7 @@
 		<put-attribute name="content">
 			<definition template="/WEB-INF/jsp/Vista/Cursos/add.jsp">
 				<put-attribute name="form_curso"
-					value="/WEB-INF/jsp/Vista/Elements/form_curso.jsp" />
+					value="/WEB-INF/jsp/Vista/Cursos/form_curso.jsp" />
 			</definition>
 		</put-attribute>
 	</definition>
