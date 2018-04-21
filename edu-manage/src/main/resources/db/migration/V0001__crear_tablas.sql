@@ -2589,12 +2589,11 @@ ALTER TABLE public.promociones OWNER TO buenosai_lvstudi;
 --
 -- Name: revinfo; Type: TABLE; Schema: public; Owner: buenosai_lvstudi
 --
-
-CREATE TABLE public.revinfo (
-    rev integer NOT NULL,
-    revtstmp bigint
-);
-
+create table REVINFO (
+        REV int4 not null,
+        REVTSTMP int8,
+        primary key (REV)
+    );
 
 ALTER TABLE public.revinfo OWNER TO buenosai_lvstudi;
 

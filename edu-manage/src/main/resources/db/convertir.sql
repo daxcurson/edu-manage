@@ -280,6 +280,16 @@ create table personas_AUD (
         nivel_supuesto_estudiante_id int4,
         primary key (id, REV)
     );
+create table users_AUD (
+        id int4 not null,
+        REV int4 not null,
+        REVTYPE int2,
+        enabled int4,
+        password varchar(255),
+        username varchar(255),
+        group_id int4,
+        primary key (id, REV)
+    );
 alter table carga_horarias_AUD 
         add constraint FK_1qwrd8kxv4apjol2drap7esij 
         foreign key (REV) 
@@ -332,4 +342,7 @@ alter table personas_AUD
         add constraint FK_o8sd9t20b9tblxktnylvftjvo 
         foreign key (REV) 
         references REVINFO;
-
+alter table users_AUD
+        add constraint FK_e8r4q22dh138c5f4mvlsieff5
+        foreign key (REV)
+        references REVINFO;

@@ -2,8 +2,12 @@ package edumanage.model;
 
 import javax.persistence.*;
 
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.RelationTargetAuditMode;
+
 @Entity
 @Table(name="users")
+@Audited(targetAuditMode=RelationTargetAuditMode.NOT_AUDITED)
 public class User
 {
 	/**
