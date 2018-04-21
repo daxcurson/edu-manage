@@ -39,12 +39,27 @@
 					<downloadJavadocs>true</downloadJavadocs>
 				</configuration>
 			</plugin>
-			<!-- plugin> <groupId>de.juplo</groupId> <artifactId>hibernate4-maven-plugin</artifactId> 
-				<version>1.0.3</version> <executions> <execution> <goals> <goal>export</goal> 
-				</goals> </execution> </executions> <configuration> <envers>true</envers> 
-				<format>true</format> <delimiter>;</delimiter> <force>true</force> <type>CREATE</type> 
-				<target>SCRIPT</target> <hibernateDialect>org.hibernate.dialect.PostgreSQLDialect</hibernateDialect> 
-				</configuration> </plugin -->
+			<plugin>
+				<groupId>de.juplo</groupId>
+				<artifactId>hibernate4-maven-plugin</artifactId>
+				<version>1.0.3</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>export</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<envers>true</envers>
+					<format>true</format>
+					<delimiter>;</delimiter>
+					<force>true</force>
+					<type>CREATE</type>
+					<target>SCRIPT</target>
+					<hibernateDialect>org.hibernate.dialect.PostgreSQLDialect</hibernateDialect>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>properties-maven-plugin</artifactId>
@@ -100,6 +115,19 @@
 					<configuration>
 						<lifecycleMappingMetadata>
 							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>de.juplo</groupId>
+										<artifactId>hibernate4-maven-plugin</artifactId>
+										<versionRange>[1.0.3,)</versionRange>
+										<goals>
+											<goal>export</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore/>
+									</action>
+								</pluginExecution>
 								<pluginExecution>
 									<pluginExecutionFilter>
 										<groupId>org.flywaydb</groupId>

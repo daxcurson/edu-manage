@@ -7,10 +7,11 @@
 		<h1>Cursos</h1>
 	</div>
 	<div class="panel-body">
-		<ul>
-			<li><a href="${pageContext.request.contextPath}/cursos/add">Agregar curso</a></li>
-			<li><a href="${pageContext.request.contextPath}/cursos/listar_cursos_vigentes">Listar cursos vigentes</a></li>
-			<li><a href="${pageContext.request.contextPath}/cursos/listar_cursos_sin_clases">Listar cursos sin clases</a></li>
-		</ul>
+		<div>
+			<a href="${pageContext.request.contextPath}/cursos/add">Agregar curso</a>		
+		</div>
+		<div>
+		<!-- Paginador con lista de cursos -->
+		</div>
 	</div>
 </div>
