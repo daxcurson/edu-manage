@@ -51,6 +51,7 @@
 					</execution>
 				</executions>
 				<configuration>
+					<skip>true</skip>
 					<envers>true</envers>
 					<format>true</format>
 					<delimiter>;</delimiter>

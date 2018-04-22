@@ -13,9 +13,9 @@
 
     <title>Edu-Manage</title>
 <!-- Estilos para todo el sistema -->
-<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-<link type="text/css" href="${pageContext.request.contextPath}/css/theme.css" rel="stylesheet">
 <link type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui.css" rel="stylesheet">
+<link type="text/css" href="${pageContext.request.contextPath}/css/theme.css" rel="stylesheet">
+<link type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Scripts para todo el sistema -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
