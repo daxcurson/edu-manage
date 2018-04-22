@@ -16,6 +16,7 @@ public interface CursoService
 	public List<Sucursal> listarSucursales();
 	public List<Inscripcion> listarIntegrantesCurso(CursoGenerico curso);
 	public List<Curso> listarCursosVigentes();
+	public List<Curso> listarCursos();
 	public List<Curso> listarCursosIdiomaNivel(int idioma,int nivel);
 	public List<Curso> listarCursosSinClases();
 	public List<Curso> listarCursosNoTerminados(int tipo_curso_id, int idioma_estudiar_id, int nivel_id);

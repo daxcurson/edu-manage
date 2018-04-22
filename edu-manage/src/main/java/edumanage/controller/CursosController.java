@@ -6,6 +6,8 @@ import edumanage.excepciones.ExceptionErrorAsignacionProfesor;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.validation.Valid;
 
@@ -23,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edumanage.model.*;
+import edumanage.model.listados.CursoListado;
 import edumanage.model.propertyeditor.*;
 import edumanage.service.*;
 
@@ -79,6 +82,24 @@ public class CursosController extends AppController
 		ModelAndView modelo=new ModelAndView("curso_index");
 		modelo.addObject("controller","Cursos");
 		return modelo;
+	}
+	@PreAuthorize("isAuthenticated() and hasRole('ROLE_CURSOS_MOSTRAR_MENU')")
+	@RequestMapping("/listar_cursos")
+	@Descripcion(value="Mostrar menu de cursos",permission="ROLE_CURSOS_MOSTRAR_MENU")
+	public @ResponseBody List<CursoListado> listarCursos()
+	{
+		// Busco los cursos iniciales que tienen que aparecer en pantalla.
+		/*
+		 * Recibiria por parametro la lista de filtros a aplicar a la lista,
+		 * aqui se interpretaria la solicitud, se invocaria al metodo necesario en el Servicio,
+		 * y despues se retornaria 
+		 */
+		List<Curso> c=cursoService.listarCursos();
+		// Ahora aplico filtros, o algo???
+		Stream<CursoListado> cur=c.stream().map(curso->new CursoListado(curso));
+		List<CursoListado> cursos=cur.collect(Collectors.toList());
+		
+		return cursos;
 	}
 	private ModelAndView cargarFormCurso(Curso curso)
 	{

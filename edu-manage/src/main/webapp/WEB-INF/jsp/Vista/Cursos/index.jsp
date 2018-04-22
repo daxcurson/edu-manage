@@ -14,14 +14,8 @@
 		<div>
 			<a href="${pageContext.request.contextPath}/cursos/add">Agregar curso</a>		
 		</div>
-		<div id="filtroCursos">
-		</div>
 		<!-- Paginador con lista de cursos -->
 		<div id="tablaPaginada">
-		<table class="table">
-		<tr><th>Id</th><th>Nombre</th></tr>
-		<tr><td></td><td></td></tr>
-		</table>
 		</div>
 	</div>
 </div>

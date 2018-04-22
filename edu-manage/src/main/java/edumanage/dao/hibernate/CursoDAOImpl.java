@@ -38,6 +38,7 @@ public class CursoDAOImpl implements CursoDAO
 			+ "and ("
 			+ 	"curso.baja=0 or (curso.fecha_baja >= cast(:fechaHoy as date))"
 			+ ")";
+	private String queryCursos="from Curso curso";
 	@Autowired
 	private SessionFactory sessionFactory;
 	@SuppressWarnings("unchecked")
@@ -134,5 +135,15 @@ public class CursoDAOImpl implements CursoDAO
 	public CursoGenerico mergeCurso(CursoGenerico curso)
 	{
 		return (CursoGenerico) sessionFactory.getCurrentSession().merge(curso);
+	}
+	@Override
+	public List<Curso> listarCursos()
+	{
+		List<Curso> listaCursos=null;
+		String queryCursos=this.queryCursos;
+		@SuppressWarnings("unchecked")
+		Query<Curso> querycursos=sessionFactory.getCurrentSession().createQuery(queryCursos);
+		listaCursos=querycursos.getResultList();
+		return listaCursos;
 	}
 }

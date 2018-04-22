@@ -312,4 +312,10 @@ public class CursoServiceImpl implements CursoService //, ApplicationEventPublis
 			}
 		}
 	}
+
+	@Override
+	public List<Curso> listarCursos()
+	{
+		return this.cursoDAO.listarCursos();
+	}
 }
