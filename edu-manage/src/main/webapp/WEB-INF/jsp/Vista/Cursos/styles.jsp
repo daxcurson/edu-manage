@@ -1,0 +1,2 @@
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css">
+<link href="${pageContext.request.contextPath}/css/structured-filter.css" rel="stylesheet" type="text/css">

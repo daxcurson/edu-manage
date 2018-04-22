@@ -60,8 +60,9 @@
 			value="/WEB-INF/jsp/Vista/Configuracion/index.jsp" />
 	</definition>
 	<definition name="curso_index" extends="base.definition">
-		<put-attribute name="content"
-			value="/WEB-INF/jsp/Vista/Cursos/index.jsp" />
+		<put-attribute name="content" value="/WEB-INF/jsp/Vista/Cursos/index.jsp" />
+		<put-attribute name="scripts" value="/WEB-INF/jsp/Vista/Cursos/scripts.jsp"/>
+		<put-attribute name="styles" value="/WEB-INF/jsp/Vista/Cursos/styles.jsp"/>
 	</definition>
 	<definition name="curso_add" extends="base.definition">
 		<put-attribute name="content">
