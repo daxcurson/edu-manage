@@ -20,7 +20,6 @@
 <!-- Scripts para todo el sistema -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
 
 <!-- Incluyo estilos para paginas que los definan especificamente -->
     <tiles:insertAttribute name="styles"/>

@@ -1,50 +1,45 @@
-$(document).ready(function()
-{
-	$("#tablaPaginada").jsGrid({
-		width : "100%",
-		height : "400px",
+import Vue from 'vue'
+import VueResource from 'vue-resource'
+import VuePaginator from 'vuejs-paginator'
 
-		inserting : true,
-		editing : true,
-		sorting : true,
-		paging : true,
-		filtering: true,
-
-		data : [],
-		controller:{
-			loadData: function(filter)
-			{
-				cargarCursos(filter)
-			},
-			insertItem:$.noop,
-			updateItem:$.noop,
-			deleteItem:$.noop
-		},
-
-		fields : [ {
-			name : "id",
-			type : "number",
-			width : 4
-		}, {
-			name : "codigo_curso",
-			type : "text",
-			width : 50
-		}, {
-			name : "descripcion_curso",
-			type : "text",
-			width : 200
-		}, {
-			name : "fecha_comienzo",
-			type : "date",
-			width : 10
-		}, {
-			name : "vigente",
-			type : "checkbox",
-			title : "Vigente",
-			sorting : false
-		}, {
-			type : "control"
+Vue.use(VueResource)
+$(document).ready(function() {
+	$("#filtroCursos").structFilter({
+		fields : [ 
+			{id : "lastname",type : "text",	label : "Lastname"}, 
+			{id : "firstname",type : "text",label : "Firstname"}, 
+			{id : "active",type : "boolean",label : "Is active"}, 
+			{id : "age",type : "number",label : "Age"}, 
+			{id : "bday",type : "date",label : "Birthday"}, 
+			{id : "category",type : "list",label : "Category",
+			list : [
+				{id : "1",label : "Family"}, 
+				{id : "2",label : "Friends"}, 
+				{id : "3",label : "Business"}, 
+				{id : "4",label : "Acquaintances"}, 
+				{id : "5",label : "Other"}
+			]
 		} ]
+	});
+	var tabla_paginada=new Vue({
+		el: '#tablaPaginada',
+		data () {
+			return {
+				// The resource variable
+				animals: [],
+				// Here you define the url of your paginated API
+				resource_url: 'http://hootlex.github.io/vuejs-paginator/samples/animals1.json'
+			}
+		},
+		components: {
+			VPaginator: VuePaginator
+		},
+		methods: {
+			updateResource(data)
+			{
+				this.animals = data
+			}
+		}
 	});
 });
 function cargarCursos(filter)
