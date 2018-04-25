@@ -4,6 +4,7 @@ import java.util.*;
 
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.log4j.Logger;
+import org.hibernate.ScrollableResults;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import edumanage.dao.*;
 import edumanage.model.Curso;
 import edumanage.model.CursoGenerico;
+import edumanage.model.listados.ListadoPaginado;
 
 @Repository
 public class CursoDAOImpl implements CursoDAO
@@ -137,13 +139,21 @@ public class CursoDAOImpl implements CursoDAO
 		return (CursoGenerico) sessionFactory.getCurrentSession().merge(curso);
 	}
 	@Override
-	public List<Curso> listarCursos()
+	public ListadoPaginado<Curso> listarCursos(int firstResult,int maxResults)
 	{
-		List<Curso> listaCursos=null;
+		ListadoPaginado<Curso> listaCursos=new ListadoPaginado<Curso>();
 		String queryCursos=this.queryCursos;
 		@SuppressWarnings("unchecked")
 		Query<Curso> querycursos=sessionFactory.getCurrentSession().createQuery(queryCursos);
-		listaCursos=querycursos.getResultList();
+		// Primero obtengo el numero de registros total!!!
+		ScrollableResults r=querycursos.scroll();
+		r.last();
+		int totalRegistros=r.getRowNumber()+1;
+		r.close();
+		querycursos.setFirstResult(firstResult);
+		querycursos.setMaxResults(maxResults);
+		listaCursos.setData(querycursos.getResultList());
+		listaCursos.setTotal_registros(totalRegistros);
 		return listaCursos;
 	}
 }

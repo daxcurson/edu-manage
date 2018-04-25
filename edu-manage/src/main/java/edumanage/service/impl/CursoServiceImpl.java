@@ -17,6 +17,7 @@ import edumanage.dao.*;
 import edumanage.excepciones.ExceptionErrorAsignacionProfesor;
 import edumanage.excepciones.ExceptionEstadoCursoInvalido;
 import edumanage.model.*;
+import edumanage.model.listados.ListadoPaginado;
 import edumanage.service.CursoService;
 
 @Service
@@ -314,8 +315,8 @@ public class CursoServiceImpl implements CursoService //, ApplicationEventPublis
 	}
 
 	@Override
-	public List<Curso> listarCursos()
+	public ListadoPaginado<Curso> listarCursos(int firstResult,int maxResults)
 	{
-		return this.cursoDAO.listarCursos();
+		return this.cursoDAO.listarCursos(firstResult,maxResults);
 	}
 }

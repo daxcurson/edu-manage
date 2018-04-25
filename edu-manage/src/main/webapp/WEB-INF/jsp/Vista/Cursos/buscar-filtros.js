@@ -1,23 +1,24 @@
-import Vue from 'vue'
-import VueResource from 'vue-resource'
-import VuePaginator from 'vuejs-paginator'
+//import Vue from 'vue';
+//import VueResource from 'vue-resource';
+//import VuePaginator from 'vuejs-paginator';
 
 Vue.use(VueResource)
 $(document).ready(function() {
 	$("#filtroCursos").structFilter({
 		fields : [ 
-			{id : "lastname",type : "text",	label : "Lastname"}, 
-			{id : "firstname",type : "text",label : "Firstname"}, 
-			{id : "active",type : "boolean",label : "Is active"}, 
-			{id : "age",type : "number",label : "Age"}, 
-			{id : "bday",type : "date",label : "Birthday"}, 
-			{id : "category",type : "list",label : "Category",
+			{id : "id",type : "number",	label : "Id"}, 
+			{id : "codigo_curso",type : "text",label : "Codigo Curso"}, 
+			{id : "descripcion_curso",type : "text",label : "Descripcion Curso"}, 
+			{id : "fecha_comienzo",type : "date",label : "Fecha Comienzo"}, 
+			{id : "fecha_fin",type : "date",label : "Fecha Fin"}, 
+			{id : "vigente",type : "boolean",label : "Vigente"},
+			{id : "estado",type : "list",label : "Estado",
 			list : [
-				{id : "1",label : "Family"}, 
-				{id : "2",label : "Friends"}, 
-				{id : "3",label : "Business"}, 
-				{id : "4",label : "Acquaintances"}, 
-				{id : "5",label : "Other"}
+				{id : "S",label : "Abierto"}, 
+				{id : "N",label : "Cerrado"}, 
+				{id : "A",label : "Esperando Alumnos"}, 
+				{id : "E",label : "Esperando Profesor"}, 
+				{id : "B",label : "Baja"}
 			]
 		} ]
 	});
@@ -26,9 +27,9 @@ $(document).ready(function() {
 		data () {
 			return {
 				// The resource variable
-				animals: [],
+				cursos: [],
 				// Here you define the url of your paginated API
-				resource_url: 'http://hootlex.github.io/vuejs-paginator/samples/animals1.json'
+				resource_url: '${pageContext.request.contextPath}/cursos/listar_cursos'
 			}
 		},
 		components: {
@@ -37,7 +38,7 @@ $(document).ready(function() {
 		methods: {
 			updateResource(data)
 			{
-				this.animals = data
+				this.cursos = data
 			}
 		}
 	});

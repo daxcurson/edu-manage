@@ -3,6 +3,7 @@ package edumanage.service;
 import java.util.List;
 
 import edumanage.model.*;
+import edumanage.model.listados.ListadoPaginado;
 
 public interface CursoService
 {
@@ -16,7 +17,7 @@ public interface CursoService
 	public List<Sucursal> listarSucursales();
 	public List<Inscripcion> listarIntegrantesCurso(CursoGenerico curso);
 	public List<Curso> listarCursosVigentes();
-	public List<Curso> listarCursos();
+	public ListadoPaginado<Curso> listarCursos(int firstResult, int maxResults);
 	public List<Curso> listarCursosIdiomaNivel(int idioma,int nivel);
 	public List<Curso> listarCursosSinClases();
 	public List<Curso> listarCursosNoTerminados(int tipo_curso_id, int idioma_estudiar_id, int nivel_id);
@@ -27,4 +28,5 @@ public interface CursoService
 	public void cambiarEstado(CursoGenerico curso,CursoEstado nuevoEstado);
 	public void realizarAperturaCurso(CursoGenerico curso);
 	public void recibirInscripto(CursoGenerico curso,Inscripcion insc);
+	
 }

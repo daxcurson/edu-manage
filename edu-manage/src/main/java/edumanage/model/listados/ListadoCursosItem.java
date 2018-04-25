@@ -10,7 +10,7 @@ import edumanage.model.criterio.CursoVigente;
  * @author Agustín Villafañe
  *
  */
-public class CursoListado
+public class ListadoCursosItem
 {
 	private int id;
 	private String codigo_curso;
@@ -26,7 +26,7 @@ public class CursoListado
 	 * construimos un item de listado de cursos con un curso como base.
 	 * @param curso
 	 */
-	public CursoListado(Curso curso)
+	public ListadoCursosItem(Curso curso)
 	{
 		this.id=curso.getId();
 		this.codigo_curso=curso.getCodigo_curso();

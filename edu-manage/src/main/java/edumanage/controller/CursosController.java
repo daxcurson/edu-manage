@@ -25,7 +25,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edumanage.model.*;
-import edumanage.model.listados.CursoListado;
+import edumanage.model.listados.ListadoCursosItem;
+import edumanage.model.listados.ListadoPaginado;
 import edumanage.model.propertyeditor.*;
 import edumanage.service.*;
 
@@ -86,7 +87,7 @@ public class CursosController extends AppController
 	@PreAuthorize("isAuthenticated() and hasRole('ROLE_CURSOS_MOSTRAR_MENU')")
 	@RequestMapping("/listar_cursos")
 	@Descripcion(value="Mostrar menu de cursos",permission="ROLE_CURSOS_MOSTRAR_MENU")
-	public @ResponseBody List<CursoListado> listarCursos()
+	public @ResponseBody ListadoPaginado<Curso> listarCursos()
 	{
 		// Busco los cursos iniciales que tienen que aparecer en pantalla.
 		/*
@@ -94,12 +95,14 @@ public class CursosController extends AppController
 		 * aqui se interpretaria la solicitud, se invocaria al metodo necesario en el Servicio,
 		 * y despues se retornaria 
 		 */
-		List<Curso> c=cursoService.listarCursos();
+		ListadoPaginado<Curso> c=cursoService.listarCursos(0, 3);
 		// Ahora aplico filtros, o algo???
-		Stream<CursoListado> cur=c.stream().map(curso->new CursoListado(curso));
-		List<CursoListado> cursos=cur.collect(Collectors.toList());
-		
-		return cursos;
+		Stream<ListadoCursosItem> cur=c.getData().stream().map(curso->new ListadoCursosItem(curso));
+		List<ListadoCursosItem> cursos=cur.collect(Collectors.toList());
+		ListadoPaginado<ListadoCursosItem> l=new ListadoPaginado<ListadoCursosItem>();
+		l.setTotal_registros(c.getTotal_registros());
+		l.setData(cursos);
+		return c;
 	}
 	private ModelAndView cargarFormCurso(Curso curso)
 	{
