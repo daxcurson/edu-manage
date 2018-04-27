@@ -3,6 +3,7 @@ package edumanage.service.impl;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edumanage.dao.*;
+import edumanage.dao.criterio.Criterio;
 import edumanage.excepciones.ExceptionErrorAsignacionProfesor;
 import edumanage.excepciones.ExceptionEstadoCursoInvalido;
 import edumanage.model.*;
@@ -336,6 +338,7 @@ public class CursoServiceImpl implements CursoService //, ApplicationEventPublis
 				// El Structured Filter me manda una estructura que consiste de
 				// field-numero, operator-numero, value-numero, donde numero es el numero
 				// de condicion.
+				List<Criterio> l=new LinkedList<Criterio>();
 				while(requestParams.containsKey("field-"+filtro) && filtro<=maxFiltros)
 				{
 					// Procesamos este filtro.
@@ -356,7 +359,32 @@ public class CursoServiceImpl implements CursoService //, ApplicationEventPublis
 					String campo=requestParams.get("field-"+filtro);
 					String operador=requestParams.get("operator-"+filtro);
 					String valor=requestParams.get("value-"+filtro);
-					
+					// Si hay un campo llamado como esa propiedad, confirmarlo
+					// y agregarlo a la lista.
+					try
+					{
+						// Si me piden por alguno de los valores especiales, como
+						// p/ej. vigente, lo busco ahora.
+						if(campo.equals("vigente"))
+						{
+							// confirmamos que quieren saber los cursos vigentes.
+							if(valor.equals("1") || valor.equals("0"))
+							{
+								Criterio e=new Criterio();
+								e.setCampo(campo);
+								e.setOperador("=");
+								e.setValor(valor);
+								l.add(e);
+							}
+						}
+						String metodo="get"+campo.substring(0,1).toUpperCase()+campo.substring(1).toLowerCase();
+						Curso.class.getMethod(metodo);
+						// Rebuscado, pero si no mori hasta ahora, es que el campo existe.
+					}
+					catch(NoSuchMethodException e)
+					{
+						// Ese metodo no existe. Ignorarlo.
+					}
 					// Pasamos al siguiente filtro.
 					filtro++;
 				}
