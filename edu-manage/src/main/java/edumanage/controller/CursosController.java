@@ -87,7 +87,7 @@ public class CursosController extends AppController
 	@PreAuthorize("isAuthenticated() and hasRole('ROLE_CURSOS_MOSTRAR_MENU')")
 	@RequestMapping("/listar_cursos")
 	@Descripcion(value="Mostrar menu de cursos",permission="ROLE_CURSOS_MOSTRAR_MENU")
-	public @ResponseBody ListadoPaginado<ListadoCursosItem> listarCursos()
+	public @ResponseBody ListadoPaginado<ListadoCursosItem> listarCursos(@RequestParam Map<String, String> requestParams)
 	{
 		// Busco los cursos iniciales que tienen que aparecer en pantalla.
 		/*
@@ -95,7 +95,7 @@ public class CursosController extends AppController
 		 * aqui se interpretaria la solicitud, se invocaria al metodo necesario en el Servicio,
 		 * y despues se retornaria 
 		 */
-		ListadoPaginado<Curso> c=cursoService.listarCursos(0, 3);
+		ListadoPaginado<Curso> c=cursoService.listarCursos(requestParams,0, 3);
 		// Ahora aplico filtros, o algo???
 		Stream<ListadoCursosItem> cur=c.getData().stream().map(curso->new ListadoCursosItem(curso));
 		List<ListadoCursosItem> cursos=cur.collect(Collectors.toList());

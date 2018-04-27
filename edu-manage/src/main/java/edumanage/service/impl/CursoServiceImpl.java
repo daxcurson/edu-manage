@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Hibernate;
@@ -315,8 +316,56 @@ public class CursoServiceImpl implements CursoService //, ApplicationEventPublis
 	}
 
 	@Override
-	public ListadoPaginado<Curso> listarCursos(int firstResult,int maxResults)
+	public ListadoPaginado<Curso> listarCursos(Map<String,String> requestParams,int firstResult,int maxResults)
 	{
+		// Aqui procesaria los parametros que vinieron, incluidos los numeros de pagina
+		// solicitados.
+		if(requestParams!=null)
+		{
+			log.debug("Los parametros recibidos no son nulos");
+			// Bien, me toca interpretar los parametros recibidos.
+			// Si esta definida la variable filters y vale 1, entonces
+			// hay filtros.
+			if(requestParams.containsKey("filters") && requestParams.get("filters").equals("1"))
+			{
+				log.debug("Hay filtros");
+				// ahora, los filtros pueden ser cuantos quiera... vamos a poner hasta 10
+				// filtros y despues vemos.
+				int maxFiltros=10;
+				int filtro=0;
+				// El Structured Filter me manda una estructura que consiste de
+				// field-numero, operator-numero, value-numero, donde numero es el numero
+				// de condicion.
+				while(requestParams.containsKey("field-"+filtro) && filtro<=maxFiltros)
+				{
+					// Procesamos este filtro.
+					// Ya que esta, podriamos usar la Criteria API de Hibernate
+					// para pedir los campos. Eso nos ahorraria pasos para generar
+					// las queries que haria falta para consultar los datos pedidos.
+					// El problema con eso es que los Criteria los tenemos que 
+					// generar con la sesion de Hibernate. Que hacemos? Comprometemos
+					// la integridad de nuestro modelo de capas haciendo intervenir
+					// la sesion de Hibernate aqui en lugar de los objetos DAO que es
+					// donde corresponde? 
+					// Aqui podriamos crear una estructura de datos que despues le
+					// pasariamos al DAO para que haga la consulta. Quedaria
+					// medio feo pero funcionaria.
+					// Entonces mi funcion aqui es asegurarme que los parametros
+					// pedidos existan, y despues los meto en una lista de Criterios para
+					// que sean convertidos con la Criteria API.
+					String campo=requestParams.get("field-"+filtro);
+					String operador=requestParams.get("operator-"+filtro);
+					String valor=requestParams.get("value-"+filtro);
+					
+					// Pasamos al siguiente filtro.
+					filtro++;
+				}
+			}
+			else
+			{
+				log.debug("No hay filtros");
+			}
+		}
 		return this.cursoDAO.listarCursos(firstResult,maxResults);
 	}
 }
