@@ -87,7 +87,7 @@ public class CursosController extends AppController
 	@PreAuthorize("isAuthenticated() and hasRole('ROLE_CURSOS_MOSTRAR_MENU')")
 	@RequestMapping("/listar_cursos")
 	@Descripcion(value="Mostrar menu de cursos",permission="ROLE_CURSOS_MOSTRAR_MENU")
-	public @ResponseBody ListadoPaginado<Curso> listarCursos()
+	public @ResponseBody ListadoPaginado<ListadoCursosItem> listarCursos()
 	{
 		// Busco los cursos iniciales que tienen que aparecer en pantalla.
 		/*
@@ -102,7 +102,7 @@ public class CursosController extends AppController
 		ListadoPaginado<ListadoCursosItem> l=new ListadoPaginado<ListadoCursosItem>();
 		l.setTotal_registros(c.getTotal_registros());
 		l.setData(cursos);
-		return c;
+		return l;
 	}
 	private ModelAndView cargarFormCurso(Curso curso)
 	{

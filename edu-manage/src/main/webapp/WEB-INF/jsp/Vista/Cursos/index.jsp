@@ -18,7 +18,7 @@
 		</div>
 		<!-- Paginador con lista de cursos -->
 		<div id="tablaPaginada">
-		<v-paginator :resource_url="resource_url" @update="updateResource"></v-paginator>
+		<v-paginator :resource_url="resource_url" ref="tablaCursos" @update="updateResource"></v-paginator>
 		</div>
 	</div>
 </div>

@@ -29,7 +29,7 @@ $(document).ready(function() {
 				// The resource variable
 				cursos: [],
 				// Here you define the url of your paginated API
-				resource_url: '${pageContext.request.contextPath}/cursos/listar_cursos'
+				resource_url: '${pageContext.request.contextPath}/cursos/listar_cursos?'+$("#filtroCursos").structFilter("valUrl")
 			}
 		},
 		components: {
@@ -42,15 +42,13 @@ $(document).ready(function() {
 			}
 		}
 	});
+	$("#filtroCursos").on("change.search", function(event)
+			{
+				// do something
+				tabla_paginada.$refs.tablaCursos.fetchData('${pageContext.request.contextPath}/cursos/listar_cursos?'+$("#filtroCursos").structFilter("valUrl"));
+			});
+			$("#filtroCursos").on("submit.search", function(event)
+			{
+				tabla_paginada.$refs.tablaCursos.fetchData('${pageContext.request.contextPath}/cursos/listar_cursos?'+$("#filtroCursos").structFilter("valUrl"));
+			});
 });
-function cargarCursos(filter)
-{
-	var url="${pageContext.request.contextPath}/cursos/listar_cursos";
-	// Aca irian parametros.
-	var d=$.Deferred();
-	$.getJSON(url,function(data)
-	{
-		d.resolve(data.value);
-	});
-	return d.promise();
-}
