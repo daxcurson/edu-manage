@@ -49,4 +49,12 @@ public class CursoEsperandoEstudiantes extends CursoEstado
 	{
 		return curso.getAbierto();
 	}
+	@Override
+	public boolean equals(Object otro)
+	{
+		boolean result=false;
+		if(otro instanceof CursoEsperandoEstudiantes)
+			return true;
+		return result;
+	}
 }

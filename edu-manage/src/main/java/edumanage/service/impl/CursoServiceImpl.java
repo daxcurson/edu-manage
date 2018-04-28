@@ -54,7 +54,7 @@ public class CursoServiceImpl implements CursoService //, ApplicationEventPublis
 	
 	@Autowired
 	private FeriadosDAO feriadosDAO;
-	
+	private Map<String,String> mapaOperadores;
 	/*
 	private ApplicationEventPublisher publisher;
 	@Override
@@ -63,7 +63,24 @@ public class CursoServiceImpl implements CursoService //, ApplicationEventPublis
 		this.publisher=applicationEventPublisher;
 	}
 	*/
-	
+	public CursoServiceImpl()
+	{
+		super();
+		mapaOperadores=new HashMap<String,String>();
+		mapaOperadores.put("eq", "eq"); // Equal
+		mapaOperadores.put("ne", "ne"); // not equal
+		mapaOperadores.put("gt", "gt"); // greater than
+		mapaOperadores.put("lt", "lt"); // less than
+		mapaOperadores.put("bw", "bw"); // between
+		mapaOperadores.put("null", "null"); // Empty
+		mapaOperadores.put("nn", "nn"); // Not empty
+		mapaOperadores.put("in", "in"); // Any of / in
+		mapaOperadores.put("sw", "sw"); // starts with
+		mapaOperadores.put("ct", "ct"); // contains
+		mapaOperadores.put("nct", "nct"); // deson't contain
+		mapaOperadores.put("fw", "fw"); // finishes with
+		mapaOperadores.put("nbw", "nbw"); // Not between
+	}
 	@Override
 	@Transactional
 	public void addCurso(Curso curso) 
@@ -372,14 +389,32 @@ public class CursoServiceImpl implements CursoService //, ApplicationEventPublis
 							{
 								Criterio e=new Criterio();
 								e.setCampo(campo);
-								e.setOperador("=");
+								e.setOperador("eq");
 								e.setValor(valor);
 								l.add(e);
 							}
 						}
-						String metodo="get"+campo.substring(0,1).toUpperCase()+campo.substring(1).toLowerCase();
-						Curso.class.getMethod(metodo);
-						// Rebuscado, pero si no mori hasta ahora, es que el campo existe.
+						else
+						{
+							String metodo="get"+campo.substring(0,1).toUpperCase()+campo.substring(1).toLowerCase();
+							String nombreMetodo=Curso.class.getMethod(metodo).getName();
+							// Rebuscado, pero si no mori hasta ahora, es que el campo existe.
+							log.trace("Examinamos el metodo "+nombreMetodo+" de la clase Curso");
+							// Listo, sabemos el metodo. Ahora vamos a determinar el operador.
+							if(mapaOperadores.containsKey(operador))
+							{
+								// El operador existe. Le pasamos el valor de la clave.
+								Criterio e=new Criterio();
+								e.setCampo(metodo);
+								e.setOperador(mapaOperadores.get(operador));
+								e.setValor(valor);
+								l.add(e);
+							}
+						}
+						// Listo, reunimos los operadores que podemos tener, 
+						// ahora hay que pedirle al DAO que los busque. Ahi es
+						// donde voy a convertir entre los criterios de aca y los
+						// de hibernate.
 					}
 					catch(NoSuchMethodException e)
 					{
@@ -388,12 +423,40 @@ public class CursoServiceImpl implements CursoService //, ApplicationEventPublis
 					// Pasamos al siguiente filtro.
 					filtro++;
 				}
+				// Listo, ya consumi todos los filtros. Es hora de llamar al DAO.
+				try
+				{
+					return this.cursoDAO.listarCursos(l, firstResult, maxResults);
+				} catch (NoSuchMethodException e)
+				{
+					e.printStackTrace();
+					return null;
+				} catch (SecurityException e)
+				{
+					e.printStackTrace();
+					return null;
+				}
 			}
 			else
 			{
 				log.debug("No hay filtros");
+				// No hay filtros elegidos. Hay que mandar todos los cursos que haya.
+				// para eso, construyo un query que no tiene ninguna restriccion.
+				LinkedList<Criterio> l=new LinkedList<Criterio>();
+				try
+				{
+					return this.cursoDAO.listarCursos(l, firstResult, maxResults);
+				} catch (NoSuchMethodException e)
+				{
+					e.printStackTrace();
+					return null;
+				} catch (SecurityException e)
+				{
+					e.printStackTrace();
+					return null;
+				}
 			}
 		}
-		return this.cursoDAO.listarCursos(firstResult,maxResults);
+		return null;
 	}
 }

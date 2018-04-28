@@ -34,4 +34,12 @@ public class CursoEsperandoProfesor extends CursoEstado
 		publisher.publishEvent(new AperturaCurso(curso));
 		return new CursoAbierto();
 	}
+	@Override
+	public boolean equals(Object otro)
+	{
+		boolean result=false;
+		if(otro instanceof CursoEsperandoProfesor)
+			return true;
+		return result;
+	}
 }

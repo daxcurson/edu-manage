@@ -2,17 +2,25 @@ package edumanage.dao.hibernate;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.log4j.Logger;
 import org.hibernate.ScrollableResults;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import edumanage.dao.*;
+import edumanage.dao.criterio.Criterio;
 import edumanage.model.Curso;
 import edumanage.model.CursoGenerico;
+import edumanage.model.criterio.CursoVigente;
 import edumanage.model.listados.ListadoPaginado;
 
 @Repository
@@ -40,7 +48,6 @@ public class CursoDAOImpl implements CursoDAO
 			+ "and ("
 			+ 	"curso.baja=0 or (curso.fecha_baja >= cast(:fechaHoy as date))"
 			+ ")";
-	private String queryCursos="from Curso curso";
 	@Autowired
 	private SessionFactory sessionFactory;
 	@SuppressWarnings("unchecked")
@@ -139,20 +146,54 @@ public class CursoDAOImpl implements CursoDAO
 		return (CursoGenerico) sessionFactory.getCurrentSession().merge(curso);
 	}
 	@Override
-	public ListadoPaginado<Curso> listarCursos(int firstResult,int maxResults)
+	public ListadoPaginado<Curso> listarCursos(List<Criterio> criterios,int firstResult,int maxResults) throws NoSuchMethodException, SecurityException
 	{
 		ListadoPaginado<Curso> listaCursos=new ListadoPaginado<Curso>();
-		String queryCursos=this.queryCursos;
-		@SuppressWarnings("unchecked")
-		Query<Curso> querycursos=sessionFactory.getCurrentSession().createQuery(queryCursos);
+		// Usemos la API de Hibernate.
+		// Por cada item sacado de la lista, pedimos un criterio de Hibernate.
+		Iterator<Criterio> iterator=criterios.iterator();
+		Session session=sessionFactory.getCurrentSession();
+		CriteriaBuilder cb=session.getCriteriaBuilder();
+		CriteriaQuery<Curso> criteriosQuery=cb.createQuery(Curso.class);
+		Root<Curso> raiz=criteriosQuery.from(Curso.class);
+		criteriosQuery.select(raiz);
+		// Hasta 10 predicados vamos a aguantar.
+		int maxPredicados=10;
+		int predicado=0;
+		List<Predicate> predicados=new LinkedList<Predicate>();
+		while(iterator.hasNext() && predicado<maxPredicados)
+		{
+			Criterio c=iterator.next();
+			switch(c.getCampo())
+			{
+			case "vigente":
+				// Hay que construir predicados
+				predicados.add(CursoVigente.criteriosVigencia(raiz, cb));
+				break;
+			default:
+				switch(c.getOperador())
+				{
+				case "eq":
+					// Operador de igualdad.
+					predicados.add(cb.equal(raiz.get(c.getCampo()), c.getValor()));
+				}
+				break;
+			}
+			predicado++;
+		}
+		// Ya tengo una lista de predicados. Los asumo todos combinados con AND.
+		// Ahora, si no me informan criterios, esto no hace falta.
+		if(!criterios.isEmpty())
+			criteriosQuery.where(cb.and(predicados.toArray(new Predicate[0])));
 		// Primero obtengo el numero de registros total!!!
-		ScrollableResults r=querycursos.scroll();
+		ScrollableResults r=session.createQuery(criteriosQuery).scroll();
 		r.last();
 		int totalRegistros=r.getRowNumber()+1;
 		r.close();
-		querycursos.setFirstResult(firstResult);
-		querycursos.setMaxResults(maxResults);
-		listaCursos.setData(querycursos.getResultList());
+		Query<Curso> q=session.createQuery(criteriosQuery);
+		q.setFirstResult(firstResult);
+		q.setMaxResults(maxResults);
+		listaCursos.setData(q.getResultList());
 		listaCursos.setTotal_registros(totalRegistros);
 		return listaCursos;
 	}

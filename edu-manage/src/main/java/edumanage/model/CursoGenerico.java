@@ -4,9 +4,12 @@ import org.hibernate.annotations.Type;
 import org.hibernate.envers.*;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import edumanage.model.propertyeditor.DateConverter;
+
 import java.util.*;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +18,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.InheritanceType;
 import javax.persistence.DiscriminatorType;
 
@@ -34,8 +39,14 @@ public class CursoGenerico
 	protected String descripcion_curso;
 	protected boolean intensivo;
 	protected String horario_curso;
+	@Temporal(TemporalType.DATE)
+	@Convert(converter=DateConverter.class)
 	protected Date fecha_comienzo;
+	@Temporal(TemporalType.DATE)
+	@Convert(converter=DateConverter.class)
 	protected Date fecha_fin;
+	@Temporal(TemporalType.DATE)
+	@Convert(converter=DateConverter.class)
 	protected Date fecha_baja;
 	@ManyToOne
 	@JoinColumn(name="tipo_curso_id")

@@ -80,7 +80,13 @@ public class CursoEstadoUserType implements UserType
 			throws HibernateException, SQLException 
 	{
 		log.trace("Estoy en nullSafeSet");
-		CursoEstado estado=(CursoEstado) value;
+		// Aqui puedo llegar a recibir un String...! O sea que tengo que buscar 
+		// que string se parece a uno de mis nombres de estado, y asignar eso.
+		CursoEstado estado=null;
+		if(value instanceof String)
+			estado=CursoEstadoFactory.crearEstado((String)value);
+		else
+			estado=(CursoEstado) value;
 		st.setString(index, estado.nombre);
 	}
 

@@ -31,4 +31,12 @@ public class CursoBaja extends CursoEstado
 		//
 		throw new ExceptionEstadoCursoInvalido("El estado del curso es baja. No puedo cambiar el profesor");
 	}
+	@Override
+	public boolean equals(Object otro)
+	{
+		boolean result=false;
+		if(otro instanceof CursoBaja)
+			return true;
+		return result;
+	}
 }

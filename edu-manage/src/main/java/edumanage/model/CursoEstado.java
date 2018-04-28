@@ -39,4 +39,5 @@ public abstract class CursoEstado implements ApplicationEventPublisherAware
 	}
 	public abstract CursoEstado inscripcionRecibida(Inscripcion insc) throws ExceptionEstadoCursoInvalido;
 	public abstract CursoEstado profesorAsignado(CursoGenerico curso,Profesor profesor);
+	public abstract boolean equals(Object otro);
 }

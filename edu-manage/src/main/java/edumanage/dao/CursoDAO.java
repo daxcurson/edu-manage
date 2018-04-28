@@ -1,6 +1,7 @@
 package edumanage.dao;
 import java.util.List;
 
+import edumanage.dao.criterio.Criterio;
 import edumanage.model.Curso;
 import edumanage.model.CursoGenerico;
 import edumanage.model.listados.ListadoPaginado;
@@ -15,5 +16,5 @@ public interface CursoDAO
 	public List<Curso> listarCursosNoTerminados(int tipo_curso_id, int idioma_estudiar_id, int nivel_id);
 	public void saveCurso(CursoGenerico curso);
 	public CursoGenerico mergeCurso(CursoGenerico curso);
-	ListadoPaginado<Curso> listarCursos(int firstResult, int maxResults);
+	ListadoPaginado<Curso> listarCursos(List<Criterio> criterios, int firstResult, int maxResults) throws NoSuchMethodException, SecurityException;
 }

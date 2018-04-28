@@ -61,4 +61,12 @@ public class CursoCerrado extends CursoEstado
 		else
 			return new CursoEsperandoEstudiantes();
 	}
+	@Override
+	public boolean equals(Object otro)
+	{
+		boolean result=false;
+		if(otro instanceof CursoCerrado)
+			return true;
+		return result;
+	}
 }

@@ -27,4 +27,13 @@ public class CursoAbierto extends CursoEstado
 		// En este estado no hay que devolver ningun cambio de estado
 		return curso.getAbierto();
 	}
+
+	@Override
+	public boolean equals(Object otro)
+	{
+		boolean result=false;
+		if(otro instanceof CursoAbierto)
+			return true;
+		return result;
+	}
 }
