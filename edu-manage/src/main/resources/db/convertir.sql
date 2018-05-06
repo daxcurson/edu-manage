@@ -3,7 +3,9 @@ create table REVINFO (
         REVTSTMP int8,
         primary key (REV)
     );
-ALTER TABLE  groups CHANGE  name  group_name VARCHAR( 100 ) NOT NULL;
+ALTER TABLE  groups rename  name to  group_name;
+alter table groups alter column group_name type VARCHAR( 100 );
+alter table groups alter column group_name set not null;
 alter table users add enabled integer not null default 1;
 CREATE SEQUENCE group_permission_seq
     INCREMENT 1
