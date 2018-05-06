@@ -1,3 +1,6 @@
+ALTER SCHEMA public
+    OWNER TO buenosai_lvstudi;
+
 create table REVINFO (
         REV int4 not null,
         REVTSTMP int8,
@@ -127,6 +130,8 @@ create table cursos_AUD (
         libro varchar(255),
         primary key (id, REV)
     );
+alter table cursos_AUD owner to buenosai_lvstudi;
+
 create table honorario_asignados_AUD (
         id int8 not null,
         REV int4 not null,
@@ -139,6 +144,8 @@ create table honorario_asignados_AUD (
         profesor_id int8,
         primary key (id, REV)
     );
+alter table honorario_asignados_AUD owner to buenosai_lvstudi;
+
 create table honorario_profesores_AUD (
         id int8 not null,
         REV int4 not null,
@@ -153,6 +160,8 @@ create table honorario_profesores_AUD (
         moneda_id int4,
         primary key (id, REV)
     );
+alter table honorario_profesores_AUD owner to buenosai_lvstudi;
+
 create table honorario_profesores_honorario_asignados_AUD (
         REV int4 not null,
         honorario_profesores_id int8 not null,
@@ -160,6 +169,8 @@ create table honorario_profesores_honorario_asignados_AUD (
         REVTYPE int2,
         primary key (REV, honorario_profesores_id, asignaciones_id)
     );
+alter table honorario_profesores_honorario_asignados_AUD owner to buenosai_lvstudi;
+
 create table horario_cursos_AUD (
         id int8 not null,
         REV int4 not null,
@@ -177,6 +188,8 @@ create table horario_cursos_AUD (
         sucursal_id int4,
         primary key (id, REV)
     );
+alter table horario_cursos_AUD owner to buenosai_lvstudi;
+
 create table idioma_modalidades_AUD (
         REV int4 not null,
         modalidad_curso_id int8 not null,
@@ -184,6 +197,7 @@ create table idioma_modalidades_AUD (
         REVTYPE int2,
         primary key (REV, modalidad_curso_id, idioma_estudiar_id)
     );
+alter table idioma_modalidades_AUD owner to buenosai_lvstudi;
 create table inscripciones_AUD (
         tipo varchar(31) not null,
         id int4 not null,
@@ -222,6 +236,8 @@ create table inscripciones_AUD (
         lista_espera int4,
         primary key (id, REV)
     );
+alter table inscripciones_AUD owner to buenosai_lvstudi;
+
 create table modalidad_cursos_AUD (
         id int8 not null,
         REV int4 not null,
@@ -237,6 +253,8 @@ create table modalidad_cursos_AUD (
         moneda_id int4,
         primary key (id, REV)
     );
+alter table modalidad_cursos_AUD owner to buenosai_lvstudi;
+
 create table modalidad_disponibles_AUD (
         id int8 not null,
         REV int4 not null,
@@ -247,6 +265,8 @@ create table modalidad_disponibles_AUD (
         moneda_id int4,
         primary key (id, REV)
     );
+alter table modalidad_disponibles_AUD owner to buenosai_lvstudi;
+
 create table personas_AUD (
         id int4 not null,
         REV int4 not null,
@@ -282,6 +302,8 @@ create table personas_AUD (
         nivel_supuesto_estudiante_id int4,
         primary key (id, REV)
     );
+alter table personas_AUD owner to buenosai_lvstudi;
+
 create table users_AUD (
         id int4 not null,
         REV int4 not null,
@@ -292,16 +314,14 @@ create table users_AUD (
         group_id int4,
         primary key (id, REV)
     );
+alter table users_AUD owner to buenosai_lvstudi;
+
 alter table carga_horarias_AUD 
         add constraint FK_1qwrd8kxv4apjol2drap7esij 
         foreign key (REV) 
         references REVINFO;
 alter table clases_AUD 
         add constraint FK_aw3f116y28lxb9md212phxmoj 
-        foreign key (REV) 
-        references REVINFO;
-alter table cuotas_AUD 
-        add constraint FK_9ucdg70y9l8xtylgak5xpkrla 
         foreign key (REV) 
         references REVINFO;
 alter table cursos_AUD 

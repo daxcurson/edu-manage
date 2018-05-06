@@ -95,6 +95,7 @@
 					<url>${jdbc.databaseurl}</url>
 					<user>${jdbc.username}</user>
 					<password>${jdbc.password}</password>
+					<baselineOnMigrate>true</baselineOnMigrate>
 				</configuration>
 				<dependencies>
 					<dependency>
