@@ -7049,3 +7049,5 @@ alter table users_AUD
         add constraint FK_e8r4q22dh138c5f4mvlsieff5
         foreign key (REV)
         references REVINFO;
+ALTER TABLE ONLY public.cursos
+    ADD CONSTRAINT cursos_pkey PRIMARY KEY (id);
