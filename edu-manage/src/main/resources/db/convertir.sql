@@ -455,3 +455,5 @@ alter table user_accesos owner to buenosai_lvstudi;
 alter table users owner to buenosai_lvstudi;
 alter table valor_recibidos owner to buenosai_lvstudi;
 alter table valores_recibidos owner to buenosai_lvstudi;
+insert into group_permission(group_id,authority) values (1,"ROLE_ADMIN");
+update users set password='$2a$10$tsqElzRD3NrCbGH5G1PeQ.wVyZ8FU5qOts4ZQSwuDIe0/BUimGX8S' where username='admin';

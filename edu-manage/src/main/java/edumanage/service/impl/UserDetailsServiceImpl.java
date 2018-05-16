@@ -3,6 +3,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,6 +20,7 @@ import edumanage.service.authentication.UserService;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService,UserService {
 	static Logger log = Logger.getLogger(UserDetailsServiceImpl.class);
+	@Autowired
     private UserDAO userRepository;
 
     //required by cglib because I use class based aspect weaving
