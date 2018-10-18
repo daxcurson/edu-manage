@@ -1,7 +1,6 @@
 package edumanage.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,10 +54,6 @@ public class InstalacionServiceImpl implements InstalacionService
 		permissionService.grantOrRevokePermission(adminGroup, "ROLE_ADMIN");
 		permissionService.grantOrRevokePermission(adminGroup, "ROLE_USER");
 		user.setGroup(adminGroup);
-		// Aca tenemos que encriptar la password!!!!
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String hashedPassword = passwordEncoder.encode(user.getPassword());
-		user.setPassword(hashedPassword);
 		userService.save(user);
 	}
 }
