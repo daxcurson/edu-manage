@@ -60,21 +60,11 @@ function()
 	var tabla_alumnos = new Vue({
 		el : '#alumnos',
 		data : {
-			searchQuery : '',
-			alumnosColumns : [ 'name', 'power' ],
-			alumnosData : [ {
-				name : 'Chuck Norris',
-				power : Infinity
-			}, {
-				name : 'Bruce Lee',
-				power : 9000
-			}, {
-				name : 'Jackie Chan',
-				power : 7000
-			}, {
-				name : 'Jet Li',
-				power : 8000
-			} ]
+			results:[]
+		},
+		mounted() {
+			axios.get("${pageContext.request.contextPath}/inscripciones/estudiantes_terminan_hoy")
+			.then(response=>{this.results=response.data.results})
 		}
 	})
 }
