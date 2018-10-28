@@ -1,4 +1,3 @@
-<script type="text/javascript">
 /**
  * Manda el Json con los parametros necesarios para ir a buscar la lista de cursos.
  * @returns
@@ -30,10 +29,10 @@ function populatePaquetesList(paquetes)
 	/*
 	 * Pedido por Elvira 24/01/2012:
 	 * Datos que hace falta mostrar en la tabla del curso para la inscripcion:
-	 * 1. Descripci—n
+	 * 1. Descripciï¿½n
 	 * 2. Fecha y hora del curso.
-	 * 3. Cantidad de Integrantes, si ya est‡ abierto.
-	 * 4. Ubicaci—n (LV-Flores, LV-Palermo).
+	 * 3. Cantidad de Integrantes, si ya estï¿½ abierto.
+	 * 4. Ubicaciï¿½n (LV-Flores, LV-Palermo).
 	 * 5. Fecha de inicio.
 	 */
 	var output = '';
@@ -57,4 +56,3 @@ function populatePaquetesList(paquetes)
 	options+='</table>';
 	$('#ListaPaquetes').html(options);
 }
-</script>

@@ -1,4 +1,3 @@
-<script type="text/javascript">
 /**
  * Si CursoTipoCursoId y CursoIdiomaEstudiarId tienen valor, que vaya a buscar
  * las clases de curso que hay para ese tipo e idioma.
@@ -72,4 +71,3 @@ function populateClasesList(clases)
 	});
 	$('#InscripcionIndividualClaseCursoId').html(options);
 }
-</script>

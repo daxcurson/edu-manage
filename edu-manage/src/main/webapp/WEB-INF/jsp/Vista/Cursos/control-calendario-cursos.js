@@ -1,4 +1,3 @@
-<script type="text/javascript">
 function RGB2Color(r,g,b)
 {
   return '#' + byte2Hex(r) + byte2Hex(g) + byte2Hex(b);
@@ -424,4 +423,3 @@ function buscar_precio(formulario)
 {
 	// Por ahora no hago nada, faltan funciones.
 }
-</script>

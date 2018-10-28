@@ -1,4 +1,3 @@
-<script type="text/javascript">
 $(document).ready(function() 
 {
 	// Si el cuadro de dialogo para crear o editar horario esta visible,
@@ -44,4 +43,3 @@ function populateHonorariosList(honorarios)
 	);
 	$('#CrearClaseHonorario').html(options);
 }
-</script>

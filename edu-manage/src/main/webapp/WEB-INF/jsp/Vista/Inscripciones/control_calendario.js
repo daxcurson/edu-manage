@@ -1,4 +1,3 @@
-<script type="text/javascript">
 function RGB2Color(r,g,b)
 {
   return '#' + byte2Hex(r) + byte2Hex(g) + byte2Hex(b);
@@ -31,7 +30,7 @@ $(document).ready(function() {
 				var resp=confirm("Desea agregar una clase?");
 				if(resp)
 				{
-					// En cambio, si hace click aquí, mandamos un mensaje para crear un nuevo compromiso
+					// En cambio, si hace click aquï¿½, mandamos un mensaje para crear un nuevo compromiso
 					// en el calendario.
 					//alert('Clicked on the slot: ' + date);
 					var startyear = fechaCompromiso.getFullYear();
@@ -144,4 +143,3 @@ $(document).ready(function() {
     })
 
 });
-</script>

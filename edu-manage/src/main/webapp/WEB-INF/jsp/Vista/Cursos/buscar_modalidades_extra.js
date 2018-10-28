@@ -1,4 +1,3 @@
-<script type="text/javascript">
 $(document).ready(function()
 {
 	$.datepicker.setDefaults({
@@ -98,4 +97,3 @@ function populateModalidadesList(modalidades)
 	});
 	$('#CursoModalidadCursoId').html(options);
 }
-</script>

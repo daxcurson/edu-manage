@@ -1,4 +1,3 @@
-<script type="text/javascript">
 $(document).ready(function()
 {
 	$.datepicker.setDefaults({
@@ -177,4 +176,3 @@ function mostrarCampoDomicilio()
 	$('#CursoDomicilioClase').show();
 	$('#LabelCursoDomicilioClase').show();
 }
-</script>

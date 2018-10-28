@@ -1,4 +1,3 @@
-<script type="text/javascript">
 $(document).ready(function()
 {
 	$.datepicker.setDefaults({
@@ -106,4 +105,3 @@ $(document).ready(function()
 		$('#InscripcionCursoId').html(options);
 	}
 });
-</script>

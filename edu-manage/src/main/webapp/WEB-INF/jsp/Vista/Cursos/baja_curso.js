@@ -1,4 +1,3 @@
-<script type="text/javascript">
 $(document).ready(function()
 {
 	$("#CursoBaja").change(function()
@@ -39,4 +38,3 @@ function mostrarCampoFechaBaja()
 	$('#CursoFechaBajaMonth').show();
 	$('#CursoFechaBajaDay').show();	
 }
-</script>

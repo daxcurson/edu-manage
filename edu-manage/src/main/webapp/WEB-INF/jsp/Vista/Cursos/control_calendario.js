@@ -1,4 +1,3 @@
-<script type="text/javascript">
 function RGB2Color(r,g,b)
 {
   return '#' + byte2Hex(r) + byte2Hex(g) + byte2Hex(b);
@@ -194,4 +193,3 @@ $(document).ready(function() {
     })
 
 });
-</script>

@@ -1,4 +1,3 @@
-<script type="text/javascript">
 $(document).ready(function()
 {
 	$.datepicker.setDefaults({
@@ -640,4 +639,3 @@ function populateCursosList(cursos)
 	}
 	);
 }
-</script>

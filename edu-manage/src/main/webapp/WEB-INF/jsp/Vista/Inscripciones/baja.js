@@ -1,4 +1,3 @@
-<script type="text/javascript">
 $(document).ready(function()
 {
 	$('#PersonaTemporal').change(function()
@@ -56,4 +55,3 @@ function mostrarFechaRegreso()
 	$('#PersonaCerrarCursos').hide();
 	$('#LabelCerrarCursos').hide();
 }
-</script>
