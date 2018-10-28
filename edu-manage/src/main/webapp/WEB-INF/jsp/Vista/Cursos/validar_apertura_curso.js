@@ -1,4 +1,3 @@
-<script type="text/javascript">
 /**
  * Nuestro problema es el siguiente: hay que poner un cuadro para preguntar
  * si se abre el curso cuando esta en el estado N o A y se lo pasa al S.
@@ -23,4 +22,3 @@ $("CursoEditForm").submit(
 	}
 }
 );
-</script>

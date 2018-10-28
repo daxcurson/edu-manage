@@ -93,4 +93,13 @@ public class ClaseDAOImpl implements ClaseDAO
 		// En el HorarioCurso viene el nombre del dia de la semana.
 		return (List<Clase>) clases.getResultList();
 	}
+	@SuppressWarnings("unchecked")
+	public List<Clase> getEntreFechas(String desde,String hasta)
+	{
+		String claseshoy="from Clase where Clase.fecha_clase>=:desde and Clase.fecha_clase<=:hasta";
+		Query<Clase> clases=sessionFactory.getCurrentSession().createQuery(claseshoy);
+		clases.setParameter("desde", desde);
+		clases.setParameter("hasta", hasta);
+		return (List<Clase>) clases.getResultList();
+	}
 }

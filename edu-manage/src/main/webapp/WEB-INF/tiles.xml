@@ -22,6 +22,12 @@
 				<put-attribute
 					name="inscripcion_estudiantes_terminan_hoy"
 					value="/WEB-INF/jsp/Vista/Inscripciones/snippet-terminan-hoy/index.jsp" />
+				<put-attribute
+					name="cursos_terminan_hoy"
+					value="/WEB-INF/jsp/Vista/Cursos/snippet-terminan-hoy/index.jsp" />
+				<put-attribute
+					name="clases_hoy"
+					value="/WEB-INF/jsp/Vista/Clases/snippet-clases-hoy/index.jsp" />
 			</definition>
 		</put-attribute>
 	</definition>
