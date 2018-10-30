@@ -9,15 +9,15 @@
 	</div>
 	<div class="panel-body">
 
-
 		<p><b><spring:message code="label.pasos_a_seguir" /></b></p>
 		<p><spring:message code="label.pasos_a_seguir_1" /></p>
 		<p><spring:message code="label.pasos_a_seguir_2" /></p>
 		<p><spring:message code="label.pasos_a_seguir_3" /></p>
 		<p><spring:message code="label.pasos_a_seguir_3_1" /></p>
 		<p><spring:message code="label.pasos_a_seguir_4" /></p>
-
-		<%@include file="/WEB-INF/jsp/Vista/Inscripciones/buscar-cursos2.js" %>
+		<script type="text/javascript">
+			<%@include file="/WEB-INF/jsp/Vista/Inscripciones/buscar-cursos2.js" %>
+		</script>
 
 		<form:form method="post" action="inscribir" commandName="modelo_inscripcion"
 		class="form-horizontal">

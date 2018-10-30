@@ -22,6 +22,14 @@
 	<listener>
     	<listener-class>edumanage.infrastructure.JdbcListener</listener-class>
 	</listener>
+	<!-- Configuracion para hacer mas modular la configuracion
+	del contexto de la aplicacion. -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			/WEB-INF/context/*-context.xml
+		</param-value>
+	</context-param>
 	<filter>
 		<filter-name>hibernateFilter</filter-name>
 		<filter-class>org.springframework.orm.hibernate5.support.OpenSessionInViewFilter</filter-class>
