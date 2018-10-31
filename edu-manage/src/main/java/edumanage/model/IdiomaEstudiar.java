@@ -67,7 +67,7 @@ public class IdiomaEstudiar implements java.io.Serializable
 	@Override
 	public int hashCode()
 	{
-		return (41*(41+this.id)+this.descripcion.hashCode());
+		return (25013*(25013+this.id)+this.descripcion.hashCode());
 	}
 	public boolean canEqual(Object otro)
 	{

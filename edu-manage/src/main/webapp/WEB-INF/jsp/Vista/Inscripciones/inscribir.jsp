@@ -8,6 +8,7 @@
 		<h1 class="panel-title"><spring:message code="label.inscripcion_en_curso" /></h1>
 	</div>
 	<div class="panel-body">
+		<div class="container-fluid">
 
 		<p><b><spring:message code="label.pasos_a_seguir" /></b></p>
 		<p><spring:message code="label.pasos_a_seguir_1" /></p>
@@ -40,5 +41,7 @@
 		<form:errors path="aceptoTerminos" cssClass="error" element="div" />
 		<input type="submit" name="ingresar_inscripcion" value="Ingresar Inscripcion">
 		</form:form>
+		
+		</div>
 	</div>
 </div>

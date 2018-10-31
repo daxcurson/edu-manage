@@ -34,8 +34,8 @@ public class CursoDAOImpl implements CursoDAO
 			"and curso.abierto='S'";
 	private String queryCursosIdiomaNivel="from Curso curso where "+
 			"curso.tipo_curso=2 and "+
-			"curso.idioma_estudiar=:idiomaEstudiarId and "+
-			"curso.nivel=:nivelId and "+
+			"curso.idioma_estudiar.id=:idiomaEstudiarId and "+
+			"curso.nivel.id=:nivelId and "+
 			"curso.fecha_fin>=cast(:fechaHoy as date) and "+
 			"(curso.baja=0 or curso.fecha_baja>= cast(:fechaHoy as date))";
 	private String queryCursosSinClases="from Curso curso where "

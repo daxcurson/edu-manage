@@ -4,7 +4,9 @@
 
 <link href="${pageContext.request.contextPath}/css/login.css"
 	rel="stylesheet" type="text/css">
+<script type="text/javascript">
 <%@include file="/WEB-INF/jsp/Vista/Users/login.js" %>
+</script>
 <body>
 	<div class="middlePage">
 		<div class="page-header">
