@@ -23,7 +23,7 @@ import edumanage.documentation.*;
 
 @DescripcionClase(value="Modalidad de cursos")
 @Controller
-@RequestMapping("modalidad_curso")
+@RequestMapping("modalidades_curso")
 public class ModalidadCursoController 
 {
 	static Logger log = Logger.getLogger(CursosController.class);

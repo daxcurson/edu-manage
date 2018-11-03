@@ -1,10 +1,11 @@
 package edumanage.service;
 
+import java.util.List;
+
 import edumanage.model.*;
 
 public interface ModalidadPagoService 
 {
 	public ModalidadPago getById(long id);
-
-	public Object listarModalidadesPago();
+	public List<ModalidadPago> listarModalidadesPago();
 }

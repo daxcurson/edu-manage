@@ -73,7 +73,7 @@
 						<div class="card-header"><h3>Configuraci&oacute;n</h3></div>
 						<div class="card-body">
 						<ul>
-							<li><a href="${pageContext.request.contextPath}/modalidad_curso/listar_modalidades_curso">Modalidades de curso</a></li>
+							<li><a href="${pageContext.request.contextPath}/modalidades_curso/index">Modalidades de curso</a></li>
 							<li><a href="${pageContext.request.contextPath}/configuracion/feriados">Feriados</a></li>
 						</ul>
 						</div>

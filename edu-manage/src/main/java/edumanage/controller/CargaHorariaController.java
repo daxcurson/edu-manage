@@ -30,7 +30,7 @@ import edumanage.service.TipoCursoService;
 
 @DescripcionClase(value="Carga Horaria")
 @Controller
-@RequestMapping("carga_horaria")
+@RequestMapping("cargas_horarias")
 @SessionAttributes
 public class CargaHorariaController extends AppController
 {

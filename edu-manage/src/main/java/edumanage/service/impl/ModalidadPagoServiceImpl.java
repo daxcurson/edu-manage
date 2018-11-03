@@ -1,5 +1,7 @@
 package edumanage.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +23,7 @@ public class ModalidadPagoServiceImpl implements ModalidadPagoService
 	}
 	@Override
 	@Transactional
-	public Object listarModalidadesPago() 
+	public List<ModalidadPago> listarModalidadesPago() 
 	{
 		return modalidadPagoDAO.listarModalidadesPago();
 	}

@@ -28,9 +28,9 @@
 		<td><c:out value="${carga_horaria.dias_semana}"/>&nbsp;</td>
 		<td><c:out value="${carga_horaria.horas_clase}"/>&nbsp;</td>
 		<td class="actions">
-			<a href="${pageContext.request.contextPath}/carga_horaria/view/${carga_horaria.id}">Ver</a>
-			<a href="${pageContext.request.contextPath}/carga_horaria/edit/${carga_horaria.id}">Editar</a>
-			<a href="${pageContext.request.contextPath}/carga_horaria/delete/${carga_horaria.id}">Borrar</a>
+			<a href="${pageContext.request.contextPath}/cargas_horarias/view/${carga_horaria.id}">Ver</a>
+			<a href="${pageContext.request.contextPath}/cargas_horarias/edit/${carga_horaria.id}">Editar</a>
+			<a href="${pageContext.request.contextPath}/cargas_horarias/delete/${carga_horaria.id}">Borrar</a>
 		</td>
 	</tr>
 	</c:forEach>
@@ -39,7 +39,7 @@
 <div class="actions">
 	<h3>Acciones&nbsp;</h3>
 	<ul>
-		<li><a href="${pageContext.request.contextPath}/carga_horaria/add">Nueva carga horaria</a></li>
+		<li><a href="${pageContext.request.contextPath}/cargas_horarias/add">Nueva carga horaria</a></li>
 		<li><a href="${pageContext.request.contextPath}/tipo_curso/index">Listar tipos de curso</a></li>
 	</ul>
 </div> 

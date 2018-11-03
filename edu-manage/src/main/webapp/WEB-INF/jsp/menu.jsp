@@ -63,13 +63,13 @@
 					</sec:authorize>
 					<sec:authorize access="hasRole('ROLE_CARGA_HORARIA_MOSTRAR_MENU')">
 						<li><a
-							href="${pageContext.request.contextPath}/carga_horaria/index">Carga
+							href="${pageContext.request.contextPath}/cargas_horarias/index">Carga
 								horaria</a></li>
 					</sec:authorize>
 					<sec:authorize
 						access="hasRole('ROLE_MODALIDAD_CURSOS_MOSTRAR_MENU')">
 						<li><a
-							href="${pageContext.request.contextPath}/modalidad_curso/index">Modalidad
+							href="${pageContext.request.contextPath}/modalidades_curso/index">Modalidad
 								de curso</a></li>
 					</sec:authorize>
 					<li role="separator" class="divider"></li>

@@ -207,31 +207,48 @@
 		<put-attribute name="content"
 			value="/WEB-INF/jsp/Vista/ModalidadCurso/index.jsp" />
 	</definition>
-	<definition name="modalidad_curso_add"
-		extends="base.definition">
+	<definition name="modalidad_curso_add" extends="base.definition">
 		<put-attribute name="content">
-			<definition
-				template="/WEB-INF/jsp/Vista/ModalidadCurso/add.jsp">
+			<definition	template="/WEB-INF/jsp/Vista/ModalidadCurso/add.jsp">
 				<put-attribute name="form_modalidad_curso"
 					value="/WEB-INF/jsp/Vista/Elements/form_modalidad_curso.jsp" />
 			</definition>
 		</put-attribute>
 	</definition>
-	<definition name="modalidad_curso_edit"
-		extends="base.definition">
+	<definition name="modalidad_curso_edit" extends="base.definition">
 		<put-attribute name="content">
-			<definition
-				template="/WEB-INF/jsp/Vista/ModalidadCurso/edit.jsp">
+			<definition	template="/WEB-INF/jsp/Vista/ModalidadCurso/edit.jsp">
 				<put-attribute name="form_modalidad_curso"
 					value="/WEB-INF/jsp/Vista/Elements/form_modalidad_curso.jsp" />
 			</definition>
 		</put-attribute>
+	</definition>
+	<definition name="modalidad_pago_index" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/jsp/Vista/ModalidadPago/index.jsp" />
+	</definition>
+	<definition name="modalidad_pago_add" extends="base.definition">
+		<put-attribute name="content">
+			<definition	template="/WEB-INF/jsp/Vista/ModalidadPago/add.jsp">
+				<put-attribute name="form_modalidad_pago"
+					value="/WEB-INF/jsp/Vista/ModalidadPago/form_modalidad_pago.jsp" />
+			</definition>
+		</put-attribute>
+	</definition>
+	<definition name="modalidad_pago_edit" extends="base.definition">
+		<put-attribute name="content">
+			<definition	template="/WEB-INF/jsp/Vista/ModalidadPago/edit.jsp">
+				<put-attribute name="form_modalidad_pago"
+					value="/WEB-INF/jsp/Vista/ModalidadPago/form_modalidad_pago.jsp" />
+			</definition>
+		</put-attribute>
+	</definition>
+	<definition name="modalidad_pago_view" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/jsp/Vista/ModalidadPago/view.jsp"/>
 	</definition>
 	<definition name="moneda_add" extends="base.definition">
 		<put-attribute name="content">
 			<definition template="/WEB-INF/jsp/Vista/Moneda/add.jsp">
-				<put-attribute name="form_moneda"
-					value="/WEB-INF/jsp/Vista/Moneda/form_moneda.jsp" />
+				<put-attribute name="form_moneda" value="/WEB-INF/jsp/Vista/Moneda/form_moneda.jsp" />
 			</definition>
 		</put-attribute>
 	</definition>
