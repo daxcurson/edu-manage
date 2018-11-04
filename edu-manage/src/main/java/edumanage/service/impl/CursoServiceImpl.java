@@ -335,13 +335,29 @@ public class CursoServiceImpl implements CursoService //, ApplicationEventPublis
 	}
 
 	@Override
-	public ListadoPaginado<Curso> listarCursos(Map<String,String> requestParams,int firstResult,int maxResults)
+	public ListadoPaginado<Curso> listarCursos(Map<String,String> requestParams,int resultsPerPage)
 	{
 		// Aqui procesaria los parametros que vinieron, incluidos los numeros de pagina
 		// solicitados.
 		if(requestParams!=null)
 		{
 			log.debug("Los parametros recibidos no son nulos");
+			int firstResult=1;
+			int maxResults=resultsPerPage;
+			// Calculo el numero de pagina en el que estoy.
+			int current_page=1;
+			if(requestParams.containsKey("current_page"))
+			{
+				// Vamos a calcular el firstResult con el current_page
+				// y el maxResults, que es el numero de registros por pagina.
+				// Supongamos que la current_page es la 4, y la cantidad
+				// de registros es 3. 
+				// Le resto 1 al numero de pagina, multiplico eso por la cantidad
+				// de registros, y a eso le sumo 1.
+				// Por ejemplo, current_page=4 quiere decir que quiero empezar
+				// en el registro 3*3+1=10
+				firstResult=(current_page-1)*resultsPerPage+1;
+			}
 			// Bien, me toca interpretar los parametros recibidos.
 			// Si esta definida la variable filters y vale 1, entonces
 			// hay filtros.
@@ -426,7 +442,10 @@ public class CursoServiceImpl implements CursoService //, ApplicationEventPublis
 				// Listo, ya consumi todos los filtros. Es hora de llamar al DAO.
 				try
 				{
-					return this.cursoDAO.listarCursos(l, firstResult, maxResults);
+					ListadoPaginado<Curso> c=this.cursoDAO.listarCursos(l, firstResult, maxResults);
+					c.setRegistros_por_pagina(maxResults);
+					c.setCurrent_page(current_page);
+					return c;
 				} catch (NoSuchMethodException e)
 				{
 					e.printStackTrace();
@@ -445,7 +464,10 @@ public class CursoServiceImpl implements CursoService //, ApplicationEventPublis
 				LinkedList<Criterio> l=new LinkedList<Criterio>();
 				try
 				{
-					return this.cursoDAO.listarCursos(l, firstResult, maxResults);
+					ListadoPaginado<Curso> c=this.cursoDAO.listarCursos(l, firstResult, maxResults);
+					c.setRegistros_por_pagina(maxResults);
+					c.setCurrent_page(current_page);
+					return c;
 				} catch (NoSuchMethodException e)
 				{
 					e.printStackTrace();
