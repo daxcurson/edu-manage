@@ -65,7 +65,7 @@ public class CursoCerrado extends CursoEstado
 	public boolean equals(Object otro)
 	{
 		boolean result=false;
-		if(otro instanceof CursoCerrado)
+		if(otro!=null && otro instanceof CursoCerrado)
 			return true;
 		return result;
 	}

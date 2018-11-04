@@ -17,7 +17,7 @@ public class CargaHoraria implements java.io.Serializable
 	@Id
 	@Column(name="id")
 	@GeneratedValue
-	private long id;
+	private int id;
 	@ManyToOne
 	@JoinColumn(name="tipo_curso_id")
 	private TipoCurso tipo_curso;
@@ -30,7 +30,7 @@ public class CargaHoraria implements java.io.Serializable
 	{
 		return id;
 	}
-	public void setId(long id)
+	public void setId(int id)
 	{
 		this.id=id;
 	}
@@ -67,13 +67,16 @@ public class CargaHoraria implements java.io.Serializable
 	@Override
 	public boolean equals(Object otro)
 	{
-		CargaHoraria otraCarga=(CargaHoraria)otro;
-		if(otraCarga.descripcion==this.descripcion
+		if(otro instanceof CargaHoraria)
+		{
+			CargaHoraria otraCarga=(CargaHoraria)otro;
+			if(otraCarga.descripcion==this.descripcion
 				&& otraCarga.dias_semana==this.dias_semana
 				&& otraCarga.horas_clase==this.horas_clase
 				&& otraCarga.horas_semanales==this.horas_semanales
 				&& otraCarga.tipo_curso==this.tipo_curso)
-			return true;
+				return true;
+		}
 		return false;
 	}
 	@Override

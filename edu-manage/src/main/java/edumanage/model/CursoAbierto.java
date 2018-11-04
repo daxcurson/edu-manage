@@ -32,7 +32,7 @@ public class CursoAbierto extends CursoEstado
 	public boolean equals(Object otro)
 	{
 		boolean result=false;
-		if(otro instanceof CursoAbierto)
+		if(otro !=null && otro instanceof CursoAbierto)
 			return true;
 		return result;
 	}

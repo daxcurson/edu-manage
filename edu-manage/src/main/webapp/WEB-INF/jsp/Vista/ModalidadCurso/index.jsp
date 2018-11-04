@@ -4,7 +4,7 @@
 
 <div class="panel panel-info">
 	<div class="panel-heading">
-		<h1 class="panel-title">Men&uacute; principal</h1>
+		<h1 class="panel-title">Modalidades de Curso</h1>
 	</div>
 	<div class="panel-body">
 
@@ -43,9 +43,9 @@
 				<td><c:out value="${modalidad.duracion_modo.descripcion}"/>&nbsp;</td>
 				<td><c:out value="${modalidad.es_extra}"/>&nbsp;</td>
 				<td class="actions">
-					<a href="${pageContext.request.contextPath}/modalidad_curso/view/${modalidad.id}">Ver</a>
-					<a href="${pageContext.request.contextPath}/modalidad_curso/edit/${modalidad.id}">Editar</a>
-					<a href="${pageContext.request.contextPath}/modalidad_curso/delete/${modalidad.id}">Borrar</a>
+					<a href="${pageContext.request.contextPath}/modalidades_curso/view/${modalidad.id}">Ver</a>
+					<a href="${pageContext.request.contextPath}/modalidades_curso/edit/${modalidad.id}">Editar</a>
+					<a href="${pageContext.request.contextPath}/modalidades_curso/delete/${modalidad.id}">Borrar</a>
 				</td>
 			</tr>
 			</c:forEach>

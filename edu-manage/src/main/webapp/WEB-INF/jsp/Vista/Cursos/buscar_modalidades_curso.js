@@ -115,7 +115,7 @@ function accionBuscarModalidadesCurso()
  */
 function buscarModalidadesCurso()
 {
-	var url="${pageContext.request.contextPath}/modalidad_curso/listar_modalidades_curso";
+	var url="${pageContext.request.contextPath}/modalidades_curso/listar_modalidades_curso";
 	$.getJSON(url,
 	{
 		idioma_estudiar_id: $("#CursoIdiomaEstudiarId").val(),

@@ -18,7 +18,10 @@
 		</div>
 		<!-- Paginador con lista de cursos -->
 		<div id="tablaPaginada">
-		<v-paginator :resource_url="resource_url" ref="tablaCursos" @update="updateResource"></v-paginator>
+		<ul>
+			<li v-for="curso in cursos">{{ curso.codigo_curso }}</li>
+		</ul>
+		<v-paginator :resource_url="resource_url" @update="updateResource"></v-paginator>
 		</div>
 	</div>
 </div>

@@ -24,7 +24,7 @@
 		<td><c:out value="${profesor.id}"></c:out></td>
 		<td><c:out value="${profesor.nombre}"></c:out></td>
 		<td><c:out value="${profesor.nacionalidad.descripcion}"></c:out></td>
-		<td><c:out value="${profesor.idiomaNativo.descripcion}"></c:out></td>
+		<td><c:out value="${profesor.idioma_nativo.descripcion}"></c:out></td>
 		<td><c:forEach items="${profesor.idiomasEnsenados}" var="idioma_estudiar">
 		<c:out value="${idioma_estudiar.descripcion}"></c:out><br/>
 		</c:forEach>

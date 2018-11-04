@@ -33,12 +33,16 @@ public class CursoEstadoUserType implements UserType
 	public boolean equals(Object x, Object y) throws HibernateException 
 	{
 		log.trace("Estoy en equals");
-		CursoEstado xEstado=(CursoEstado) x;
-		CursoEstado yEstado=(CursoEstado) y;
-		if(xEstado.nombre==yEstado.nombre)
-			return true;
-		else
-			return false;
+		if(x!=null && y!=null)
+		{
+			CursoEstado xEstado=(CursoEstado) x;
+			CursoEstado yEstado=(CursoEstado) y;
+			if(xEstado!=null && xEstado!=null
+					&& xEstado.nombre!=null && xEstado.nombre!=null
+					&& xEstado.nombre.equals(yEstado.nombre))
+				return true;
+		}
+		return false;
 	}
 
 	@Override
