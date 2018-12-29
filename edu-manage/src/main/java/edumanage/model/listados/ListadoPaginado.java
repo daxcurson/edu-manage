@@ -42,14 +42,14 @@ public class ListadoPaginado<E>
 		if(total_registros>=((current_page-1)*registros_por_pagina))
 		{
 			int next=current_page+1;
-			next_page_url="current_page="+next;
+			next_page_url="?current_page="+next;
 		}
 		else
 			next_page_url=null;
 		if((current_page-1)>0)
 		{
 			int previous=current_page-1;
-			prev_page_url="current_page="+previous;
+			prev_page_url="?current_page="+previous;
 		}
 		else
 			prev_page_url=null;
