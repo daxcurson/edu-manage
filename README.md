@@ -16,7 +16,9 @@ Software para administración de un instituto de enseñanza.
 - Internacionalizable. Los formularios para estudiantes pueden generarse en múltiples
   idiomas.
 - Flexible. Cada curso puede tener distintas modalidades para ser facturado: por cuota fija mensual, por cuota variable mensual, por cuota cuatrimestral, por cantidad de horas, etc.
-- Facturación fiscal. Permite generar facturas para cuando el estudiante lo requiera.
+- Facturación fiscal AFIP. Permite generar facturas para cuando el estudiante lo requiera.
+- Generación de factura PDF y almacenamiento.
+- Generación de recibos.
 - Notificaciones. Se pueden configurar notificaciones para que lleguen por mensaje en el explorador o por correo electrónico.
 
 ## Planificación
