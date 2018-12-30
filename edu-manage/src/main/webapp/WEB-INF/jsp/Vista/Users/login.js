@@ -5,5 +5,5 @@ $(document).ready(function()
 function cambiar_idioma()
 {
 	// Al cambiar idioma, recargo la pagina con lang= igual al valor del idioma elegido.
-	window.location="${pageContext.request.contextPath}?lang="+$('#SelectIdioma').chosen().val();
+	window.location="${pageContext.request.contextPath}/users/login?lang="+$('#SelectIdioma').chosen().val();
 }

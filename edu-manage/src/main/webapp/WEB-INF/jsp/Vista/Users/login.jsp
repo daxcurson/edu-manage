@@ -1,7 +1,8 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@page isELIgnored="false" %>
+<%@page session="true" %>
 <link href="${pageContext.request.contextPath}/css/login.css"
 	rel="stylesheet" type="text/css">
 <script type="text/javascript">
@@ -23,13 +24,13 @@
 			<div class="panel-body">
 
 				<div class="row">
-
+				<c:set var="lang">${sessionScope['org.springframework.web.servlet.i18n.SessionLocaleResolver.LOCALE']}</c:set>
 					<div class="col-md-5">
 					   <div class="spacing">
 					   <spring:message code="label.idioma"/>
 					   <select id="SelectIdioma" class="form-control input-md" name="idioma" onchange="cambiar_idioma()">
-					   <option <c:if test="${lang==en_US}">selected</c:if> value="en_US">English</option>
-					   <option <c:if test="${empty lang || lang==es}">selected</c:if> value="es">Castellano</option>
+					   <option <c:if test="${lang=='en_US'}">selected</c:if> value="en_US">English</option>
+					   <option <c:if test="${empty lang || lang=='es'}">selected</c:if> value="es">Castellano</option>
 					   </select>
 					   </div>
 					   <div class="spacing">

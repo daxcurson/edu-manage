@@ -81,7 +81,6 @@ public class CursosController extends AppController
 	public ModelAndView mostrarMenu(Model model) 
 	{
 		ModelAndView modelo=new ModelAndView("curso_index");
-		modelo.addObject("controller","Cursos");
 		return modelo;
 	}
 	@PreAuthorize("isAuthenticated() and hasRole('ROLE_CURSOS_MOSTRAR_MENU')")
@@ -111,7 +110,6 @@ public class CursosController extends AppController
 	private ModelAndView cargarFormCurso(Curso curso)
 	{
 		ModelAndView modelo=new ModelAndView("curso_add");
-		modelo.addObject("controller","Cursos");
 		modelo.addObject("curso",curso);
 		// Leo la lista de modalidades.
 		// Tengo que guardar en una variable de sesion la lista de modalidades

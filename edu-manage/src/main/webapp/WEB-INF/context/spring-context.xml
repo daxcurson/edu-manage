@@ -32,6 +32,7 @@
 	<mvc:interceptors>
 		<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"
 			p:paramName="lang" />
+		<bean id="controllerInterceptor" class="edumanage.controller.AppControllerInterceptor"/>
 	</mvc:interceptors>
 	
 	
