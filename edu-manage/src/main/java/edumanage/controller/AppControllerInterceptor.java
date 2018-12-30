@@ -21,8 +21,10 @@ public class AppControllerInterceptor extends HandlerInterceptorAdapter
 			controllerName  = handlerMethod.getBeanType().getSimpleName().replace("Controller", "");
 			actionName = handlerMethod.getMethod().getName();
 		}
-		
-		modelAndView.addObject("controller", controllerName );
-		modelAndView.addObject("action", actionName );
+		if(modelAndView!=null)
+		{
+			modelAndView.addObject("controller", controllerName );
+			modelAndView.addObject("action", actionName );
+		}
 	}
 }
