@@ -1,11 +1,14 @@
 # edu-manage
-Software para administración de un instituto de enseñanza.
+Sistema de gestión de un instituto de enseñanza.
+
+Edu-Manage apunta a ser una solución completa para la gestión de un instituto de enseñanza. Permite recibir inscripciones de estudiantes en cursos, cobrar cuotas, gestionar la agenda de cursos y de profesores. 
 
 ## Características principales:
 
 - Administración de estudiantes: recibir inscripciones, recibir cancelaciones de estudiantes, gestionar sus bajas.
 - Manejo de cuotas y pagos: generar cuotas, recibir pagos.
 - Administración de cursos: crear cursos, planificar sus clases, asignar profesores.
+- Los cursos pueden tener varias modalidades: mensuales, cuatrimestrales, etc, y admite la posibilidad de que un curso sea tomado por distintos estudiantes que paguen una modalidad distinta.
 - Administración de profesores: contratar profesores, asignar y calcular honorarios por clase. 
 - Informes de gestión: costo de cada curso, ganancia obtenida por curso, porcentaje de ausencias de profesores, estudiantes, informe de ganancias y pérdidas, informe de deudores.
 - Calendario de profesores: el profesor puede entrar al sistema y ver su calendario de cursos, puede determinar horas en las que no estará disponible y podrá informar cuándo no asistirá a clase.
