@@ -8,7 +8,7 @@
 
 <div class="panel panel-info">
 	<div class="panel-heading">
-		<h1>Cursos</h1>
+		<h1 class="panel-title">Cursos</h1>
 	</div>
 	<div class="panel-body">
 		<div>

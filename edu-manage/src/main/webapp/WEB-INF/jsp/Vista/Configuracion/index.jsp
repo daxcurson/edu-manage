@@ -5,7 +5,7 @@
 
 <div class="panel panel-info">
 	<div class="panel-heading">
-		<h1><spring:message code="label.configuracion"/></h1>
+		<h1 class="panel-title"><spring:message code="label.configuracion"/></h1>
 	</div>
 	<div class="panel-body">
 		<div>

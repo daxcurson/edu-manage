@@ -30,7 +30,7 @@ import edumanage.service.TipoCursoService;
 
 @DescripcionClase(value="Carga Horaria")
 @Controller
-@RequestMapping("cargas_horarias")
+@RequestMapping("carga_horaria")
 @SessionAttributes
 public class CargaHorariaController extends AppController
 {
@@ -47,7 +47,7 @@ public class CargaHorariaController extends AppController
 	}
 	
 	@PreAuthorize("isAuthenticated() and hasRole('ROLE_CARGA_HORARIA_MOSTRAR_MENU')")
-	@RequestMapping("/index")
+	@RequestMapping({"/","/index"})
 	@Descripcion(value="Ver cargas horarias disponibles",permission="ROLE_CARGA_HORARIA_MOSTRAR_MENU")
 	public ModelAndView mostrarMenu(Model model) 
 	{

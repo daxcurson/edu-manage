@@ -3,8 +3,12 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h1 class="panel-title">Cargas Horarias</h1>
+	</div>
+	<div class="panel-body">
 <div class="cargaHorarias index">
-	<h2>Cargas Horarias</h2>
 	<table class="table">
 	<tr>
 			<th>Id</th>
@@ -43,3 +47,5 @@
 		<li><a href="${pageContext.request.contextPath}/tipo_curso/index">Listar tipos de curso</a></li>
 	</ul>
 </div> 
+	</div>
+</div>
