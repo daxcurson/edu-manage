@@ -90,6 +90,8 @@
 	</definition>
 	<definition name="curso_listar_cursos_vigentes"
 		extends="base.definition">
+		<put-attribute name="scripts" value="/WEB-INF/jsp/Vista/Cursos/scripts.jsp"/>
+		<put-attribute name="styles" value="/WEB-INF/jsp/Vista/Cursos/styles.jsp"/>
 		<put-attribute name="content">
 			<definition
 				template="/WEB-INF/jsp/Vista/Cursos/listar_cursos_vigentes.jsp">

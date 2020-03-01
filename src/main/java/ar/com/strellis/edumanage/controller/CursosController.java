@@ -94,8 +94,7 @@ public class CursosController extends AppController
 		 * aqui se interpretaria la solicitud, se invocaria al metodo necesario en el Servicio,
 		 * y despues se retornaria 
 		 */
-		int resultsPerPage=3;
-		List<Curso> l=new LinkedList<Curso>();
+		List<Curso> l=cursoService.listarCursosVigentes();
 		return l;
 	}
 	private ModelAndView cargarFormCurso(Curso curso)
