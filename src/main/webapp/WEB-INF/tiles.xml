@@ -319,6 +319,23 @@
 		<put-attribute name="content"
 			value="/WEB-INF/jsp/Vista/Profesor/mostrar_calendario.jsp" />
 	</definition>
+	<definition name="usuarios_index" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/jsp/Vista/Users/index.jsp"/>
+	</definition>
+	<definition name="usuarios_add" extends="base.definition">
+		<put-attribute name="content">
+			<definition template="/WEB-INF/jsp/Vista/Users/add.jsp">
+				<put-attribute name="form_user" value="/WEB-INF/jsp/Vista/Users/form_user.jsp"/>
+			</definition>
+		</put-attribute>
+	</definition>
+	<definition name="usuarios_edit" extends="base.definition">
+		<put-attribute name="content">
+			<definition template="/WEB-INF/jsp/Vista/Users/edit.jsp">
+				<put-attribute name="form_user" value="/WEB-INF/jsp/Vista/Users/form_user.jsp"/>
+			</definition>
+		</put-attribute>
+	</definition>
 	<definition name="login" extends="base.definition">
 		<put-attribute name="content"
 			value="/WEB-INF/jsp/Vista/Users/login.jsp" />
