@@ -133,7 +133,7 @@ public class PermisosController extends AppController
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			log.trace("Error al buscar el grupo con el permiso "+permiso);
 		}
 		return "false";
 	}

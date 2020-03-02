@@ -4294,7 +4294,6 @@ COPY public.group_permission (id, group_id, authority) FROM stdin;
 201	1	ROLE_PROFESORES_LISTAR_ACTIVOS
 202	1	ROLE_PROFESORES_ADMINISTRAR
 203	1	ROLE_PROFESORES_MOSTRAR_CALENDARIO
-542	540	ROLE_ADMIN
 \.
 
 
@@ -4315,7 +4314,6 @@ COPY public.groups (id, group_name, created, modified) FROM stdin;
 3	Empleados	2012-01-30 13:32:18-03	2012-01-30 13:32:18-03
 4	Coordinadores contables	2012-04-02 23:04:46-03	2012-04-02 23:04:46-03
 5	Profesores	2012-05-13 23:00:44-03	2012-05-13 23:00:44-03
-540	Administradores	\N	\N
 \.
 
 
@@ -5962,7 +5960,7 @@ SELECT pg_catalog.setval('public.user_accesos_seq', 1, true);
 --
 
 COPY public.users (id, username, password, role, group_id, email, created, modified, enabled) FROM stdin;
-541	admin	$2a$10$IBwMQfJ1XZgCOghTSN72Q.lx4ZDfTbGJlfPOCnyA9Hv4GHsX.Nkn2	\N	1		\N	\N	1
+1	admin	$2a$10$IBwMQfJ1XZgCOghTSN72Q.lx4ZDfTbGJlfPOCnyA9Hv4GHsX.Nkn2	\N	1		\N	\N	1
 \.
 
 
@@ -6598,14 +6596,6 @@ ALTER TABLE ONLY public.promociones
 
 
 --
--- Name: revinfo revinfo_pkey; Type: CONSTRAINT; Schema: public; Owner: buenosai_lvstudi
---
-
-ALTER TABLE ONLY public.revinfo
-    ADD CONSTRAINT revinfo_pkey PRIMARY KEY (rev);
-
-
---
 -- Name: speeches speeches_pkey; Type: CONSTRAINT; Schema: public; Owner: buenosai_lvstudi
 --
 
@@ -7049,5 +7039,3 @@ alter table users_AUD
         add constraint FK_e8r4q22dh138c5f4mvlsieff5
         foreign key (REV)
         references REVINFO;
-ALTER TABLE ONLY public.cursos
-    ADD CONSTRAINT cursos_pkey PRIMARY KEY (id);

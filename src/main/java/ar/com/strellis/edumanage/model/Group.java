@@ -1,6 +1,7 @@
 package ar.com.strellis.edumanage.model;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -11,10 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-
 
 @Entity
 @Table(name="groups")
@@ -34,10 +31,13 @@ public class Group
 	@Column(name="modified")
 	private Date modified;
 	
-    @OneToMany(mappedBy="group",orphanRemoval=true,fetch=FetchType.EAGER)
-    @Cascade({CascadeType.SAVE_UPDATE,CascadeType.DELETE})
-    private Set<Permission> permissions;
+	@OneToMany(mappedBy="group",orphanRemoval=true,fetch = FetchType.EAGER,cascade=javax.persistence.CascadeType.ALL)
+	private Set<Permission> permissions;
 
+	public Group()
+	{
+		permissions=new HashSet<Permission>();
+	}
 	
 	public long getId()
 	{

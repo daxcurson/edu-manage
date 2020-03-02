@@ -84,7 +84,6 @@ public class CursosController extends AppController
 	}
 	@PreAuthorize("isAuthenticated() and hasRole('ROLE_CURSOS_MOSTRAR_MENU')")
 	@RequestMapping("/listar_cursos")
-	@Descripcion(value="Mostrar menu de cursos",permission="ROLE_CURSOS_MOSTRAR_MENU")
 	public @ResponseBody List<Curso> listarCursos(
 			@RequestParam Map<String, String> requestParams)
 	{
@@ -189,7 +188,6 @@ public class CursosController extends AppController
 		try {
 			curso.getModalidades_disponibles().add(modalidadCursoService.agregarModalidadDisponible(curso, modalidad_id_agregar));
 		} catch (ModalidadCursoInexistenteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return curso.getModalidades_disponibles();
@@ -220,7 +218,6 @@ public class CursosController extends AppController
 			curso = cursoService.getById(cursoId);
 			return cargarFormAsignacionProfesor(curso);
 		} catch (CursoInexistenteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return m;
