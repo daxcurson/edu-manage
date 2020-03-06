@@ -13,7 +13,7 @@
 	</div>
 	<div class="panel-body">
 
-		<form:form method="post" action="add" commandName="curso">
+		<form:form method="post" action="add" modelAttribute="curso">
 			<tiles:insertAttribute name="form_curso"/>
 			<input type="submit" name="agregar_curso" value="Agregar Curso">
 		</form:form>

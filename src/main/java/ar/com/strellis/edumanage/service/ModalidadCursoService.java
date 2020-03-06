@@ -18,5 +18,5 @@ public interface ModalidadCursoService
 	public void editModalidadCurso(ModalidadCurso modalidad_curso);
 	public ModalidadDisponible agregarModalidadDisponible(Curso curso,long modalidad_curso_id) throws ModalidadCursoInexistenteException;
 	public ModalidadDisponible leerModalidadDisponible(long id);
-	List<ModalidadCurso> listarModalidadesCursoPorIdioma(long idioma_estudiar_id, int tipo_curso_id) throws IdiomaEstudiarInexistente;
+	List<ModalidadCurso> listarModalidadesCursoPorIdioma(long idioma_estudiar_id, long tipo_curso_id) throws IdiomaEstudiarInexistente;
 }

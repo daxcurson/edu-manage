@@ -19,7 +19,7 @@ public class TipoCurso implements java.io.Serializable
 	@Id
     @Column(name="id")
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
     @Column(name="descripcion")
 	private String descripcion;
@@ -29,11 +29,11 @@ public class TipoCurso implements java.io.Serializable
 
 	static Logger log = LogManager.getLogger(TipoCurso.class);
 
-    public int getId()
+    public long getId()
     {
     	return id;
     }
-    public void setId(int Id)
+    public void setId(long Id)
     {
     	this.id=Id;
     }
@@ -67,7 +67,7 @@ public class TipoCurso implements java.io.Serializable
 	@Override
 	public int hashCode()
 	{
-		return (41*(41+this.id)+this.descripcion.hashCode());
+		return (int) (41*(41+this.id)+this.descripcion.hashCode());
 	}
 	public boolean canEqual(Object otro)
 	{

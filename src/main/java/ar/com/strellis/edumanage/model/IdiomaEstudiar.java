@@ -20,19 +20,19 @@ public class IdiomaEstudiar implements java.io.Serializable
 	{
 		
 	}
-	public IdiomaEstudiar(int id,String desc)
+	public IdiomaEstudiar(long id,String desc)
 	{
 		this.id=id;
 		this.descripcion=desc;
 	}
 	@Id
 	@GeneratedValue
-	private int id;
+	private long id;
 	private String descripcion;
 	/**
 	 * @return the id
 	 */
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	/**
@@ -68,7 +68,7 @@ public class IdiomaEstudiar implements java.io.Serializable
 	@Override
 	public int hashCode()
 	{
-		return (25013*(25013+this.id)+this.descripcion.hashCode());
+		return (int) (25013*(25013+this.id)+this.descripcion.hashCode());
 	}
 	public boolean canEqual(Object otro)
 	{

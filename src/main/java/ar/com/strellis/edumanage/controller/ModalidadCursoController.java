@@ -151,8 +151,8 @@ public class ModalidadCursoController
 	}
 	@RequestMapping(value="/listar_modalidades_curso")
 	public @ResponseBody List<ModalidadCurso> ListarModalidades(
-			@RequestParam(value="idioma_estudiar_id",required=true) Integer idioma_estudiar_id,
-			@RequestParam(value="tipo_curso_id",required=true) Integer tipo_curso_id)
+			@RequestParam(value="idioma_estudiar_id",required=true) Long idioma_estudiar_id,
+			@RequestParam(value="tipo_curso_id",required=true) Long tipo_curso_id)
 	{
 		try {
 			return modalidadCursoService.listarModalidadesCursoPorIdioma(idioma_estudiar_id, tipo_curso_id);

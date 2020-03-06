@@ -96,10 +96,11 @@ public class CursosController extends AppController
 		List<Curso> l=cursoService.listarCursosVigentes();
 		return l;
 	}
-	private ModelAndView cargarFormCurso(Curso curso)
+	private ModelAndView cargarFormCurso(Curso curso, ModelMap model)
 	{
 		ModelAndView modelo=new ModelAndView("curso_add");
 		modelo.addObject("curso",curso);
+		modelo.addAllObjects(model);
 		// Leo la lista de modalidades.
 		// Tengo que guardar en una variable de sesion la lista de modalidades
 		// disponibles para manejarla por separado del curso.
@@ -117,9 +118,9 @@ public class CursosController extends AppController
 	}
 	@PreAuthorize("isAuthenticated() and hasRole('ROLE_CURSOS_AGREGAR')")
 	@RequestMapping(value="/add",method=RequestMethod.GET)
-	public ModelAndView mostrarFormAgregar(Model model)
+	public ModelAndView mostrarFormAgregar(ModelMap model)
 	{
-		ModelAndView modelo=this.cargarFormCurso(new Curso());
+		ModelAndView modelo=this.cargarFormCurso(new Curso(),model);
 		return modelo;
 	}
 	@Descripcion(value="Agregar curso",permission="ROLE_CURSOS_AGREGAR")
@@ -140,7 +141,7 @@ public class CursosController extends AppController
 			{
 				log.trace("Error: "+i.next().toString());
 			}
-			ModelAndView modelo=this.cargarFormCurso(curso);
+			ModelAndView modelo=this.cargarFormCurso(curso,model);
 			return modelo;
 		}
 		else

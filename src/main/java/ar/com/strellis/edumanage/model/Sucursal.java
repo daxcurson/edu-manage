@@ -8,19 +8,19 @@ public class Sucursal
 {
 	@Id
 	@GeneratedValue
-	private int id;
+	private long id;
 	private String nombre;
 	private String abreviatura;
 	/**
 	 * @return the id
 	 */
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	/**
@@ -67,7 +67,7 @@ public class Sucursal
         int result = 1;
         result = prime * result
                 + ((nombre == null) ? 0 : nombre.hashCode());
-        result = prime * result + id;
+        result = (int) (prime * result + id);
         return result;
     }
 }

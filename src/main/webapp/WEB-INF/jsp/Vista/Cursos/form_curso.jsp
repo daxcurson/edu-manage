@@ -12,26 +12,32 @@
 		<div class="form-group col-md-12">
 			<form:label path="descripcion_curso">Descripci&oacute;n de Curso</form:label>
 			<form:input class="form-control" path="descripcion_curso" />
+			<form:errors path="descripcion_curso" />
 		</div>
 		<div class="form-group col-md-12">
 			<form:label path="horario_curso">Horario curso - descripcion de texto para mostrar en inscripcion</form:label>
 			<form:input class="form-control" path="horario_curso" />
+			<form:errors path="horario_curso" />
 		</div>
 		<div class="form-group col-md-12">
 			<form:label path="horario_curso">Libro</form:label>
 			<form:input class="form-control" path="libro" />
+			<form:errors path="libro" />
 		</div>
 		<div class="form-group col-md-12">
 			<form:checkbox path="intensivo" />
 			<form:label path="intensivo">Curso intensivo</form:label>
+			<form:errors path="intensivo" />
 		</div>
 		<div class="form-group col-md-12">
 			<form:label path="fecha_comienzo">Fecha Comienzo</form:label>
 			<form:input class="form-control" path="fecha_comienzo" id="CursoFechaComienzo" />
+			<form:errors path="fecha_comienzo" />
 		</div>
 		<div class="form-group col-md-12">
 			<form:label path="fecha_fin">Fecha Fin</form:label>
 			<form:input class="form-control" path="fecha_fin" id="CursoFechaFin" />
+			<form:errors path="fecha_fin" />
 		</div>
 		<div class="col-md-12">
 			<h1>Modalidades de curso</h1>
@@ -86,6 +92,7 @@
 			<form:select class="form-control" path="nivel">
 			<form:options items="${niveles}" itemValue="id" itemLabel="descripcion" />
 			</form:select>
+			<form:errors path="nivel" />
 		</div>
 		<div class="form-group col-md-12">
 			<h2>Cambiar la sucursal cambiar&aacute; la sucursal de todas las clases</h2>
@@ -93,6 +100,7 @@
 			<form:select class="form-control" path="sucursal">
 				<form:options items="${sucursales}" itemValue="id" itemLabel="nombre" />
 			</form:select>
+			<form:errors path="sucursal" />
 		</div>
 	</fieldset>
 </div>

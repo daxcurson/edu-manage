@@ -59,7 +59,7 @@ public class ModalidadCursoServiceImpl implements ModalidadCursoService
 
 	@Override
 	@Transactional
-	public List<ModalidadCurso> listarModalidadesCursoPorIdioma(long idioma_estudiar_id, int tipo_curso_id) throws IdiomaEstudiarInexistente
+	public List<ModalidadCurso> listarModalidadesCursoPorIdioma(long idioma_estudiar_id, long tipo_curso_id) throws IdiomaEstudiarInexistente
 	{
 		IdiomaEstudiar idioma_estudiar=idiomaEstudiarDAO.findById(idioma_estudiar_id).orElseThrow(IdiomaEstudiarInexistente::new);
 		return modalidadCursoDAO.findByIdiomaEstudiar(idioma_estudiar);
