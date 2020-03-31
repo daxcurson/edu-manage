@@ -18,7 +18,7 @@ public interface CursoService
 	public List<Sucursal> listarSucursales();
 	public List<Inscripcion> listarIntegrantesCurso(CursoGenerico curso);
 	public List<Curso> listarCursosVigentes();
-	public List<Curso> listarCursos(Map<String, String> requestParams,int resultsPerPage);
+	public List<CursoGenerico> listarCursos(Map<String, String> requestParams,int resultsPerPage);
 	public List<Curso> listarCursosSinClases();
 	public void save(CursoGenerico curso);
 	public void asignarNuevoProfesor(Curso curso);

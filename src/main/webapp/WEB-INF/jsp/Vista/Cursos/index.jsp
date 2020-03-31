@@ -14,14 +14,7 @@
 		<div>
 			<a href="${pageContext.request.contextPath}/cursos/add">Agregar curso</a>		
 		</div>
-		<div id="filtroCursos">
-		</div>
-		<!-- Paginador con lista de cursos -->
-		<div id="tablaPaginada">
-		<ul>
-			<li v-for="curso in cursos">{{ curso.codigo_curso }}</li>
-		</ul>
-		<v-paginator :resource_url="resource_url" @update="updateResource"></v-paginator>
+		<div id="lista_cursos">
 		</div>
 	</div>
 </div>

@@ -84,7 +84,7 @@ public class CursosController extends AppController
 	}
 	@PreAuthorize("isAuthenticated() and hasRole('ROLE_CURSOS_MOSTRAR_MENU')")
 	@RequestMapping("/listar_cursos")
-	public @ResponseBody List<Curso> listarCursos(
+	public @ResponseBody List<CursoGenerico> listarCursos(
 			@RequestParam Map<String, String> requestParams)
 	{
 		// Busco los cursos iniciales que tienen que aparecer en pantalla.
@@ -93,7 +93,7 @@ public class CursosController extends AppController
 		 * aqui se interpretaria la solicitud, se invocaria al metodo necesario en el Servicio,
 		 * y despues se retornaria 
 		 */
-		List<Curso> l=cursoService.listarCursosVigentes();
+		List<CursoGenerico> l=cursoService.listarCursos(requestParams, 20);
 		return l;
 	}
 	private ModelAndView cargarFormCurso(Curso curso, ModelMap model)

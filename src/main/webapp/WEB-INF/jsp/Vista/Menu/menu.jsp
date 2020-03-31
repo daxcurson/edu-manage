@@ -62,7 +62,7 @@
 						<div class="card-header"><h3>Cursos</h3></div>
 						<div class="card-body">
 						<ul>
-							<li><a href="${pageContext.request.contextPath}/cursos/listar_cursos_vigentes">Listar vigentes</a></li>
+							<li><a href="${pageContext.request.contextPath}/cursos/index">Listar</a></li>
 							<li><a href="${pageContext.request.contextPath}/cursos/add">Agregar</a></li>
 						</ul>
 						</div>

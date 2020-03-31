@@ -328,8 +328,8 @@ public class CursoServiceImpl implements CursoService //, ApplicationEventPublis
 	}
 
 	@Override
-	public List<Curso> listarCursos(Map<String,String> requestParams,int resultsPerPage)
+	public List<CursoGenerico> listarCursos(Map<String,String> requestParams,int resultsPerPage)
 	{
-		return new LinkedList<Curso>();
+		return cursoDAO.findAll();
 	}
 }

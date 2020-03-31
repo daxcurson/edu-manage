@@ -1,2 +1,0 @@
-<link type="text/css" href="${pageContext.request.contextPath}/css/structured-filter.css" rel="stylesheet">
-<link type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui.css" rel="stylesheet">
