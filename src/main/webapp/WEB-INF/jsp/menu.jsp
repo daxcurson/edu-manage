@@ -18,39 +18,34 @@
 			<c:if test="${empty controller || controller=='Menu'}">
 				<c:set var="clase" value="active" />
 			</c:if>
-			<li class="${clase}"><a
-				href="${pageContext.request.contextPath}/menu"><spring:message code="label.pantalla_inicial"/></a></li>
+			<li class="${clase}"><a href="${pageContext.request.contextPath}/menu"><spring:message code="label.pantalla_inicial"/></a></li>
 			<sec:authorize access="hasRole('ROLE_PERSONAS_MOSTRAR_MENU')">
 				<c:set var="clase_personas" value="" />
 				<c:if test="${controller=='Personas'}">
 					<c:set var="clase_personas" value="active" />
 				</c:if>
-				<li class="${clase_personas}"><a
-					href="${pageContext.request.contextPath}/personas/"><spring:message code="label.personas"/></a></li>
+				<li class="${clase_personas}"><a href="${pageContext.request.contextPath}/personas/"><spring:message code="label.personas"/></a></li>
 			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_INSCRIPCIONES_MOSTRAR_MENU')">
 				<c:set var="clase_inscripciones" value="" />
 				<c:if test="${controller=='Inscripciones'}">
 					<c:set var="clase_inscripciones" value="active" />
 				</c:if>
-				<li class="${clase_inscripciones}"><a
-					href="${pageContext.request.contextPath}/inscripciones/"><spring:message code="label.inscripciones"/></a></li>
+				<li class="${clase_inscripciones}"><a href="${pageContext.request.contextPath}/inscripciones/"><spring:message code="label.inscripciones"/></a></li>
 			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_CURSOS_MOSTRAR_MENU')">
 				<c:set var="clase_cursos" value="" />
 				<c:if test="${controller=='Cursos'}">
 					<c:set var="clase_cursos" value="active" />
 				</c:if>
-				<li class="${clase_cursos}"><a
-					href="${pageContext.request.contextPath}/cursos/"><spring:message code="label.cursos"/></a></li>
+				<li class="${clase_cursos}"><a href="${pageContext.request.contextPath}/cursos/"><spring:message code="label.cursos"/></a></li>
 			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_PROFESORES_SERVICE')">
 				<c:set var="clase_profesores" value="" />
 				<c:if test="${controller=='Profesores'}">
 					<c:set var="clase_profesores" value="active" />
 				</c:if>
-				<li class="${clase_profesores}"><a
-					href="${pageContext.request.contextPath}/profesores/"><spring:message code="label.profesores"/></a></li>
+				<li class="${clase_profesores}"><a href="${pageContext.request.contextPath}/profesores/"><spring:message code="label.profesores"/></a></li>
 			</sec:authorize>
 			<li class="dropdown"><a href="#" class="dropdown-toggle"
 				data-toggle="dropdown" role="button" aria-haspopup="true"
