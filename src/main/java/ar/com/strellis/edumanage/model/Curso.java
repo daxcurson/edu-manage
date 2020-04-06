@@ -9,14 +9,17 @@ import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
-import org.apache.commons.beanutils.converters.DateConverter;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.envers.*;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import ar.com.strellis.edumanage.model.propertyeditor.DateConverter;
+
 @Entity
 @Table(name = "cursos")
+@Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED) 
 public class Curso implements Serializable {
 	@Id
 	@Column(name = "id")
